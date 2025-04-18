@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,6 @@ Route::get('/', function () {
 
 
 
-Route::get('login', [Userauth_controller::class, 'login']);
-Route::get('register', [Userauth_controller::class, 'register']);
-Route::post('create', [Userauth_controller::class, 'create'])->name('auth.create');
+Route::get('login', [UserAuthController::class, 'login']);
+Route::get('register', [UserAuthController::class, 'register']);
+Route::post('create', [UserAuthController::class, 'create'])->name('auth.create');

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAuthController;
+//
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,13 @@ Route::post('register', [UserAuthController::class, 'create'])->name('auth.creat
 //     return view('dashboard'); // Create dashboard.blade.php
 // })->middleware('auth');
 
+
+Route::get('admin/login', [UserAuthController::class, 'adminLoginPage'])->name('admin.login');
+Route::post('admin/login', [UserAuthController::class, 'adminLogin'])->name('admin.login.submit');
+
+// Route::get('admin/dashboard', function () {
+//     if (!session('admin_logged_in')) {
+//         return redirect()->route('admin.login');
+//     }
+//     return view('admin.dashboard');
+// })->name('admin.dashboard');

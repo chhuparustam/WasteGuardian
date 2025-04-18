@@ -33,8 +33,8 @@
 
     <div class="container">
         <h2>Register</h2>
-        <form action="{{ route('auth.create') }}" method="post"> 
-            @csrf
+        <form action="{{ route('auth.create') }}" method="post">
+        @csrf
             
             <div class="form-group">
                 <label for="fullName">Full Name</label>

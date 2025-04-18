@@ -24,16 +24,15 @@ class UserAuthController extends Controller
        // validate request
 
        $request->validate([
-        'fullName'=>'required',
-        'email'=>'required|email|unique:users',
-        'password'=>'required|min:5|max:12'
-
+        'fullName'=>'required|String|min:2|max:50',
+        'email' => ['required', 'email', 'unique:users,email', 'regex:/^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
+        'password' => ['required','min:6'],
        ]);
 
        // creating user
 
        $user = User::create([
-        'name' => $request->fullName,
+        'fullName' => $request->fullName,
         'email'=> $request->email,
         'password'=>bcrypt($request->password),
        ]);

@@ -21,6 +21,14 @@ Route::get('/', function () {
 
 
 
-Route::get('login', [UserAuthController::class, 'login']);
-Route::get('register', [UserAuthController::class, 'register']);
-Route::post('create', [UserAuthController::class, 'create'])->name('auth.create');
+// Show and handle login form
+Route::get('login', [UserAuthController::class, 'login'])->name('login');
+Route::post('login', [UserAuthController::class, 'checkLogin'])->name('auth.login');
+Route::get('register', [UserAuthController::class, 'register'])->name('register');
+Route::post('register', [UserAuthController::class, 'create'])->name('auth.create');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard'); // Create dashboard.blade.php
+// })->middleware('auth');
+

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css"> <!-- Optional CSS file link -->
 </head>
 <body>
+
+
+
 <div class="result">
                 @if(session('success')) 
                     <div class="alert alert-success"> 
@@ -65,7 +68,7 @@
 
         </form>
 
-        <p>Already have an account? <a href="/login">Login here</a></p>
+        <p>Already have an account? <a href="{{ route('login') }}">Login here</a></p>
     </div>
 
 </body>

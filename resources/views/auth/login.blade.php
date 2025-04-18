@@ -7,32 +7,20 @@
     <link rel="stylesheet" href="styles.css"> <!-- Optional CSS file link -->
 </head>
 <body>
+            @if(session('success'))
+                <p style="color: green">{{ session('success') }}</p>
+            @endif
 
-<div class="result">
-                @if(session('success')) 
-                    <div class="alert alert-success"> 
-                        {{ session('success') }}
-                    </div>
-                @endif
+            @if(session('failed'))
+                 <p style="color: red">{{ session('failed') }}</p>
+            @endif
 
-                @if(session('failed')) 
-                    <div class="alert alert-danger"> 
-                        {{ session('failed') }}
-                    </div>
-                @endif
-            </div>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
     <div class="container">
         <h2>Login</h2>
-        <form action="">
+        <form action="{{ route('auth.login') }}" method="POST">
+            @csrf
+            
             
             <div class="form-group">
                 <label for="email">Email</label>
@@ -50,7 +38,7 @@
 
         </form>
 
-        <p>Don't have an account? <a href="/register">Register here</a></p>
+        <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
     </div>
 
 </body>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserAuthController extends Controller
 {
@@ -19,7 +20,6 @@ class UserAuthController extends Controller
     }
 
     public function create(Request $request){
-       // return $request->input();
 
        // validate request
 
@@ -36,30 +36,32 @@ class UserAuthController extends Controller
         'email'=> $request->email,
         'password'=>bcrypt($request->password),
        ]);
+       return redirect()->route('login')->with('success', 'Your account has been created successfully. Please login.');
 
        Auth::login($user);
        //return redirect()->route('login');
     }
 
-    public function checkLogin(Request $request){
-
+    public function checkLogin(Request $request)
+    {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:5|max:12' 
         ]);
 
-        $user = User::where('email',$email)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if($user){
-            if(Hash::check($request->password, $user->password)){
+        if ($user) {
+            // Verify password
+            if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
-                //return redirect()->route('dashboard');
-            }else{
-                $request->session()->flash('failed', 'Please enter correct password');
+                return redirect('/dashboard')->with('success', 'Login successful!');
+            } else {
+                return back()->with('failed', 'Incorrect password.');
             }
-        }else{
-            $request->session()->flash('failed', 'User not found!');
+        } else {
+            // User not found
+            return back()->with('failed', 'Account not found. Please register first.');
         }
-
     }
 }

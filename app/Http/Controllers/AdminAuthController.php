@@ -9,16 +9,16 @@ class AdminAuthController extends Controller
     public function adminLoginPage() {
         return view('auth.admin-login');
     }
-    
+
     public function adminLogin(Request $request) {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
-    
+
         $adminEmail = 'admin@wasteguardian.com';
-        $adminPassword = 'admin123'; // You can hash this too for security
-    
+        $adminPassword = 'admin123';
+
         if ($request->email === $adminEmail && $request->password === $adminPassword) {
             session(['admin_logged_in' => true]);
             return redirect()->route('admin.dashboard');
@@ -26,5 +26,5 @@ class AdminAuthController extends Controller
             return back()->with('failed', 'Invalid admin credentials');
         }
     }
-    
 }
+

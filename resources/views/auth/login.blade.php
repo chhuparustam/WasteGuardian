@@ -3,43 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Optional CSS file link -->
+    <title>Login - WasteGuardian</title>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Welcome !</h2>
+            <p>Together, we can make a cleaner, greener world. Please enter your details to join our WasteGuardian community and take the first step towards a more sustainable future</p>
+            <a href="{{ route('register') }}">
+                <button class="switch-btn">SIGN UP</button>
+            </a>
+        </div>
+
+        <div class="right-panel">
+            <h2>Sign In</h2>
+
             @if(session('success'))
-                <p style="color: green">{{ session('success') }}</p>
+                <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
             @if(session('failed'))
-                 <p style="color: red">{{ session('failed') }}</p>
+                <div class="alert alert-danger">{{ session('failed') }}</div>
             @endif
 
+            <form action="{{ route('auth.login') }}" method="POST">
+                @csrf
 
-    <div class="container">
-        <h2>Login</h2>
-        <form action="{{ route('auth.login') }}" method="POST">
-            @csrf
-            
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email">
-            </div><br><br>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Enter your password">
-            </div><br><br>
-
-            <div class="form-group">
-                <button type="submit">Login</button>
-            </div><br><br>
-
-        </form>
-
-        <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
+                <button type="submit" class="login-btn">SIGN IN</button>
+            </form>
+        </div>
     </div>
-
 </body>
 </html>

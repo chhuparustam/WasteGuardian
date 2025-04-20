@@ -1,7 +1,7 @@
 @extends('admin.layout')
-<link rel="stylesheet" href="{{ asset('css/admin-driver.css') }}">
-
+@section('title','Create Driver')
 @section('content')
+
     <h2>Add Driver</h2>
     <form method="POST" action="{{ route('admin.drivers.store') }}">
         @csrf

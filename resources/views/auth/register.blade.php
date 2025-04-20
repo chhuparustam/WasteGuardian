@@ -3,74 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Optional CSS file link -->
-
+    <title>Register - WasteGuardian</title>
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Welcome Back!</h2>
+            <p>Let’s take a step toward a cleaner, greener tomorrow log in to continue</p>
+            <a href="{{ route('login') }}">
+                <button class="switch-btn">SIGN IN</button>
+            </a>
+        </div>
 
+        <div class="right-panel">
+            <h2>Create Account</h2>
 
+            @if(session('success')) 
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
 
-<div class="result">
-                @if(session('success')) 
-                    <div class="alert alert-success"> 
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if(session('failed')) 
-                    <div class="alert alert-danger"> 
-                        {{ session('failed') }}
-                    </div>
-                @endif
-            </div>
+            @if(session('failed')) 
+                <div class="alert alert-danger">{{ session('failed') }}</div>
+            @endif
 
             @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-    <div class="container">
-        <h2>Register</h2>
-        <form action="{{ route('auth.create') }}" method="post">
-        @csrf
-            
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" value="{{ old('fullName') }}"> <!-- Corrected the old() function -->
-                <span class="text-danger">@error('fullName'){{ $message }}@enderror</span> <!-- Corrected error key -->
-            </div><br><br>
+            <form action="{{ route('auth.create') }}" method="POST">
+                @csrf
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email" value="{{ old('email') }}"> <!-- Corrected the old() function -->
+                <input type="text" name="fullName" placeholder="Full Name" value="{{ old('fullName') }}" required>
+                <span class="text-danger">@error('fullName'){{ $message }}@enderror</span>
+
+                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
                 <span class="text-danger">@error('email'){{ $message }}@enderror</span>
-            </div><br><br>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Enter your password" value="{{ old('password') }}">
+                <input type="text" name="address" placeholder="Address" value="{{ old('address') }}" required>
+                <span class="text-danger">@error('address'){{ $message }}@enderror</span>
+
+                <input type="password" name="password" placeholder="Password" required>
                 <span class="text-danger">@error('password'){{ $message }}@enderror</span>
-            </div><br><br>
 
-            <!-- <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
-            </div><br><br> -->
+                <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
 
-            <div class="form-group">
-                <button type="submit">Register</button>
-            </div><br><br>
-
-        </form>
-
-        <p>Already have an account? <a href="{{ route('login') }}">Login here</a></p>
+                <button type="submit" class="signup-btn">SIGN UP</button>
+            </form>
+        </div>
     </div>
-
 </body>
 </html>

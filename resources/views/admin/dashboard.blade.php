@@ -16,7 +16,7 @@
         WasteGuardian Admin Dashboard
     </div>
 
-    <div class="container">
+    <div class="container"> 
         <div class="sidebar">
             <a href="#">Dashboard Home</a>
             <a href="#">Manage Users</a>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="card">
-                <h3>Quick Stats</h3>
+                <h3>Quick Stauts</h3>
                 <ul>
                     <li>Total Users: {{ $userCount ?? 'N/A' }}</li>
                     <li>Total Drivers: {{ $driverCount ?? 'N/A' }}</li>

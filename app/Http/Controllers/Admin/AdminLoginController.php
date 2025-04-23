@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminAuthController extends Controller
-{
-    // public function adminLoginPage() {
-    //     return view('auth.admin-login');
-    // }
 
+class AdminLoginController extends Controller
+{
     public function adminLogin(Request $request) {
         $request->validate([
             'email' => 'required|email',
@@ -26,5 +24,5 @@ class AdminAuthController extends Controller
             return back()->with('failed', 'Invalid admin credentials');
         }
     }
-}
 
+}

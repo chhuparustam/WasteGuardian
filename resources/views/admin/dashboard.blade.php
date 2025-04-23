@@ -1,46 +1,30 @@
-<!-- resources/views/admin/dashboard.blade.php -->
+@extends('admin.layout')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>WasteGuardian - Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('content')
+    <h1>Admin Dashboard</h1>
 
-    <link rel="stylesheet" href="{{ asset('css/admin-dashboard.css') }}">
-
-</head>
-<body>
-
-    <div class="header">
-        WasteGuardian Admin Dashboard
-    </div>
-
-    <div class="container"> 
-        <div class="sidebar">
-            <a href="#">Dashboard Home</a>
-            <a href="#">Manage Users</a>
-            <a href="{{ route('admin.drivers.index') }}">Manage Drivers</a>
-            <a href="#">Complaints & Requests</a>
-            <a href="{{ url('admin/logout') }}">Logout</a>
+    <!-- Stat Cards -->
+    <div class="stats-cards">
+        <div class="card">
+            <h3>Total Users</h3>
+            <p>{{ $userCount ?? '120' }}</p>
         </div>
-
-        <div class="content">
-            <div class="card">
-                <h2>Welcome Admin!</h2>
-                <p>Use the sidebar to manage all roles and handle system operations effectively.</p>
-            </div>
-
-            <div class="card">
-                <h3>Quick Stauts</h3>
-                <ul>
-                    <li>Total Users: {{ $userCount ?? 'N/A' }}</li>
-                    <li>Total Drivers: {{ $driverCount ?? 'N/A' }}</li>
-                    <li>Total Requests: {{ $requestCount ?? 'N/A' }}</li>
-                </ul>
-            </div>
+        <div class="card">
+            <h3>Total Drivers</h3>
+            <p>{{ $driverCount ?? '25' }}</p>
+        </div>
+        <div class="card">
+            <h3>Pending Complaints</h3>
+            <p>{{ $complaintCount ?? '10' }}</p>
+        </div>
+        <div class="card">
+            <h3>Total Requests</h3>
+            <p>{{ $requestCount ?? '75' }}</p>
         </div>
     </div>
 
-</body>
-</html>
+    <div class="card welcome-card">
+        <h2>Welcome Admin!</h2>
+        <p>Use the sidebar to manage users, drivers, complaints and requests efficiently.</p>
+    </div>
+@endsection

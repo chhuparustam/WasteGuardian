@@ -1,15 +1,16 @@
 @extends('admin.layout')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/manage-users.css') }}">
     <h1>Manage Users</h1>
 
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>fullName</th>
                 <th>Email</th>
-                <th>Role</th> {{-- Agar role hai --}}
+                <th>Action</th> 
             </tr>
         </thead>
         <tbody>
@@ -19,7 +20,7 @@
             <td>{{ $user->fullName }}</td>
             <td>{{ $user->email }}</td>
             <td>
-                <a href="{{ route('admin.users.edit', $user->id) }}">Edit</a>
+                <a href="{{ route('admin.users.edit', $user->id) }}">Update</a>
                 <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')

@@ -8,9 +8,9 @@ use App\Models\User;
 
 class AdminDashboardController extends Controller
 {
-    public function showDashboard()
-{
-    $userCount = User::count();
-    return view('admin.dashboard', compact('userCount'));
-}
+        public function showDashboard()
+    {
+        $userCount = User::count();
+        return view('admin.dashboard', compact('userCount'));
+    }
 }

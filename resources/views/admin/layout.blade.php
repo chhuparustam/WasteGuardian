@@ -14,9 +14,11 @@
 
     <div class="container">
         <div class="sidebar">
-            <h2>WasteGuardian</h2>
+           <a href ='{{ url('/') }}' target="_blank"> <h2>WasteGuardian</h2></a>
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
             <a href="{{ route('admin.users.index') }}">Manage Users</a>
+            <a href="{{ route('admin.drivers.index') }}">Manage Drivers</a>
+
         </div>
 
         <div class="content">

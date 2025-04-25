@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\Admin\AdminloginController;
 use App\Http\Controllers\Admin\UserController;
-use APp\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\DriverController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use APp\Http\Controllers\Admin\AdminDashboardController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 
@@ -36,6 +38,13 @@ Route::post('register', [UserAuthController::class, 'create'])->name('auth.creat
 // })->middleware('auth');
 
 
+// main dashboard(template)
+Route::get('/dashboard', function () {
+    return view('auth.dashboard');
+});
+
+
+
 // for admin login
 Route::get('admin-login', [AdminLoginController::class, 'adminLoginPage'])->name('admin.login');
 Route::post('admin-login', [AdminLoginController::class, 'adminLogin'])->name('admin.login.submit');
@@ -51,7 +60,7 @@ Route::get('/admin.dashboard', function () {
 })->name('admin.dashboard');
 
 
-// for user managemant
+// for maange user
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
@@ -66,14 +75,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 
+//for manage drivers
 
-// Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-//     Route::get('users', [UserController::class, 'index'])->name('users.index');
-//     Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-//     Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
-//     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-// });
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Route to add a new driver
+    Route::get('drivers/create', [DriverController::class, 'create'])->name('drivers.create');
+    Route::post('drivers', [DriverController::class, 'store'])->name('drivers.store');
+    
 
-
-
+    Route::get('drivers', [DriverController::class, 'index'])->name('drivers.index');
+    Route::get('drivers/{id}/edit', [DriverController::class, 'edit'])->name('drivers.edit');
+    Route::put('drivers/{id}', [DriverController::class, 'update'])->name('drivers.update');
+    Route::delete('drivers/{id}', [DriverController::class, 'destroy'])->name('drivers.destroy');
+});
 

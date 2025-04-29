@@ -89,3 +89,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('drivers/{id}', [DriverController::class, 'destroy'])->name('drivers.destroy');
 });
 
+
+
+
+// user dashboard
+
+Route::get('/user/dashboard', function () {
+    return view('frontend.dashboard');
+})->name('user.dashboard')->middleware('auth');

@@ -68,7 +68,7 @@ Free Bootstrap 5 HTML Template
                 <a class="navbar-brand" href="index.html">
                     <img src="{{  asset('images/bubbles.png') }}" class="logo img-fluid" alt="">
 
-                    <span class="ms-2">Clean Work</span>
+                    <span class="ms-2">WasteGuardian</span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,7 +102,8 @@ Free Bootstrap 5 HTML Template
                         </li>
 
                         <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="{{ asset('register') }}">Get s</a>
+                            <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="{{ asset('register') }}">signup</a>
+                            <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="{{ asset('login') }}">login</a>
                         </li>
                     </ul>
                 </div>
@@ -119,11 +120,12 @@ Free Bootstrap 5 HTML Template
 
                         <div class="col-lg-7 col-12 text-center mx-auto">
                             <h1 class="cd-headline rotate-1 text-white mb-4 pb-2">
-                                <span>We clean your</span>
+                                <span>Let's protect our</span>
                                 <span class="cd-words-wrapper">
-                                    <b class="is-visible">House</b>
-                                    <b>Office</b>
-                                    <b>Kitchen</b>
+                                    <b class="is-visible"> Streets</b>
+                                    <b>Community</b>
+                                    <b>Enviornment</b>
+                                    <b>    Future</b>
                                 </span>
                             </h1>
 
@@ -157,10 +159,11 @@ Free Bootstrap 5 HTML Template
                     <div class="row justify-content-lg-center align-items-center">
 
                         <div class="col-lg-6 col-12">
-                            <h2 class="mb-4">Reliable &amp; Fast Cleaning <br> Service</h2>
-
-                            <p><a href="#">Clean Work</a> is a Bootstrap v.5.1.3 HTML CSS template for free download provided by Tooplate. You can use this layout for any purpose. Images are taken from <a rel="nofollow" href="https://www.freepik.com/" target="_blank">FreePik</a> and <a rel="nofollow" href="https://worldvectorlogo.com/" target="_blank">WorldVectorLogo</a> websites.</p>
-                            <p>You <strong>may not</strong> redistribute this template ZIP file on any other template collection website. Please <a href="https://www.tooplate.com/contact" target="_blank">contact us</a> for more info. Thank you.</p>
+                            <h2 class="mb-4"> Welcome to WasteGuardian – Your Smart Waste Companion!</h2>
+                             
+                            <p>Say goodbye to messy waste routines! With smart tracking, quick requests, and clean communication, <strong>WasteGuardian </strong>helps you manage waste effortlessly. Whether you're a user or a driver — you're part of the solution.</p>
+                            <p>Let’s <strong>Clean smarter, ot harder!</strong> Together, we’re not just managing waste — we’re shaping a greener tomorrow.</p>
+                        
                         </div>
 
                         <div class="col-lg-6 col-12 custom-block-wrap">

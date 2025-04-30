@@ -1,0 +1,61 @@
+/* Container styling */
+form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Headline */
+h1 {
+    text-align: center;
+    color: #112240;
+    margin-bottom: 25px;
+}
+
+/* Form group spacing */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #0a192f;
+}
+
+/* Inputs */
+input.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccd6f6;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input.form-control:focus {
+    border-color: #64ffda;
+    outline: none;
+}
+
+/* Button */
+button.btn-primary {
+    background-color: #64ffda;
+    color: #0a192f;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button.btn-primary:hover {
+    background-color: #52e0c4;
+}

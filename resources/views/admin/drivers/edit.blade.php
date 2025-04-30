@@ -1,8 +1,9 @@
 <!-- resources/views/admin/drivers/edit.blade.php -->
 @extends('admin.layout')
+<link rel="stylesheet" href="{{ asset('css/edit-drivers.css') }}">
 
 @section('content')
-    <h1>Edit Driver</h1>
+    <h1>Update Driver info.</h1>
     <form action="{{ route('admin.drivers.update', $driver->id) }}" method="POST">
         @csrf
         @method('PUT') <!-- PUT method is used to update data -->

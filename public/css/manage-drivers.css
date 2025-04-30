@@ -1,0 +1,103 @@
+/* manage-drivers.css – scoped to manage drivers only */
+.manage-drivers-wrapper {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    color: #333;
+}
+
+.manage-drivers-wrapper h1 {
+    font-size: 28px;
+    color: #112240;
+    margin-bottom: 20px;
+}
+
+.manage-drivers-wrapper h2 {
+    font-size: 22px;
+    margin-top: 30px;
+    color: #112240;
+}
+
+.manage-drivers-wrapper a {
+    background-color: #64ffda;
+    color: #112240;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.manage-drivers-wrapper a:hover {
+    background-color: #52eac7;
+}
+
+.manage-drivers-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.manage-drivers-wrapper th,
+.manage-drivers-wrapper td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.manage-drivers-wrapper thead {
+    background-color: #112240;
+    color: white;
+}
+
+.manage-drivers-wrapper tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.manage-drivers-wrapper form {
+    display: inline;
+}
+
+.manage-drivers-wrapper a.update-btn {
+    background-color: #64ffda;
+    color: #112240;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.manage-drivers-wrapper a.update-btn:hover {
+    background-color: #52eac7;
+}
+
+.manage-drivers-wrapper button {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.manage-drivers-wrapper button:hover {
+    background-color: #e04e4e;
+}
+
+.manage-drivers-wrapper > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manage-drivers-wrapper table {
+    max-width: 1000px;
+    width: 100%;
+}

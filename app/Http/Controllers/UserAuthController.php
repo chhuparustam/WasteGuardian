@@ -60,9 +60,8 @@ class UserAuthController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             // Login successful
             Auth::login($user);
-            return redirect('/admin.dashboard')->with('success', 'Login successful!');
+            return redirect('/user.dashboard')->with('success', 'Login successful!');
         } else {
-            // Login failed
             return back()->with('failed', 'Invalid email or password.');
         }
     }

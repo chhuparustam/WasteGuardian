@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\DriverModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 // use App\Http\Controllers\Admin\DriverController;
 
 class DriverController extends Controller
@@ -27,6 +28,7 @@ class DriverController extends Controller
             'email' => 'required|email|unique:drivers,email',
             'phone' => 'required|numeric',
             'address' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
         ]);
 
         DriverModel::create([
@@ -34,6 +36,7 @@ class DriverController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
+            'password' => Hash::make($request->password), 
         ]);
 
         return redirect()->route('admin.drivers.index')->with('success', 'Driver added successfully.');
@@ -60,6 +63,7 @@ class DriverController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
+            'password' => $request->password,
         ]);
 
         return redirect()->route('admin.drivers.index')->with('success', 'Driver updated successfully.');

@@ -96,4 +96,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('/user/dashboard', function () {
     return view('frontend.dashboard');
-})->name('user.dashboard')->middleware('auth');
+})->name('user.dashboard');

@@ -2,9 +2,11 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/manage-users.css') }}">
+
+<div class="manage-users-wrapper">
     <h1>Manage Users</h1>
 
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -20,16 +22,16 @@
             <td>{{ $user->fullName }}</td>
             <td>{{ $user->email }}</td>
             <td>
-                <a href="{{ route('admin.users.edit', $user->id) }}">Update</a>
+                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn-update">Update</a>
                 <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                    <button type="submit" onclick="return confirm('Are you sure?')" class="btn-delete">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
-
         </tbody>
     </table>
+</div>
 @endsection

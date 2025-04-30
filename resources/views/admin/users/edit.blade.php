@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/manage-users.css') }}">
+<link rel="stylesheet" href="{{ asset('css/edit-user.css') }}">
 
     <h1>Update User</h1>
 
@@ -9,7 +9,6 @@
         @csrf
         @method('PUT')
 
-        
         <label for="fullName">Full Name:</label>
         <input type="text" name="fullName" id="fullName" value="{{ $user->fullName }}">
 

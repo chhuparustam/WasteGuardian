@@ -8,9 +8,15 @@
 </head>
 <body>
 
-    <div class="header">
+<div class="header">
+    <div class="logo-container">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
+    </div>
+    <div class="header-title">
         WasteGuardian Admin Dashboard
     </div>
+</div>
+
 
     <div class="container">
         <div class="sidebar">

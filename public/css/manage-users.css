@@ -36,7 +36,7 @@
 }
 
 .manage-users-wrapper .btn-update {
-    background-color: #64ffda;
+    background-color: #52eac7;
     color: #112240;
     padding: 6px 12px;
     border: none;
@@ -52,7 +52,7 @@
 }
 
 .manage-users-wrapper .btn-delete {
-    background-color: #ff6b6b;
+    background-color: #f73c46;
     color: white;
     padding: 6px 12px;
     border: none;

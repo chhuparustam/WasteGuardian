@@ -1,0 +1,63 @@
+
+.custom-input {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 5px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background: #ffffff;
+    box-shadow: 0 0 0 2px rgba(154, 85, 255, 0.3);
+    outline: none;
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.featured-block {
+    margin-bottom: 30px;
+}
+
+textarea.custom-input {
+    resize: none;
+}
+
+.feedback-form .button--atlas {
+    margin-top: 1rem;
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .feedback-form {
+        padding: 1.5rem;
+    }
+    
+    .custom-input {
+        margin-bottom: 10px;
+    }
+}
+
+.submitBtn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.sideCard {
+    height: 535px;
+    overflow-y: scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;  
+    border-radius: var(--border-radius-medium);
+}
+
+.sideCard::-webkit-scrollbar {
+    display: none;
+}

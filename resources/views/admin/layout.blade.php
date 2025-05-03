@@ -24,7 +24,8 @@
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
             <a href="{{ route('admin.users.index') }}">Manage Users</a>
             <a href="{{ route('admin.drivers.index') }}">Manage Drivers</a>
-
+            <a href=>Manage Request</a>
+            <a href=>Complaints</a>
         </div>
 
         <div class="content">

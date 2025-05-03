@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\AdminloginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\DriverController;
-
+use App\Http\Controllers\Driver\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,10 +90,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
+// for driver login
+Route::get('/driver/login', [App\Http\Controllers\Driver\LoginController::class, 'showLoginForm'])->name('driver.login');
+Route::post('/driver/login', [App\Http\Controllers\Driver\LoginController::class, 'login'])->name('driver.login.submit');
 
 
 // user dashboard
 
 Route::get('/user/dashboard', function () {
     return view('frontend.dashboard');
-})->name('user.dashboard');
+})->name('frontend.dashboard');
+
+
+
+
+

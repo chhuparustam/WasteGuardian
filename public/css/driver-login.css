@@ -13,14 +13,14 @@ body, html {
 
 /* Gradient Background */
 body {
-    background: linear-gradient(135deg, #1CB5E0, #000851);
+    background: linear-gradient(135deg, #1CB5E0, #000851); /* modern blue gradient */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Login Box */
-.login-box {
+/* Container */
+.container {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 12px;
@@ -30,9 +30,9 @@ body {
 }
 
 /* Title */
-.login-box h2 {
+.right-panel h2 {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     color: #003366;
 }
 
@@ -44,38 +44,37 @@ body {
     text-align: center;
     font-size: 14px;
 }
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
 .alert-danger {
     background-color: #f8d7da;
     color: #721c24;
 }
 
-/* Form Group */
-.form-group {
-    margin-bottom: 15px;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #333;
-}
-.form-group input {
+/* Form inputs */
+input[type="email"],
+input[type="password"] {
     width: 100%;
     padding: 12px 15px;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 15px;
     outline: none;
-    transition: border 0.3s;
+    font-size: 15px;
+    transition: 0.3s;
 }
-.form-group input:focus {
+input[type="email"]:focus,
+input[type="password"]:focus {
     border-color: #1cb5e0;
 }
 
 /* Button */
-.btn {
+.login-btn {
     width: 100%;
     padding: 12px;
+    margin-top: 15px;
     background-color: #1CB5E0;
     border: none;
     color: white;
@@ -85,6 +84,6 @@ body {
     cursor: pointer;
     transition: background 0.3s;
 }
-.btn:hover {
+.login-btn:hover {
     background-color: #1595c3;
 }

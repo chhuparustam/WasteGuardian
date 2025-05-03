@@ -36,7 +36,7 @@ class DriverController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
-            'password' => Hash::make($request->password), 
+           'password' => Hash::make($request->password),
         ]);
 
         return redirect()->route('admin.drivers.index')->with('success', 'Driver added successfully.');

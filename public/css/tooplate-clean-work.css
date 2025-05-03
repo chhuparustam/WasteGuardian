@@ -1093,6 +1093,8 @@ strong {
 }
 
 .testimonial-section .featured-block h4,
+.testimonial-section .featured-block h5,
+.testimonial-section .featured-block h6,
 .testimonial-section .featured-block p {
   color: var(--white-color);
 }

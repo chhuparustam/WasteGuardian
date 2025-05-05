@@ -51,7 +51,7 @@ textarea.custom-input {
 }
 
 .sideCard {
-    height: 535px;
+    /* height: 600px; */
     overflow-y: scroll;
     scrollbar-width: none; 
     -ms-overflow-style: none;  
@@ -60,4 +60,33 @@ textarea.custom-input {
 
 .sideCard::-webkit-scrollbar {
     display: none;
+}
+
+
+.guest-content {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.guest-content h3 {
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.guest-content .auth-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.auth-required-message {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: 2rem;
 }

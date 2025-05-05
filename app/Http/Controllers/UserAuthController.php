@@ -54,13 +54,11 @@ class UserAuthController extends Controller
             'password' => 'required|min:5|max:12'
         ]);
 
-        // Find user by email
         $user = User::where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            // Login successful
-            Auth::login($user);
-            return redirect('/user.dashboard')->with('success', 'Login successful!');
+            session(['user_id' => $user->id]);
+            return redirect('/')->with('success', 'Login successful.');
         } else {
             return back()->with('failed', 'Invalid email or password.');
         }

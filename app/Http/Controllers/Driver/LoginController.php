@@ -15,19 +15,20 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        $driver = DriverModel::where('email', $request->email)->first();
+    $driver = DriverModel::where('email', $request->email)->first();
 
-        if (!$driver || !Hash::check($request->password, $driver->password)) {
-            return back()->with('error', 'Invalid email or password')->withInput();
-        }
-
+    if ($driver && Hash::check($request->password, $driver->password)) {
         session(['driver_id' => $driver->id]);
-        return redirect()->route('driver.dashboard');
+        
+    } else {
+        return redirect()->back()->with('failed', 'Invalid credentials.');
     }
+}
+
 }

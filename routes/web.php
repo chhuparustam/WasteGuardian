@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Driver\LoginController;
+use App\Http\Controllers\PickupRequestController;
+use App\Http\Controllers\Admin\AdminRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +21,17 @@ use App\Http\Controllers\Driver\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-
-
 
 // for user signup and login
 Route::get('login', [UserAuthController::class, 'login'])->name('login');
-Route::post('login', [UserAuthController::class, 'checkLogin'])->name('auth.login');
+Route::post('/login', [UserAuthController::class, 'checkLogin'])->name('auth.login');
+
 Route::get('register', [UserAuthController::class, 'register'])->name('register');
 Route::post('register', [UserAuthController::class, 'create'])->name('auth.create');
+Route::get('/', function () {
+    return view('index'); 
+});
 
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware('auth');
 
 
 // main dashboard(template)
@@ -52,6 +48,7 @@ Route::post('admin-login', [AdminLoginController::class, 'adminLogin'])->name('a
 Route::get('/adminlogin', function () {
     return view('auth.admin-login');
 });
+
 
 //  redirect to admin dashboard
 
@@ -91,8 +88,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 // for driver login
-Route::get('/driver/login', [App\Http\Controllers\Driver\LoginController::class, 'showLoginForm'])->name('driver.login');
-Route::post('/driver/login', [App\Http\Controllers\Driver\LoginController::class, 'login'])->name('driver.login.submit');
+// Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('driver.login');
+// Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
+
 
 
 // user dashboard
@@ -104,4 +102,23 @@ Route::get('/user/dashboard', function () {
 
 
 
+// pickup request
+Route::post('/pickup-request', [PickupRequestController::class, 'store'])->name('pickup.store');
 
+Route::prefix('admin')->group(function () {
+    Route::get('/requests', [AdminRequestController::class, 'index'])->name('admin.requests.index');
+});
+
+
+// ...existing code...
+
+// Add this new route for the selection page
+Route::get('/select-login', function () {
+    return view('auth.select-login');
+})->name('select-login');
+
+// Update the login routes to use names
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('driver.login');
+Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
+// ...existing code...

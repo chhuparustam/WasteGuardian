@@ -111,7 +111,7 @@ Free Bootstrap 5 HTML Template
                         <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn"
                             href="{{ asset('register') }}">signup</a>
                         <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn"
-                            href="{{ asset('login') }}">login</a>
+                            href="{{ asset('select-login') }}">login</a>
                     </li>
                 </ul>
             </div>
@@ -247,8 +247,10 @@ Free Bootstrap 5 HTML Template
                                                 Cleaning</a>
                                         </h4>
 
-                                        <p><strong>Let WasteGuardian handle the mess—your office deserves better.</strong> Professional office cleaning designed to match your time and waste needs—all in one click.</p>
-                                        
+                                        <p><strong>Let WasteGuardian handle the mess—your office deserves
+                                                better.</strong> Professional office cleaning designed to match your
+                                            time and waste needs—all in one click.</p>
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <div class="reviews-icons">
                                                 <i class="bi-star-fill"></i>
@@ -313,7 +315,8 @@ Free Bootstrap 5 HTML Template
                                                 Cleaning</a>
                                         </h4>
 
-                                        <p><strong>Say goodbye to grease and germs.</strong> Efficient, reliable cleaning tailored to your schedule, ensuring a fresh and green kitchen.</p>
+                                        <p><strong>Say goodbye to grease and germs.</strong> Efficient, reliable
+                                            cleaning tailored to your schedule, ensuring a fresh and green kitchen.</p>
 
                                         <div class="d-flex flex-wrap align-items-center">
                                             <div class="reviews-icons">
@@ -378,7 +381,9 @@ Free Bootstrap 5 HTML Template
                                             <a class="services-title-link" href="services-detail.html">Car Washing</a>
                                         </h4>
 
-                                        <p><strong>WasteGuardian: The hygienic, eco-friendly way to keep your car gleaming</strong> Fast, reliable washing that’s tough on dirt, gentle on the environment.</p>
+                                        <p><strong>WasteGuardian: The hygienic, eco-friendly way to keep your car
+                                                gleaming</strong> Fast, reliable washing that’s tough on dirt, gentle on
+                                            the environment.</p>
 
                                         <div class="d-flex flex-wrap align-items-center">
                                             <div class="reviews-icons">
@@ -444,7 +449,9 @@ Free Bootstrap 5 HTML Template
                                                 Cleaning</a>
                                         </h4>
 
-                                        <p><strong>WasteGuardian ensures your factory is clean, safe, and sustainable</strong> Reliable, eco-friendly cleaning designed for your factory’s needs.</p>
+                                        <p><strong>WasteGuardian ensures your factory is clean, safe, and
+                                                sustainable</strong> Reliable, eco-friendly cleaning designed for your
+                                            factory’s needs.</p>
 
                                         <div class="d-flex flex-wrap align-items-center">
                                             <div class="reviews-icons">
@@ -479,22 +486,25 @@ Free Bootstrap 5 HTML Template
             </div>
         </section>
 
+        @php
+            $isLoggedin = true //true if login else false will work as expected
+         @endphp
 
-        <section class="testimonial-section section-padding section-bg">
+        <section id="pickup-request" class="testimonial-section section-padding section-bg">
+
             <div class="section-overlay"></div>
 
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-12 col-12">
                         <h2 class="text-white mb-4">Quick Pickup Request</h2>
                     </div>
 
-                    <div class="col-lg-4 col-12 sideCard">
+                    <div class="{{ $isLoggedin ? "col-lg-4 col-12 " : "col-12" }} sideCard">
                         <div class="featured-block">
                             <div class="d-flex align-items-center ">
                                 <div class="">
-                                    <h6 class="mb-0">Marie</h6>
+                                    <h4 class="mb-0">Marie</h4>
                                 </div>
                             </div>
 
@@ -503,7 +513,7 @@ Free Bootstrap 5 HTML Template
                         <div class="featured-block">
                             <div class="d-flex align-items-center ">
                                 <div class="">
-                                    <h6 class="mb-0">Marie</h6>
+                                    <h4 class="mb-0">Marie</h4>
                                 </div>
                             </div>
 
@@ -512,7 +522,7 @@ Free Bootstrap 5 HTML Template
                         <div class="featured-block">
                             <div class="d-flex align-items-center ">
                                 <div class="">
-                                    <h6 class="mb-0">Marie</h6>
+                                    <h4 class="mb-0">Marie</h4>
                                 </div>
                             </div>
 
@@ -521,7 +531,7 @@ Free Bootstrap 5 HTML Template
                         <div class="featured-block">
                             <div class="d-flex align-items-center">
                                 <div class="">
-                                    <h6 class="mb-0">Marie</h6>
+                                    <h4 class="mb-0">Marie</h4>
                                 </div>
                             </div>
 
@@ -533,12 +543,14 @@ Free Bootstrap 5 HTML Template
 
 
 
-                    <div class="col-lg-8">
-                        <div class="featured-block">
-                            <h6 class="text-white mb-4"> Your Waste, Our Responsibility – Request Now 👇🏻</h6>
-                            <form action="" method="post" class="custom-form feedback-form">
-                                <div class="row">
-                                    <!-- <div class="col-lg-6"> -->
+                    @if($isLoggedin)
+                        <div class="col-lg-8">
+                            <div class="featured-block">
+                                <h6 class="text-white mb-4"> Your Waste, Our Responsibility – Request Now 👇🏻</h6>
+                                <form action="{{ route('pickup.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <!-- <div class="col-lg-6"> -->
                                         <div class="form-group">
                                             <label for="name" class="form-label text-white"> Name</label>
                                             <input type="text" id="name" name="name" class="form-control custom-input"
@@ -547,44 +559,46 @@ Free Bootstrap 5 HTML Template
 
                                         <div class="form-group">
                                             <label for="address" class="form-label text-white">Address</label>
-                                            <input type="text" id="address" name="email"
-                                                class="form-control custom-input" placeholder="Enter your address" required>
-                                                
+                                            <input type="text" id="address" name="address" class="form-control custom-input"
+                                                placeholder="Enter your address" required>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="landmark" class="form-label text-white">Nearest Landmark</label>
-                                            <input type="text" id="landmark" name="landmark"
-                                                class="form-control custom-input" placeholder="Enter nearest landmark"
-                                                required>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="photo" class="form-label text-white">Photo</label>
-                                            <input type="file" id="photo" name="photo"
-                                                class="form-control custom-input" accept="image/*" required>    
-                                        </div> 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="landmark" class="form-label text-white">Nearest Landmark</label>
+                                        <input type="text" id="landmark" name="landmark" class="form-control custom-input"
+                                            placeholder="Enter nearest landmark" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="photo" class="form-label text-white">Photo</label>
+                                        <input type="file" id="photo" name="photo" class="form-control custom-input"
+                                            accept="image/*" required>
+                                    </div>
 
                                     <!-- <div class="col-lg-6"> -->
-                                        <div class="form-group ">
-                                            <label for="message" class="form-label text-white">Note/Message(if any)</label>
-                                            <textarea id="message" name="message" class="form-control custom-input h-75"
-                                                placeholder="Write additional notes or message if any" 
-                                                cols="5"></textarea>
-                                        </div>
+                                    <div class="form-group ">
+                                        <label for="message" class="form-label text-white">Note/Message(if any)</label>
+                                        <textarea id="message" name="message" class="form-control custom-input h-75"
+                                            placeholder="Write additional notes or message if any" cols="5"></textarea>
+                                    </div>
                                     <!-- </div> -->
 
                                     <div class="col-12 text-center mt-4 bg-color:red">
                                         <button type="submit" class="custom-btn btn button submitBtn ">
                                             <span>Submit</span>
-                                         </button>
+                                        </button>
                                     </div>
-                                </div>
+                            </div>
                             </form>
                         </div>
-                    </div>
 
+                    @else
+                    @endif
                 </div>
+
             </div>
         </section>
 
@@ -735,6 +749,7 @@ Free Bootstrap 5 HTML Template
         </div>
     </footer>
 
+
     <!-- JAVASCRIPT FILES -->
     <script src="{{  asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -745,6 +760,15 @@ Free Bootstrap 5 HTML Template
     <script src="{{ asset('js/modernizr.js') }}"></script>
     <script src="{{ asset('js/animated-headline.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    @if(session('scroll_to'))
+        <script>
+            window.onload = function () {
+                window.location.hash = "{{ session('scroll_to') }}";
+            };
+        </script>
+    @endif
+
 
 </body>
 

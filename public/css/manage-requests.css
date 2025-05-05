@@ -1,0 +1,54 @@
+/* manage-requests.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 26px;
+    color: #0a192f;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #112240;
+    color: white;
+}
+
+thead th {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+    border: none;
+}
+
+tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: #f2f6fc;
+}
+
+tbody td {
+    padding: 12px;
+    font-size: 15px;
+    vertical-align: top;
+    border: none;
+}
+
+img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+  
+}

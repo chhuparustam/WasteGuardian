@@ -20,16 +20,17 @@ body {
     min-height: 100vh;
 }
 
-/* Selection Panel */
+/* Updated Selection Panel width */
 .selection-panel {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 12px;
     width: 100%;
-    max-width: 500px;  /* Increased from 400px to 500px */
+    max-width: 700px; /* Increased from 650px */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     text-align: center;
 }
+
 
 /* Container */
 .container {
@@ -37,10 +38,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 40px;  /* Increased from 20px to 40px for better spacing */
+    padding: 20px;  
 }
 
-/* Typography */
+
 h2 {
     color: #003366;
     font-size: 2rem;

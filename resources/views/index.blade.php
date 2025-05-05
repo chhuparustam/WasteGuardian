@@ -741,7 +741,7 @@ Free Bootstrap 5 HTML Template
 
                     <div class="col-lg-6 col-12 text-end">
                         <p class="copyright-text mb-0">
-                            // Designed by <a href="https://www.tooplate.com" target="_parent">Tooplate</a> //</p>
+                            // Designed with 💗 by' <a href="https://chhuparustam.com.np" target="_parent">Chhuparustam</a> //</p>
                     </div>
 
                 </div>

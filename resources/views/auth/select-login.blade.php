@@ -19,7 +19,7 @@
             <div class="button-group">
                 <a href="{{ route('login') }}" class="select-btn user-btn">
                     <i class="fas fa-user-circle"></i>
-                    Customer Login
+                    User Login
                 </a>
 
                 <a href="{{ route('driver.login') }}" class="select-btn driver-btn">

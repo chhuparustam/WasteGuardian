@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body, html {
@@ -13,77 +13,158 @@ body, html {
 
 /* Gradient Background */
 body {
-    background: linear-gradient(135deg, #1CB5E0, #000851); /* modern blue gradient */
+    background: linear-gradient(135deg, #1CB5E0, #000851);
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
-/* Container */
-.container {
+/* Selection Panel */
+.selection-panel {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 12px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;  /* Increased from 400px to 500px */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    text-align: center;
 }
 
-/* Title */
-.right-panel h2 {
-    text-align: center;
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;  /* Increased from 20px to 40px for better spacing */
+}
+
+/* Typography */
+h2 {
+    color: #003366;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Form Elements */
+.form-group {
+    position: relative;
     margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     color: #003366;
 }
 
-/* Alerts */
-.alert {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 14px;
-}
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-}
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
+input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
-/* Form inputs */
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+input:focus {
     outline: none;
-    font-size: 15px;
-    transition: 0.3s;
-}
-input[type="email"]:focus,
-input[type="password"]:focus {
-    border-color: #1cb5e0;
+    border-color: #1CB5E0;
+    box-shadow: 0 0 0 2px rgba(28, 181, 224, 0.1);
 }
 
 /* Button */
 .login-btn {
     width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    background-color: #1CB5E0;
-    border: none;
+    padding: 15px;
+    background-color: #003366;
     color: white;
-    font-size: 16px;
-    font-weight: bold;
+    border: none;
     border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
 }
+
 .login-btn:hover {
-    background-color: #1595c3;
+    background-color: #002754;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Back Link */
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #003366;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #1CB5E0;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .selection-panel {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    input {
+        padding: 12px 12px 12px 40px;
+        font-size: 14px;
+    }
 }

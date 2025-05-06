@@ -26,6 +26,11 @@
                     <i class="fas fa-truck-moving"></i>
                     Driver Login
                 </a>
+
+                <a href="{{ route('worker.login') }}" class="select-btn worker-btn">
+                    <i class="fas fa-hard-hat"></i>
+                    Worker Login
+                </a>
             </div>
         </div>
     </div>

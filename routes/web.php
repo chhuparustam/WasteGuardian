@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Driver\LoginController;
 use App\Http\Controllers\PickupRequestController;
 use App\Http\Controllers\Admin\AdminRequestController;
-
+use App\Http\Controllers\WorkerAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,9 +87,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-// for driver login
-// Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('driver.login');
-// Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
+
+// for driverr login
+
+Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('driver.login');
+Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
 
 
 
@@ -110,15 +112,17 @@ Route::prefix('admin')->group(function () {
 });
 
 
-// ...existing code...
+// for select login type
 
-// Add this new route for the selection page
 Route::get('/select-login', function () {
     return view('auth.select-login');
 })->name('select-login');
 
-// Update the login routes to use names
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('driver.login');
-Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
-// ...existing code...
+
+
+
+// for worker signup and login
+Route::get('/worker/register', [WorkerAuthController::class, 'showRegistrationForm'])->name('worker.register');
+Route::post('/worker/register', [WorkerAuthController::class, 'register'])->name('worker.register.submit');
+Route::get('/worker/login', [WorkerAuthController::class, 'showLoginForm'])->name('worker.login');
+Route::post('/worker/login', [WorkerAuthController::class, 'login'])->name('worker.login.submit');

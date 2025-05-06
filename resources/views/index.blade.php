@@ -69,7 +69,7 @@ Free Bootstrap 5 HTML Template
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="#">
                 <img src="{{  asset('images/logo.png') }}" class="logo img-fluid" alt="">
 
                 <span class="ms-2">WasteGuardian</span>
@@ -487,7 +487,7 @@ Free Bootstrap 5 HTML Template
         </section>
 
         @php
-            $isLoggedin = true //true if login else false will work as expected
+            $isLoggedin = false //true if login else false will work as expected
          @endphp
 
         <section id="pickup-request" class="testimonial-section section-padding section-bg">

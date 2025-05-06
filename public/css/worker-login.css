@@ -1,3 +1,4 @@
+/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +15,7 @@ body {
     padding: 20px;
 }
 
+/* Container Layout */
 .container {
     display: flex;
     background: rgba(255, 255, 255, 0.95);
@@ -24,7 +26,7 @@ body {
     max-width: 1000px;
 }
 
-/* Left Panel Styles */
+/* Left Panel */
 .left-panel {
     background: linear-gradient(135deg, #003366, #1CB5E0);
     padding: 40px;
@@ -79,7 +81,7 @@ body {
     color: #003366;
 }
 
-/* Right Panel Styles */
+/* Right Panel */
 .right-panel {
     padding: 40px;
     width: 60%;
@@ -101,6 +103,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* Form Elements */
 .form-group {
     margin-bottom: 20px;
 }
@@ -117,8 +120,7 @@ body {
     color: #003366;
 }
 
-input[type="email"],
-input[type="password"],input[type="text"] {
+input {
     width: 100%;
     padding: 15px 15px 15px 45px;
     border: 1px solid #ddd;
@@ -133,20 +135,7 @@ input:focus {
     box-shadow: 0 0 0 2px rgba(28, 181, 224, 0.1);
 }
 
-.toggle-password {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #003366;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.toggle-password:hover {
-    color: #1CB5E0;
-}
-
+/* Form Options */
 .form-options {
     display: flex;
     justify-content: space-between;
@@ -173,6 +162,7 @@ input:focus {
     color: #1CB5E0;
 }
 
+/* Button Styles */
 .login-btn {
     width: 100%;
     padding: 15px;
@@ -196,6 +186,7 @@ input:focus {
     box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
 }
 
+/* Alert Messages */
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -216,6 +207,41 @@ input:focus {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+/* Back Link */
+.back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-link a {
+    color: #003366;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #1CB5E0;
+}
+
+/* Toggle Password */
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #003366;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #1CB5E0;
 }
 
 /* Responsive Design */
@@ -248,5 +274,10 @@ input:focus {
         flex-direction: column;
         gap: 10px;
         align-items: flex-start;
+    }
+
+    input {
+        padding: 12px 12px 12px 40px;
+        font-size: 14px;
     }
 }

@@ -26,6 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    max-width: 650px;
 }
 
 /* Selection Panel */
@@ -57,7 +58,7 @@ body {
 .button-group {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 /* Buttons */
@@ -96,6 +97,17 @@ body {
     background-color: #002754;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
+}
+
+.worker-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.worker-btn:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
 }
 
 .fas {

@@ -640,7 +640,7 @@ strong {
   border-radius: var(--border-radius-large);
   width: 80px;
   height: 80px;
-  padding: 15px;
+  padding: 5px;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -1359,7 +1359,7 @@ strong {
   width: 80px;
   height: 80px;
   object-fit: cover;
-  padding: 15px;
+  padding: 5px;
 }
 
 .site-footer-title,

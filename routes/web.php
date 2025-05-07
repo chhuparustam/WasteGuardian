@@ -10,6 +10,7 @@ use App\Http\Controllers\Driver\LoginController;
 use App\Http\Controllers\PickupRequestController;
 use App\Http\Controllers\Admin\AdminRequestController;
 use App\Http\Controllers\WorkerAuthController;
+use App\Http\Controllers\UserDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +25,7 @@ use App\Http\Controllers\WorkerAuthController;
 
 // for user signup and login
 Route::get('login', [UserAuthController::class, 'login'])->name('login');
-Route::post('/login', [UserAuthController::class, 'checkLogin'])->name('auth.login');
+Route::post('login', [UserAuthController::class, 'checkLogin'])->name('auth.login');
 
 Route::get('register', [UserAuthController::class, 'register'])->name('register');
 Route::post('register', [UserAuthController::class, 'create'])->name('auth.create');
@@ -69,12 +70,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
+//  User Dashboard Routes
+
+Route::prefix('user')->group(function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+    // Add other user routes here
+});
+
 
 
 
 //for manage drivers
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    
     // Route to add a new driver
     Route::get('drivers/create', [DriverController::class, 'create'])->name('drivers.create');
     Route::post('drivers', [DriverController::class, 'store'])->name('drivers.store');
@@ -95,14 +104,6 @@ Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.lo
 
 
 
-// user dashboard
-
-Route::get('/user/dashboard', function () {
-    return view('frontend.dashboard');
-})->name('frontend.dashboard');
-
-
-
 
 // pickup request
 Route::post('/pickup-request', [PickupRequestController::class, 'store'])->name('pickup.store');
@@ -117,6 +118,12 @@ Route::prefix('admin')->group(function () {
 Route::get('/select-login', function () {
     return view('auth.select-login');
 })->name('select-login');
+
+
+// Registration selection route
+Route::get('/select-register', function () {
+    return view('auth.select-register');
+})->name('select-register');
 
 
 

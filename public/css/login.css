@@ -218,6 +218,31 @@ input:focus {
     border: 1px solid #f5c6cb;
 }
 
+/* Add after existing styles */
+
+.back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-link a {
+    color: #003366;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #1CB5E0;
+}
+
+.back-link i {
+    font-size: 0.9rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {

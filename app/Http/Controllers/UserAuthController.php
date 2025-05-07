@@ -48,19 +48,24 @@ class UserAuthController extends Controller
 
     public function checkLogin(Request $request)
     {
-        // Validate login input
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:5|max:12'
+            'password' => 'required'
         ]);
 
         $user = User::where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            session(['user_id' => $user->id]);
-            return redirect('/')->with('success', 'Login successful.');
-        } else {
-            return back()->with('failed', 'Invalid email or password.');
+            // Store user data in session
+            session([
+                'user_logged_in' => true,
+                'user_id' => $user->id,
+                'user_name' => $user->fullName
+            ]);
+
+            return redirect()->route('user.dashboard');
         }
+
+        return back()->with('failed', 'Invalid email or password.');
     }
 }

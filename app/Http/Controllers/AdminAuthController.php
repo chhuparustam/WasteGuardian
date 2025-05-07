@@ -26,5 +26,12 @@ class AdminAuthController extends Controller
             return back()->with('failed', 'Invalid admin credentials');
         }
     }
+
+    public function logout()
+    {
+        session()->forget(['admin_logged_in', 'admin_email']);
+        return redirect()->route('admin.login')
+                        ->with('success', 'Logged out successfully');
+    }
 }
 

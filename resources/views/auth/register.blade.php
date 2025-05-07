@@ -130,6 +130,13 @@
                     Create Account
                 </button>
             </form>
+
+            <div class="back-link">
+                <a href="{{ route('select-register') }}">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Selection
+                </a>
+            </div>
         </div>
     </div>
 

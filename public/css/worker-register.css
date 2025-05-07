@@ -83,7 +83,7 @@ body {
 
 /* Right Panel Styles */
 .right-panel {
-    padding: 40px;
+    padding: 10px 22px;
     width: 60%;
     overflow-y: auto;
     max-height: 800px;

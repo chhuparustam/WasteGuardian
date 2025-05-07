@@ -20,7 +20,7 @@ class CreateWorkersTable extends Migration
         $table->string('phone');
         $table->string('address');
         $table->string('specialization');
-        $table->string('profile_photo')->nullable()->after('specialization');
+        $table->string('photo');
         $table->string('password');
         $table->timestamps();
     });
@@ -34,7 +34,7 @@ class CreateWorkersTable extends Migration
     public function down()
     {
         Schema::table('workers', function (Blueprint $table) {
-            $table->dropColumn('profile_photo');
+            $table->dropColumn('photo');
         });
     }
 }

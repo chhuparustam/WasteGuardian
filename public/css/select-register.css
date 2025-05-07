@@ -27,6 +27,7 @@ body {
     align-items: center;
     min-height: 100vh;
     max-width: 650px;
+    padding: 20px;
 }
 
 /* Selection Panel */
@@ -35,7 +36,6 @@ body {
     padding: 40px;
     border-radius: 12px;
     width: 100%;
-    max-width: 750px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     text-align: center;
 }
@@ -85,18 +85,7 @@ body {
 .user-btn:hover {
     background-color: #1595c3;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(28, 181, 224, 0.3);
-}
-
-.driver-btn {
-    background-color: #003366;
-    color: white;
-}
-
-.driver-btn:hover {
-    background-color: #002754;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
+    box-shadow: 0 5px 15px rgba(45, 140, 103, 0.3);
 }
 
 .worker-btn {
@@ -110,14 +99,34 @@ body {
     box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
 }
 
-.fas {
-    font-size: 1.2rem;
+/* Login Link */
+.login-link {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
 }
+
+.login-link p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.login-link a {
+    color: #1CB5E0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #003366;
+}
+
 
 /* Responsive Design */
 @media (max-width: 480px) {
     .selection-panel {
-        margin: 20px;
         padding: 30px;
     }
 
@@ -133,29 +142,4 @@ body {
         padding: 12px;
         font-size: 14px;
     }
-}
-
-/* Add after your existing styles */
-
-.register-link {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.register-link p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.register-link a {
-    color: #1CB5E0;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.register-link a:hover {
-    color: #003366;
 }

@@ -73,6 +73,13 @@
                     Sign In
                 </button>
             </form>
+
+            <div class="back-link">
+                <a href="{{ route('select-login') }}">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Selection
+                </a>
+            </div>
         </div>
     </div>
             <script>

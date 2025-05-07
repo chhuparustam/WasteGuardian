@@ -31,6 +31,9 @@
                     <i class="fas fa-hard-hat"></i>
                     Worker Login
                 </a>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="{{ route('select-register') }}">Create Account</a></p>
+                </div>
             </div>
         </div>
     </div>

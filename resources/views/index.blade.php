@@ -108,8 +108,7 @@ Free Bootstrap 5 HTML Template
                     </li>
 
                     <li class="nav-item ms-3">
-                        <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn"
-                            href="{{ asset('register') }}">signup</a>
+                        <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="{{ route('select-register') }}">signup</a>
                         <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn"
                             href="{{ asset('select-login') }}">login</a>
                     </li>
@@ -487,7 +486,7 @@ Free Bootstrap 5 HTML Template
         </section>
 
         @php
-            $isLoggedin = false //true if login else false will work as expected
+            $isLoggedin = true //true if login else false will work as expected
          @endphp
 
         <section id="pickup-request" class="testimonial-section section-padding section-bg">

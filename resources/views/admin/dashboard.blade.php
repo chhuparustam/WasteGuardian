@@ -1,3 +1,7 @@
+@if (!session()->has('admin_logged_in') || !session('admin_logged_in'))
+    <script>window.location = "{{ route('auth.admin-login') }}";</script>
+@endif
+    
     @extends('admin.layout')
 
     @section('content')

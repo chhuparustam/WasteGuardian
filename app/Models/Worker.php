@@ -12,7 +12,7 @@ class Worker extends Model
         'phone',
         'address',
         'specialization',
-        'profile_photo',
+        'photo',
         'password'
     ];
 }

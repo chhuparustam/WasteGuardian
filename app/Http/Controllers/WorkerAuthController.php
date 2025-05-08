@@ -60,7 +60,11 @@ class WorkerAuthController extends Controller
         $worker = Worker::where('email', $request->email)->first();
 
         if ($worker && Hash::check($request->password, $worker->password)) {
-            session(['worker_id' => $worker->id]);
+            session([
+                'worker_logged_in' => true,
+                'worker_id' => $worker->id,
+                'worker_name' => $worker->name
+            ]);
             return redirect()->route('worker.dashboard');
         }
 

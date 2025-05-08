@@ -11,6 +11,7 @@ use App\Http\Controllers\PickupRequestController;
 use App\Http\Controllers\Admin\AdminRequestController;
 use App\Http\Controllers\WorkerAuthController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\WorkerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -133,3 +134,11 @@ Route::get('/worker/register', [WorkerAuthController::class, 'showRegistrationFo
 Route::post('/worker/register', [WorkerAuthController::class, 'register'])->name('worker.register.submit');
 Route::get('/worker/login', [WorkerAuthController::class, 'showLoginForm'])->name('worker.login');
 Route::post('/worker/login', [WorkerAuthController::class, 'login'])->name('worker.login.submit');
+
+// Worker dashboard 
+Route::get('/worker/dashboard', function () {
+    return view('worker.dashboard');
+})->name('worker.dashboard');
+
+
+ 

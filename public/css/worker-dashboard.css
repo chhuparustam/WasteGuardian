@@ -72,20 +72,31 @@ body {
     margin-bottom: 20px;
 }
 
+/* Update the sidebar link styles */
 .sidebar a {
     color: white;
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 12px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
 .sidebar a:hover {
-    background-color: #2d8c67;
+    background: rgba(255, 255, 255, 0.1);
+    color: #00ccff;
     transform: translateX(5px);
+    cursor: pointer;
+}
+
+/* Add active state for current page */
+.sidebar a.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #00ccff;
 }
 
 /* Content Area */
@@ -97,12 +108,12 @@ body {
 
 /* Dashboard Header */
 .dashboard-header {
-    background: linear-gradient(135deg, #003366 0%, #004080 100%);
-    padding: 25px;
-    border-radius: 15px;
+    background: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 97, 255, 0.1);
     color: white;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(0, 51, 102, 0.2);
     animation: fadeIn 0.6s ease-out forwards;
 }
 
@@ -139,17 +150,18 @@ body {
 }
 
 .card::before {
-    content: '';
+     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, #003366, #00ccff);
+    background: linear-gradient(90deg, #0061ff, #60efff);
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 .card-icon {
@@ -202,26 +214,31 @@ body {
 .action-buttons {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+    gap: 1rem;
 }
 
 .action-buttons a {
     background: #f1f5f9;
-    color: #1e4d3e;
+    color: #0f172a;
     padding: 1rem;
     border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .action-buttons a:hover {
-    background: #2d8c67;
+    background: #1a7ff2;
     color: white;
     transform: translateY(-2px);
 }
 
 .action-btn {
     background: #f8fafc;
-    color: #003366;
+    color: #4395e1;
     padding: 15px;
     border-radius: 10px;
     transition: all 0.3s ease;

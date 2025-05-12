@@ -12,7 +12,9 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('driver.login');
+        
     }
+    
 
     public function login(Request $request)
 {
@@ -24,11 +26,18 @@ class LoginController extends Controller
     $driver = DriverModel::where('email', $request->email)->first();
 
     if ($driver && Hash::check($request->password, $driver->password)) {
-        session(['driver_id' => $driver->id]);
+        session([
+            'driver_id' => $driver->id,
+            'driver_name' => $driver->name,
+            'driver_logged_in' => true
+        ]);
         
+        return redirect()->route('driver.dashboard');
+
     } else {
         return redirect()->back()->with('failed', 'Invalid credentials.');
     }
 }
+
 
 }

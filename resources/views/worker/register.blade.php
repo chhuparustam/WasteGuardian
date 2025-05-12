@@ -80,7 +80,14 @@
                 <div class="form-group">
                     <div class="input-group">
                         <i class="fas fa-briefcase input-icon"></i>
-                        <input type="text" name="specialization" placeholder="Specialization" value="{{ old('specialization') }}" required>
+                        <select name="specialization" required>
+                            <option value="" disabled selected>Select Specialization</option>
+                            <option value="office cleaning" {{ old('specialization') == 'office cleaning' ? 'selected' : '' }}>Office Cleaning</option>
+                            <option value="kitchen cleaning" {{ old('specialization') == 'kitchen cleaning' ? 'selected' : '' }}>Kitchen Cleaning</option>
+                            <option value="car washing" {{ old('specialization') == 'car washing' ? 'selected' : '' }}>Car Washing</option>
+                            <option value="factory cleaning" {{ old('specialization') == 'factory cleaning' ? 'selected' : '' }}>Factory Cleaning</option>
+                            <option value="house cleaning" {{ old('specialization') == 'house cleaning' ? 'selected' : '' }}>House Cleaning</option>
+                        </select>
                     </div>
                 </div>
 

@@ -1,0 +1,74 @@
+.manage-workers-wrapper {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding: 20px;
+}
+
+.manage-workers-wrapper h1 {
+    font-size: 28px;
+    color: #112240;
+    margin-bottom: 20px;
+}
+
+.manage-workers-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.manage-workers-wrapper th,
+.manage-workers-wrapper td {
+    text-align: left;
+    padding: 12px 16px;
+    vertical-align: middle;
+}
+
+.manage-workers-wrapper thead {
+    background-color: #112240;
+    color: white;
+}
+
+.manage-workers-wrapper tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.manage-workers-wrapper .action-buttons {
+    display: flex;
+    flex-direction: column; 
+    gap: 8px; 
+    align-items: flex-start;
+}
+
+.manage-workers-wrapper .btn-update {
+    background-color: #52eac7;
+    color: #112240;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.manage-workers-wrapper .btn-update:hover {
+    background-color: #45d6b3;
+}
+
+.manage-workers-wrapper .btn-delete {
+    background-color: #f73c46;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.manage-workers-wrapper .btn-delete:hover {
+    background-color: #e04e4e;
+}

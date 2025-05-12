@@ -70,7 +70,7 @@
 
                 <button type="submit" class="login-btn">
                     <i class="fas fa-sign-in-alt"></i>
-                    Sign In
+                    Login
                 </button>
             </form>
 

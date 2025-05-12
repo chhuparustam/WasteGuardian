@@ -11,7 +11,7 @@ use App\Http\Controllers\PickupRequestController;
 use App\Http\Controllers\Admin\AdminRequestController;
 use App\Http\Controllers\WorkerAuthController;
 use App\Http\Controllers\UserDashboardController;
-use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\Admin\WorkerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +81,7 @@ Route::prefix('user')->group(function () {
 
 
 
-//for manage drivers
+//for admin/manage drivers
 
 Route::prefix('admin')->name('admin.')->group(function () {
     
@@ -95,13 +95,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('drivers/{id}', [DriverController::class, 'update'])->name('drivers.update');
     Route::delete('drivers/{id}', [DriverController::class, 'destroy'])->name('drivers.destroy');
 });
-
-
-
-// for driverr login
-
-Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('driver.login');
-Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
+// route to manage workers
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('workers', [WorkerController::class, 'index'])->name('workers.index');
+    });
 
 
 
@@ -141,4 +138,15 @@ Route::get('/worker/dashboard', function () {
 })->name('worker.dashboard');
 
 
- 
+
+
+// route for driverr login
+
+Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('driver.login');
+Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
+
+// route for driver dashboard
+Route::get('/driver/dashboard', function () {
+    return view('driver.dashboard');
+})->name('driver.dashboard');
+

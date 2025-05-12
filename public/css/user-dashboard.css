@@ -72,6 +72,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Sidebar Link Styles */
 .sidebar a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
@@ -82,21 +83,30 @@ body {
     align-items: center;
     gap: 12px;
     font-weight: 500;
+    position: relative;
+    overflow: hidden;
 }
 
 .sidebar a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
     transform: translateX(5px);
 }
 
-/* Update sidebar icon colors */
-.sidebar a i {
-    color: rgba(255, 255, 255, 0.8);
+.sidebar a.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
 }
 
-.sidebar a:hover i {
-    color: white;
+/* Sidebar Icon Styles */
+.sidebar a i {
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover i,
+.sidebar a.active i {
+    color: #ffffff;
 }
 
 /* Content Area Styling */
@@ -214,7 +224,7 @@ body {
 }
 
 .action-buttons a:hover {
-    background: #0061ff;
+    background: #1a70fb;
     color: white;
     transform: translateY(-2px);
 }

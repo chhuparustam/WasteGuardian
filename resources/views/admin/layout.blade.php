@@ -24,7 +24,7 @@
             <a href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i> Dashboard</a>
             <a href="{{ route('admin.users.index') }}"><i class="fas fa-users"></i> Manage Users</a>
             <a href="{{ route('admin.drivers.index') }}"><i class="fas fa-truck"></i> Manage Drivers</a>
-            <a href=""><i class="fas fa-hard-hat"></i> Manage Workers</a>
+            <a href="{{ route('admin.workers.index') }}"><i class="fas fa-hard-hat"></i> Manage Workers</a>
             <a href="{{ route('admin.requests.index') }}"><i class="fas fa-clipboard-list"></i> Manage Requests</a>
             <a href=""><i class="fas fa-exclamation-circle"></i> Complaints</a>
             <a href=""><i class="fas fa-sign-out-alt"></i> Logout</a>

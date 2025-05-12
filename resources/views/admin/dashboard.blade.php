@@ -18,7 +18,7 @@
                 <p>{{ $driverCount ?? '25' }}</p>
             </div>
             <div class="card">
-                <h3>Pending Complaints</h3>
+                <h3>Total Workers</h3>
                 <p>{{ $complaintCount ?? '10' }}</p>
             </div>
             <div class="card">

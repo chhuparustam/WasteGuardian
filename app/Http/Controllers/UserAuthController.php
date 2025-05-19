@@ -68,4 +68,42 @@ class UserAuthController extends Controller
 
         return back()->with('failed', 'Invalid email or password.');
     }
+
+    // Display edit profile form
+public function editProfile()
+{
+    $user = User::find(session('user_id'));
+    return view('user.edit-profile', compact('user'));
+}
+
+public function updateProfile(Request $request)
+{
+    $request->validate([
+        'fullName' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . session('user_id'),
+        'address' => 'required|string',
+    ]);
+
+    $user = User::find(session('user_id'));
+
+    if ($user) {
+        $user->fullName = $request->fullName;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->save();
+
+        session(['user_name' => $user->fullName]); // update session
+        return redirect()->route('user.dashboard')->with('success', 'Profile updated successfully.');
+    }
+
+    return redirect()->back()->with('error', 'User not found.');
+}
+
+public function profile()
+{
+    $userId = session('user_id');
+    $user = \App\Models\User::find($userId);
+
+    return view('user.profile', compact('user'));
+}
 }

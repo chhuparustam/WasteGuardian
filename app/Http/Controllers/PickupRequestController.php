@@ -31,4 +31,15 @@ class PickupRequestController extends Controller
     return redirect('/#pickup-request')->with('success', 'Pickup request submitted!');
 }
 
+public function userRequests()
+{
+    // Use session or Auth depending on your setup
+    $userId = session('user_id'); // or Auth::id() if using Laravel Auth
+
+    $requests = \App\Models\PickupRequest::where('user_id', $userId)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('user.my-requests', compact('requests'));
+}
 }

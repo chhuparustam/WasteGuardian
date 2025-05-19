@@ -5,97 +5,197 @@
 @extends('user.layout')
 
 @section('content')
-    <div class="dashboard-header">
-        <h1>My Dashboard</h1>
-        <div class="date-time">
-            <i class="fas fa-calendar-alt"></i>
-            <span>{{ now()->format('l, F j, Y') }}</span>
+<link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ asset('js/dashboard-charts.js') }}"></script>
+
+<div class="dashboard-container">
+    <!-- Welcome Section -->
+                @if(session('success'))
+    <div class="custom-alert custom-alert-success" role="alert">
+        <i class="fas fa-check-circle"></i>
+        {{ session('success') }}
+        <button type="button" class="close-alert" onclick="this.parentElement.style.display='none';" aria-label="Close">
+            &times;
+        </button>
+    </div>
+@endif
+
+    <!-- Stats Cards -->
+    <div class="stats-overview">
+        <div class="stat-card">
+            <div class="stat-icon requests">
+                <i class="fas fa-truck-loading"></i>
+            </div>
+            <div class="stat-details">
+                <h3>Total Requests</h3>
+                <p>{{ $totalRequests ?? 0 }}</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon pending">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-details">
+                <h3>Pending</h3>
+                <p>{{ $pendingRequests ?? 0 }}</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon completed">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-details">
+                <h3>Completed</h3>
+                <p>{{ $completedRequests ?? 0 }}</p>
+            </div>
         </div>
     </div>
 
-    <!-- Stat Cards -->
-    <div class="stats-cards">
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-recycle"></i>
-            </div>
-            <div class="card-info">
-                <h3>Total Requests</h3>
-                <p>{{ $requestCount ?? '4' }}</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-clock"></i>
-            </div>
-            <div class="card-info">
-                <h3>Pending Requests</h3>
-                <p>{{ $pendingCount ?? '3' }}</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <div class="card-info">
-                <h3>Completed Requests</h3>
-                <p>{{ $completedCount ?? '2' }}</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-icon">
-                <i class="fas fa-exclamation-circle"></i>
-            </div>
-            <div class="card-info">
-                <h3>Active Complaints</h3>
-                <p>{{ $complaintCount ?? '9' }}</p>
-            </div>
+    <!-- Chart Section -->
+    <div class="chart-section">
+        <h2>Activity Overview</h2>
+        <div class="chart-container">
+            <canvas id="statsAreaChart"></canvas>
         </div>
     </div>
 
     <!-- Quick Actions -->
     <div class="quick-actions">
-        <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+        <h2>Quick Actions</h2>
         <div class="action-buttons">
-            <a href="" class="action-btn">
+            <a href="{{ route('user.requests') }}" class="action-btn request-btn">
                 <i class="fas fa-trash-restore"></i>
-                New Request
+                <span>New Request</span>
             </a>
-            <a href="" class="action-btn">
+            <a href="" class="action-btn complaint-btn">
                 <i class="fas fa-comment-alt"></i>
-                File Complaint
+                <span>File Complaint</span>
             </a>
-            <a href="" class="action-btn">
-                <i class="fas fa-user-edit"></i>
-                Update Profile
+                <a href="{{ route('user.edit-profile') }}" class="action-btn profile-btn">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Update Profile</span>
             </a>
+
         </div>
     </div>
 
-    <div class="dashboard-cards">
-        <!-- Welcome Card -->
-       
-
-        <!-- Recent Activity -->
-        <div class="card activity-card">
-            <h3><i class="fas fa-history"></i> Recent Activity</h3>
-            <div class="activity-list">
-                @if(isset($recentActivities) && count($recentActivities) > 0)
-                    @foreach($recentActivities as $activity)
-                        <div class="activity-item">
-                            <div class="activity-icon">
-                                <i class="fas fa-circle"></i>
-                            </div>
-                            <div class="activity-details">
-                                <p>{{ $activity->description }}</p>
-                                <span>{{ $activity->created_at->diffForHumans() }}</span>
-                            </div>
+    <!-- Recent Activity -->
+    <div class="recent-activity">
+        <h2>Recent Activity</h2>
+        <div class="activity-list">
+            @if(isset($recentActivities) && count($recentActivities) > 0)
+                @foreach($recentActivities as $activity)
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-circle"></i>
                         </div>
-                    @endforeach
-                @else
-                    <p class="no-activity">No recent activities</p>
-                @endif
+                        <div class="activity-details">
+                            <p>{{ $activity->description }}</p>
+                            <span>{{ $activity->created_at->diffForHumans() }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p class="no-activity">No recent activities</p>
+            @endif
             </div>
         </div>
     </div>
+
 @endsection
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get last 7 days
+    const days = [...Array(7)].map((_, i) => {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        return d.toLocaleDateString('en-US', { weekday: 'short' });
+    }).reverse();
+
+    var ctx = document.getElementById('statsAreaChart').getContext('2d');
+    
+    var statsAreaChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: days,
+            datasets: [{
+                label: 'Total Requests',
+                data: [4, 6, 3, 5, 2, 4, 3],
+                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                borderColor: '#4CAF50',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: 'Completed',
+                data: [2, 4, 2, 3, 1, 3, 2],
+                backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                borderColor: '#2196F3',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 20,
+                        font: {
+                            family: "'Poppins', sans-serif",
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    padding: 12,
+                    titleFont: {
+                        size: 14,
+                        family: "'Poppins', sans-serif"
+                    },
+                    bodyFont: {
+                        size: 13,
+                        family: "'Poppins', sans-serif"
+                    },
+                    callbacks: {
+                        title: function(context) {
+                            return context[0].label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    },
+                    ticks: {
+                        font: {
+                            family: "'Poppins', sans-serif",
+                            size: 12
+                        },
+                        stepSize: 1
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            family: "'Poppins', sans-serif",
+                            size: 12
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

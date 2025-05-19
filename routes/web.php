@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminRequestController;
 use App\Http\Controllers\WorkerAuthController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\WorkerController;
+use App\Http\Controllers\UserProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +34,9 @@ Route::post('register', [UserAuthController::class, 'create'])->name('auth.creat
 Route::get('/', function () {
     return view('index'); 
 });
-
-
+Route::get('/user/edit-profile', [UserAuthController::class, 'editProfile'])->name('user.edit-profile');
+Route::put('/user/update-profile', [UserAuthController::class, 'updateProfile'])->name('user.update-profile');
+Route::get('/user/profile', [UserAuthController::class, 'profile'])->name('user.profile');
 
 // main dashboard(template)
 Route::get('/dashboard', function () {
@@ -59,7 +61,7 @@ Route::get('/admin.dashboard', function () {
 })->name('admin.dashboard');
 
 
-// for maange user
+// for manage user
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
@@ -75,9 +77,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::prefix('user')->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-    // Add other user routes here
-});
+    Route::get('/requests', function () {
+        return view('user.requests');
+    })->name('user.requests');
 
+    // Profile edit/update routes
+    Route::get('/edit-profile', [UserAuthController::class, 'editProfile'])->name('user.edit-profile');
+    Route::put('/update-profile', [UserAuthController::class, 'updateProfile'])->name('user.update-profile');
+});
 
 
 
@@ -149,4 +156,10 @@ Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.lo
 Route::get('/driver/dashboard', function () {
     return view('driver.dashboard');
 })->name('driver.dashboard');
+
+
+Route::get('/my-requests', [PickupRequestController::class, 'userRequests'])->name('user.my-requests');
+
+
+
 

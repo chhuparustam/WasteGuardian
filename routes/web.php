@@ -13,6 +13,7 @@ use App\Http\Controllers\WorkerAuthController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\ComplaintController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -117,6 +118,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/requests', [AdminRequestController::class, 'index'])->name('admin.requests.index');
 });
 
+Route::get('/my-requests', [PickupRequestController::class, 'userRequests'])->name('user.my-requests');
 
 // for select login type
 
@@ -143,6 +145,8 @@ Route::post('/worker/login', [WorkerAuthController::class, 'login'])->name('work
 Route::get('/worker/dashboard', function () {
     return view('worker.dashboard');
 })->name('worker.dashboard');
+Route::get('/worker/edit/profile', [WorkerAuthController::class, 'editProfile'])->name('worker.edit-profile');
+Route::post('/worker/edit/profile', [WorkerAuthController::class, 'updateProfile'])->name('worker.edit-profile.update');
 
 
 
@@ -158,8 +162,11 @@ Route::get('/driver/dashboard', function () {
 })->name('driver.dashboard');
 
 
-Route::get('/my-requests', [PickupRequestController::class, 'userRequests'])->name('user.my-requests');
 
 
+Route::get('/user/complaints/create', [ComplaintController::class, 'create'])->name('user.complaints.create');
+Route::post('/user/complaints', [ComplaintController::class, 'store'])->name('user.complaints.store');
 
+// My Complaints Page
+Route::get('/user/complaints', [ComplaintController::class, 'index'])->name('user.complaints.index');
 

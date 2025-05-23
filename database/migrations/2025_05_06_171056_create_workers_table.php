@@ -14,17 +14,17 @@ class CreateWorkersTable extends Migration
     public function up()
     {
         Schema::create('workers', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('email')->unique();
-        $table->string('phone');
-        $table->string('address');
-        $table->string('specialization');
-        $table->string('photo');
-        $table->string('password');
-        $table->timestamps();
-    });
-}
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone');
+            $table->string('address');
+            $table->string('specialization');
+            $table->string('photo')->after('specialization');
+            $table->string('password');
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.

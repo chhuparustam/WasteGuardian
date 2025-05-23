@@ -68,14 +68,15 @@
                 <i class="fas fa-trash-restore"></i>
                 <span>New Request</span>
             </a>
-            <a href="" class="action-btn complaint-btn">
+
+            <a href="{{ route('user.complaints.create') }}" class="action-btn complaint-btn">
                 <i class="fas fa-comment-alt"></i>
                 <span>File Complaint</span>
             </a>
                 <a href="{{ route('user.edit-profile') }}" class="action-btn profile-btn">
                     <i class="fas fa-user-edit"></i>
                     <span>Update Profile</span>
-            </a>
+                </a>
 
         </div>
     </div>
@@ -84,21 +85,46 @@
     <div class="recent-activity">
         <h2>Recent Activity</h2>
         <div class="activity-list">
-            @if(isset($recentActivities) && count($recentActivities) > 0)
-                @foreach($recentActivities as $activity)
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-circle"></i>
-                        </div>
-                        <div class="activity-details">
-                            <p>{{ $activity->description }}</p>
-                            <span>{{ $activity->created_at->diffForHumans() }}</span>
-                        </div>
+                @php
+            $demoActivities = [
+                [
+                    'description' => 'New waste collection request submitted',
+                    'created_at' => now()->subHours(2),
+                    'icon' => 'fa-trash-restore',
+                    'color' => 'blue'
+                ],
+                [
+                    'description' => 'Complaint filed regarding missed collection',
+                    'created_at' => now()->subDays(1),
+                    'icon' => 'fa-comment-alt',
+                    'color' => 'orange'
+                ],
+                [
+                    'description' => 'Request #123 has been completed',
+                    'created_at' => now()->subDays(2),
+                    'icon' => 'fa-check-circle',
+                    'color' => 'green'
+                ],
+                [
+                    'description' => 'Profile information updated',
+                    'created_at' => now()->subDays(3),
+                    'icon' => 'fa-user-edit',
+                    'color' => 'purple'
+                ]
+            ];
+            @endphp
+
+            @foreach($demoActivities as $activity)
+                <div class="activity-item">
+                    <div class="activity-icon" style="color: {{ $activity['color'] }}">
+                        <i class="fas {{ $activity['icon'] }}"></i>
                     </div>
-                @endforeach
-            @else
-                <p class="no-activity">No recent activities</p>
-            @endif
+                    <div class="activity-details">
+                        <p>{{ $activity['description'] }}</p>
+                        <span>{{ $activity['created_at']->diffForHumans() }}</span>
+                    </div>
+                </div>
+            @endforeach
             </div>
         </div>
     </div>

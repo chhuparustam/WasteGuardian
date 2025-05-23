@@ -46,7 +46,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('worker.register') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('worker.register.submit') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="form-group">

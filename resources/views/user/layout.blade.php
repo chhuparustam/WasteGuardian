@@ -29,8 +29,20 @@
 
 
     <div class="container">
-        <div class="sidebar">
-            <h2><i class="fas fa-home"></i>Home</h2>
+        <!-- Sidebar -->
+     <div class="sidebar">
+            <!-- User Profile -->
+            <div class="user-profile">
+                <div class="profile-photo">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="info">
+                    <h3>{{ session('user_name', 'User') }}</h3>
+                    <span class="status online">
+                        <i class="fas fa-circle"></i> Online
+                    </span>
+                </div>
+            </div>
             
             <a href="{{ route('user.dashboard') }}" class="{{ request()->routeIs('user.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-home"></i> Dashboard
@@ -40,17 +52,34 @@
                 <i class="fas fa-trash-restore"></i> New Request
             </a>
             
-            <a href="{{ route('user.my-requests') }}" class="{{ request()->routeIs('user.my-requests') ? 'active' : '' }}">
+                <a href="{{ route('user.my-requests') }}" class="{{ request()->routeIs('user.my-requests') ? 'active' : '' }}">
                 <i class="fas fa-recycle"></i> My Requests
             </a>
+
+                <a href="{{ route('user.complaints.create') }}" class="{{ request()->routeIs('user.my-requests') ? 'active' : '' }}">
+                <i class="fas fa-comment-alt"></i> File Complaint
+            </a>
             
-            <a href="" class="{{ request()->routeIs('user.complaints') ? 'active' : '' }}">
+            <a href="{{ route('user.complaints.index') }}" class="{{ request()->routeIs('user.complaints.index') ? 'active' : '' }}">
                 <i class="fas fa-exclamation-triangle"></i> My Complaints
             </a>
                         
             <a href="{{ route('user.profile') }}" class="{{ request()->routeIs('user.profile') ? 'active' : '' }}">
                 <i class="fas fa-user-circle"></i> My Profile
             </a>
+
+            <div class="sidebar-footer">
+        <div class="quick-stats">
+            <div class="stat">
+                <span>Active Requests</span>
+                <strong>{{ session('active_requests', 2) }}</strong>
+            </div>
+            <div class="stat">
+                <span>Total Pickups</span>
+                <strong>{{ session('total_pickups', 15) }}</strong>
+            </div>
+        </div>
+    </div>
         </div>
 
         <div class="content">

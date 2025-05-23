@@ -56,11 +56,13 @@ body {
     width: 260px;
     background: #ffffff;
     min-height: calc(100vh - 64px);
-    padding: 1.5rem 0;
+    padding: 1.5rem 0 0 0;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
     position: fixed;
     left: 0;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-top-right-radius: 20px;    /* Add rounded corner */
 }
 
 .sidebar h2 {
@@ -82,9 +84,10 @@ body {
     transition: all 0.3s ease;
     font-size: 0.95rem;
     border-left: 3px solid transparent;
-    margin: 0.25rem 0;
+    margin: 0.25rem 1rem;              /* Add horizontal margin */
     position: relative;
     overflow: hidden;
+    border-radius: 10px;               /* Round the nav items */
 }
 
 .sidebar a:before {
@@ -115,6 +118,24 @@ body {
     width: 20px;
     margin-right: 0.75rem;
     font-size: 1.1rem;
+}
+
+/* Add space between nav and footer */
+.sidebar-nav {
+    flex: 1;               /* Take remaining space */
+    padding-bottom: 2rem;  /* Add bottom padding for gap */
+}
+
+/* Update Sidebar Footer */
+.sidebar-footer {
+    padding: 1.25rem;
+    background: linear-gradient(180deg, transparent, rgba(33, 150, 243, 0.05));
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin: auto 1rem 1rem 1rem;       /* Add margin to sides and bottom */
+    border-radius: 15px;               /* Round the footer */
+    position: sticky;
+    bottom: 0;
+    background-color: white;
 }
 
 /* Adjust main content to accommodate fixed sidebar */
@@ -261,32 +282,136 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.activity-list {
+    margin-top: 1rem;
+}
+
 .activity-item {
     display: flex;
     align-items: flex-start;
     padding: 1rem;
     border-bottom: 1px solid #eee;
+    gap: 1rem;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
 }
 
 .activity-icon {
-    margin-right: 1rem;
-    color: #4CAF50;
+    background: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-icon i {
+    font-size: 1rem;
+}
+
+.activity-details {
+    flex: 1;
 }
 
 .activity-details p {
     margin: 0;
-    color: #2c3e50;
+    color: #333;
+    font-size: 0.95rem;
 }
 
 .activity-details span {
-    font-size: 0.875rem;
-    color: #666;
+    color: #6c757d;
+    font-size: 0.85rem;
 }
 
 .no-activity {
     text-align: center;
     padding: 2rem;
     color: #666;
+}
+.user-profile {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    margin: 0 1rem 1rem 1rem;          /* Add margin to sides */
+    border-radius: 15px;               /* Round the profile section */
+}
+
+.user-profile .profile-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2196f3, #21cbf3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.75rem;
+    color: white;
+    font-size: 2rem;
+}
+
+.user-profile .info h3 {
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.user-profile .status.online {
+    color: #4caf50;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    padding: 1.25rem;
+    background: linear-gradient(180deg, transparent, rgba(33, 150, 243, 0.05));
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin: auto 1rem 1rem 1rem;       /* Add margin to sides and bottom */
+    border-radius: 15px;               /* Round the footer */
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+}
+
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.stat {
+    text-align: center;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 12px;               /* Increase border radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-2px);
+}
+
+.stat span {
+    display: block;
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+}
+
+.stat strong {
+    display: block;
+    font-size: 1.25rem;
+    background: linear-gradient(45deg, #2196F3, #64B5F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
 }
 
 /* Responsive Design */
@@ -299,6 +424,7 @@ body {
         width: 100%;
         position: relative;
         min-height: auto;
+        border-radius: 0;              /* Remove border radius on mobile */
     }
 
     .content {
@@ -324,5 +450,19 @@ body {
 
     .sidebar a {
         padding: 0.75rem 1.25rem;
+        margin: 0.25rem 0.75rem;       /* Reduce margins on mobile */
+    }
+
+    .sidebar-footer {
+        padding: 1rem;
+        margin: 0.75rem;               /* Reduce margins on mobile */
+    }
+    
+    .stat {
+        padding: 0.5rem;
+    }
+    
+    .stat strong {
+        font-size: 1.1rem;
     }
 }

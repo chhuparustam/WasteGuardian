@@ -14,16 +14,6 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ComplaintController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
 // for user signup and login
@@ -44,8 +34,6 @@ Route::get('/dashboard', function () {
     return view('auth.dashboard');
 });
 
-
-
 // for admin login
 Route::get('admin-login', [AdminLoginController::class, 'adminLoginPage'])->name('admin.login');
 Route::post('admin-login', [AdminLoginController::class, 'adminLogin'])->name('admin.login.submit');
@@ -53,7 +41,6 @@ Route::post('admin-login', [AdminLoginController::class, 'adminLogin'])->name('a
 Route::get('/adminlogin', function () {
     return view('auth.admin-login');
 });
-
 
 //  redirect to admin dashboard
 

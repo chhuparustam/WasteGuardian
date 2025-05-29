@@ -1,774 +1,975 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="WasteGuardian - Smart Waste Management Dashboard">
+    <meta name="author" content="WasteGuardian Team">
+    <title>WasteGuardian - Smart Waste Management Dashboard</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>WasteGuardian- Dashboard</title>
-
-
-    <!-- CSS FILES -->
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <link href=" {{  asset('css/bootstrap-icons.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/tooplate-clean-work.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/happy-customer.css') }}" rel="stylesheet">
-
-    <!--
-
-Tooplate 2132 Clean Work
-
-https://www.tooplate.com/view/2132-clean-work
-
-Free Bootstrap 5 HTML Template
-
--->
+    <link href="{{ asset('css/modern-dashboard.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="modern-dashboard">
 
-    <header class="site-header">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 col-12 d-flex flex-wrap">
-                    <p class="d-flex me-4 mb-0">
-                        <i class="bi-house-fill me-2"></i>
-                        WasteGuardian
-                    </p>
-
-                    <p class="d-flex d-lg-block d-md-block d-none me-4 mb-0">
-                        <i class="bi-clock-fill me-2"></i>
-                        <strong class="me-2">Mon - Fri</strong> 8:00 AM - 5:30 PM
-                    </p>
-
-                    <p class="site-header-icon-wrap text-white d-flex mb-0 ms-auto">
-                        <i class="site-header-icon bi-whatsapp me-2"></i>
-
-                        <a href="tel: 110-220-9800" class="text-white">
-                            110 220 9800
-                        </a>
-                    </p>
+    <!-- Modern Sticky Navigation -->
+    <nav class="modern-navbar" id="mainNavbar">
+        <div class="container-fluid">
+            <div class="navbar-content">
+                <!-- Brand Section -->
+                <div class="navbar-brand">
+                    <div class="logo-container">
+                        <img src="{{ asset('images/logo.png') }}" class="brand-logo" alt="WasteGuardian">
+                        <div class="brand-text">
+                            <span class="brand-name">WasteGuardian</span>
+                            <span class="brand-tagline">Smart Waste Solutions</span>
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-        </div>
-    </header>
+                <!-- Navigation Menu -->
+                <div class="navbar-menu" id="navbarMenu">
+                    <ul class="nav-links">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home-section">
+                                <i class="material-icons-round">home</i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services-section">
+                                <i class="material-icons-round">cleaning_services</i>
+                                <span>Services</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">
+                                <i class="material-icons-round">info</i>
+                                <span>About</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact-details">
+                                <i class="material-icons-round">contact_mail</i>
+                                <span>Contact</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{{  asset('images/logo.png') }}" class="logo img-fluid" alt="">
+                <!-- Action Buttons -->
+                <div class="navbar-actions">
+                    <a href="{{ route('select-register') }}" class="btn btn-outline-modern">
+                        <i class="material-icons-round">person_add</i>
+                        <span>Register</span>
+                    </a>
+                    <a href="{{ route('select-login') }}" class="btn btn-primary-modern">
+                        <i class="material-icons-round">login</i>
+                        <span>Login</span>
+                    </a>
+                </div>
 
-                <span class="ms-2">WasteGuardian</span>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-
-                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                            <li><a class="dropdown-item" href="services.html">Our Services</a></li>
-
-                            <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
-
-                            <li><a class="dropdown-item" href="page-404.html">Page 404</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-
-                    <li class="nav-item ms-3">
-                        <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="{{ route('select-register') }}">signup</a>
-                        <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn"
-                            href="{{ asset('select-login') }}">login</a>
-                    </li>
-                </ul>
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <main>
-
-        <section class="hero-section hero-section-full-height d-flex justify-content-center align-items-center">
-            <div class="section-overlay"></div>
-
+    <main class="main-content">
+        <!-- Modern Hero Section -->
+        <section class="hero-modern" id="hero">
+            <div class="hero-background">
+                <div class="hero-gradient"></div>
+                <div class="hero-pattern"></div>
+            </div>
+            
             <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-7 col-12 text-center mx-auto">
-                        <h1 class="cd-headline rotate-1 text-white mb-4 pb-2">
-                            <span>Let's protect our</span>
-                            <span class="cd-words-wrapper">
-                                <b class="is-visible"> Streets</b>
-                                <b>Community</b>
-                                <b>Enviornment</b>
-                                <b> Future</b>
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="material-icons-round">eco</i>
+                            <span>Smart Waste Management</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            <span class="title-line">Let's protect our</span>
+                            <span class="rotating-text-container">
+                                <span class="rotating-text active">Streets</span>
+                                <span class="rotating-text">Community</span>
+                                <span class="rotating-text">Environment</span>
+                                <span class="rotating-text">Future</span>
                             </span>
                         </h1>
-
-                        <a class="custom-btn btn button button--atlas smoothscroll me-3" href="#intro-section">
-                            <span>Introduction</span>
-
-                            <div class="marquee" aria-hidden="true">
-                                <div class="marquee__inner">
-                                    <span>Introduction</span>
-                                    <span>Introduction</span>
-                                    <span>Introduction</span>
-                                    <span>Introduction</span>
-                                </div>
+                        
+                        <p class="hero-description">
+                            Transform waste management with smart tracking, instant requests, and eco-friendly solutions. 
+                            Join thousands who choose WasteGuardian for a cleaner tomorrow.
+                        </p>
+                        
+                        <div class="hero-buttons">
+                            <a class="btn btn-hero-primary" href="#intro-section">
+                                <span>Get Started</span>
+                                <i class="material-icons-round">arrow_forward</i>
+                            </a>
+                            <a class="btn btn-hero-secondary" href="#services-section">
+                                <i class="material-icons-round">explore</i>
+                                <span>Explore Services</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Hero Stats -->
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">15K+</div>
+                                <div class="stat-label">Happy Customers</div>
                             </div>
-                        </a>
-
-                        <a class="custom-btn custom-border-btn custom-btn-bg-white btn button button--pan smoothscroll"
-                            href="#services-section">
-                            <span>Explore Services</span>
-                        </a>
+                            <div class="stat-item">
+                                <div class="stat-number">99%</div>
+                                <div class="stat-label">Satisfaction Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Support</div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
-
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#ffffff" fill-opacity="1"
-                    d="M0,224L40,229.3C80,235,160,245,240,250.7C320,256,400,256,480,240C560,224,640,192,720,176C800,160,880,160,960,138.7C1040,117,1120,75,1200,80C1280,85,1360,139,1400,165.3L1440,192L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
-                </path>
-            </svg>
         </section>
 
-
-        <section class="intro-section" id="intro-section">
+        <!-- Modern Introduction Section -->
+        <section class="intro-modern" id="intro-section">
             <div class="container">
-                <div class="row justify-content-lg-center align-items-center">
-
-                    <div class="col-lg-6 col-12">
-                        <h2 class="mb-4"> Welcome to WasteGuardian – Your Smart Waste Companion!</h2>
-
-                        <p>Say goodbye to messy waste routines! With smart tracking, quick requests, and clean
-                            communication, <strong>WasteGuardian </strong>helps you manage waste effortlessly. Whether
-                            you're a user or a driver — you're part of the solution.</p>
-                        <p>Let’s <strong>Clean smarter, ot harder!</strong> Together, we’re not just managing waste —
-                            we’re shaping a greener tomorrow.</p>
-
-                    </div>
-
-                    <div class="col-lg-6 col-12 custom-block-wrap">
-                        <img src="{{ asset('images/male-wearing-apron-female-white-t-shirt-smiling-broadly-being-glad-clean.png') }}"
-                            class="img-fluid">
-
-                        <div class="custom-block d-flex flex-column">
-                            <h6 class="text-white mb-3">Need Help? <br> Please call us:</h6>
-
-                            <p class="d-flex mb-0">
-                                <i class="bi-telephone-fill custom-icon me-2"></i>
-
-                                <a href="tel: 110-220-9800">
-                                    110-220-9800
-                                </a>
+                <div class="intro-grid">
+                    <!-- Content Side -->
+                    <div class="intro-content">
+                        <div class="section-badge">
+                            <i class="material-icons-round">lightbulb</i>
+                            <span>About WasteGuardian</span>
+                        </div>
+                        
+                        <h2 class="section-title">
+                            Welcome to <span class="text-gradient">WasteGuardian</span>
+                        </h2>
+                        <p class="section-subtitle">Your Smart Waste Companion!</p>
+                        
+                        <div class="intro-text">
+                            <p class="lead-text">
+                                Say goodbye to messy waste routines! With smart tracking, quick requests, and clean communication, 
+                                <strong>WasteGuardian</strong> helps you manage waste effortlessly.
+                            </p>
+                            <p>
+                                Whether you're a user or a driver — you're part of the solution. 
+                                Let's <strong>Clean smarter, not harder!</strong> Together, we're not just managing waste — 
+                                we're shaping a greener tomorrow.
                             </p>
                         </div>
+                        
+                        <!-- Feature Points -->
+                        <div class="feature-points">
+                            <div class="feature-point">
+                                <i class="material-icons-round">check_circle</i>
+                                <span>Smart Tracking Technology</span>
+                            </div>
+                            <div class="feature-point">
+                                <i class="material-icons-round">check_circle</i>
+                                <span>Eco-Friendly Solutions</span>
+                            </div>
+                            <div class="feature-point">
+                                <i class="material-icons-round">check_circle</i>
+                                <span>24/7 Customer Support</span>
+                            </div>
+                        </div>
                     </div>
-
+                    
+                    <!-- Visual Side -->
+                    <div class="intro-visual">
+                        <div class="image-stack">
+                            <div class="main-image-container">
+                                <img src="{{ asset('images/male-wearing-apron-female-white-t-shirt-smiling-broadly-being-glad-clean.png') }}" 
+                                     alt="Professional cleaning team" class="main-image">
+                            </div>
+                            
+                            <!-- Floating Contact Card -->
+                            <div class="floating-contact-card">
+                                <div class="card-header">
+                                    <i class="material-icons-round">support_agent</i>
+                                    <h6>Need Help?</h6>
+                                </div>
+                                <p>Call us anytime:</p>
+                                <div class="contact-info">
+                                    <i class="material-icons-round">phone</i>
+                                    <a href="tel:110-220-9800" class="phone-number">110-220-9800</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-
-        <section class="services-section section-padding section-bg" id="services-section">
+        <!-- Modern Services Section -->
+        <section class="services-modern" id="services-section">
             <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-12 col-12">
-                        <h2 class="mb-4">Our best offers</h2>
+                <!-- Section Header -->
+                <div class="section-header text-center">
+                    <div class="section-badge">
+                        <i class="material-icons-round">star</i>
+                        <span>Our Services</span>
                     </div>
-
-                    <div class="col-lg-6 col-12">
-                        <div class="services-thumb">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-5 col-12">
-                                    <div class="services-image-wrap">
-                                        <a href="services-detail.html">
-                                            <img src="{{ asset('images/services/people-taking-care-office-cleaning.jpg') }}"
-                                                class="services-image img-fluid" alt="">
-                                            <img src="{{ asset('images/services/person-taking-care-office.jpg') }}"
-                                                class="services-image services-image-hover img-fluid" alt="">
-
-                                            <div class="services-icon-wrap">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-cash me-2"></i>
-                                                        $820
-                                                    </p>
-
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-clock-fill me-2"></i>
-                                                        5 hrs
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                    <h2 class="section-title">Our <span class="text-gradient">Best Offers</span></h2>
+                    <p class="section-subtitle">Professional cleaning services tailored to your specific needs</p>
+                </div>
+                
+                <!-- Services Grid -->
+                <div class="services-grid">
+                    <!-- Office Cleaning Service -->
+                    <div class="service-card modern-card">
+                        <div class="card-image-container">
+                            <img src="{{ asset('images/services/people-taking-care-office-cleaning.jpg') }}" 
+                                 alt="Office Cleaning" class="card-image primary">
+                            <img src="{{ asset('images/services/person-taking-care-office.jpg') }}" 
+                                 alt="Office Cleaning" class="card-image secondary">
+                            
+                            <!-- Service Badge -->
+                            <div class="service-badges">
+                                <div class="price-badge">
+                                    <i class="material-icons-round">attach_money</i>
+                                    <span>$820</span>
                                 </div>
-
-                                <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                                    <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                                        <h4 class="services-title mb-1 mb-lg-2">
-                                            <a class="services-title-link" href="services-detail.html">Office
-                                                Cleaning</a>
-                                        </h4>
-
-                                        <p><strong>Let WasteGuardian handle the mess—your office deserves
-                                                better.</strong> Professional office cleaning designed to match your
-                                            time and waste needs—all in one click.</p>
-
-                                        <div class="d-flex flex-wrap align-items-center">
-                                            <div class="reviews-icons">
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star"></i>
-                                                <i class="bi-star"></i>
-                                            </div>
-
-                                            <a href="services-detail.html"
-                                                class="custom-btn btn button button--atlas mt-2 ms-auto">
-                                                <span>Learn More</span>
-
-                                                <div class="marquee" aria-hidden="true">
-                                                    <div class="marquee__inner">
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="time-badge">
+                                    <i class="material-icons-round">schedule</i>
+                                    <span>5 hrs</span>
                                 </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <h4 class="card-title">Office Cleaning</h4>
+                          
+                            
+                            <div class="card-footer">
+                                <div class="rating-stars">
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <span class="rating-text">3.0</span>
+                                </div>
+                                <a href="services-detail.html" class="btn btn-card-action">
+                                    <span>Book</span>
+                                    <i class="material-icons-round">arrow_forward</i>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-12">
-                        <div class="services-thumb">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-5 col-12">
-                                    <div class="services-image-wrap">
-                                        <a href="services-detail.html">
-                                            <img src="{{ asset('images/services/young-smiling-woman-wearing-rubber-gloves-cleaning-stove.jpg') }}"
-                                                class="services-image img-fluid" alt="">
-                                            <img src="{{ asset('images/services/woman-holding-rag-detergent-cleaning-cooker.jpg') }}"
-                                                class="services-image services-image-hover img-fluid" alt="">
-
-                                            <div class="services-icon-wrap">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-cash me-2"></i>
-                                                        $640
-                                                    </p>
-
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-clock-fill me-2"></i>
-                                                        4 hrs
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                    <!-- Kitchen Cleaning Service -->
+                    <div class="service-card modern-card featured">
+                        <div class="featured-badge">
+                            <i class="material-icons-round">star</i>
+                            <span>Popular</span>
+                        </div>
+                        
+                        <div class="card-image-container">
+                            <img src="{{ asset('images/services/young-smiling-woman-wearing-rubber-gloves-cleaning-stove.jpg') }}" 
+                                 alt="Kitchen Cleaning" class="card-image primary">
+                            <img src="{{ asset('images/services/woman-holding-rag-detergent-cleaning-cooker.jpg') }}" 
+                                 alt="Kitchen Cleaning" class="card-image secondary">
+                            
+                            <div class="service-badges">
+                                <div class="price-badge">
+                                    <i class="material-icons-round">attach_money</i>
+                                    <span>$640</span>
                                 </div>
-
-                                <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                                    <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                                        <h4 class="services-title mb-1 mb-lg-2">
-                                            <a class="services-title-link" href="services-detail.html">Kitchen
-                                                Cleaning</a>
-                                        </h4>
-
-                                        <p><strong>Say goodbye to grease and germs.</strong> Efficient, reliable
-                                            cleaning tailored to your schedule, ensuring a fresh and green kitchen.</p>
-
-                                        <div class="d-flex flex-wrap align-items-center">
-                                            <div class="reviews-icons">
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                            </div>
-
-                                            <a href="services-detail.html"
-                                                class="custom-btn btn button button--atlas mt-2 ms-auto">
-                                                <span>Learn More</span>
-
-                                                <div class="marquee" aria-hidden="true">
-                                                    <div class="marquee__inner">
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="time-badge">
+                                    <i class="material-icons-round">schedule</i>
+                                    <span>4 hrs</span>
                                 </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <h4 class="card-title">Kitchen Cleaning</h4>
+                            <p class="card-description">
+
+                            
+                            <div class="card-footer">
+                                <div class="rating-stars">
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <span class="rating-text">5.0</span>
+                                </div>
+                                <a href="services-detail.html" class="btn btn-card-action">
+                                    <span>Book</span>
+                                    <i class="material-icons-round">arrow_forward</i>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-12">
-                        <div class="services-thumb mb-lg-0">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-5 col-12">
-                                    <div class="services-image-wrap">
-                                        <a href="services-detail.html">
-                                            <img src="{{ asset('images/services/man-polishing-car-inside-car-service.jpg') }}"
-                                                class="services-image img-fluid" alt="">
-                                            <img src="{{ asset('images/services/man-polishing-car-inside.jpg') }}"
-                                                class="services-image services-image-hover img-fluid" alt="">
-
-                                            <div class="services-icon-wrap">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-cash me-2"></i>
-                                                        $240
-                                                    </p>
-
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-clock-fill me-2"></i>
-                                                        2 hrs
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                    <!-- Car Washing Service -->
+                    <div class="service-card modern-card">
+                        <div class="card-image-container">
+                            <img src="{{ asset('images/services/man-polishing-car-inside-car-service.jpg') }}" 
+                                 alt="Car Washing" class="card-image primary">
+                            <img src="{{ asset('images/services/man-polishing-car-inside.jpg') }}" 
+                                 alt="Car Washing" class="card-image secondary">
+                            
+                            <div class="service-badges">
+                                <div class="price-badge">
+                                    <i class="material-icons-round">attach_money</i>
+                                    <span>$240</span>
                                 </div>
-
-                                <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                                    <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                                        <h4 class="services-title mb-1 mb-lg-2">
-                                            <a class="services-title-link" href="services-detail.html">Car Washing</a>
-                                        </h4>
-
-                                        <p><strong>WasteGuardian: The hygienic, eco-friendly way to keep your car
-                                                gleaming</strong> Fast, reliable washing that’s tough on dirt, gentle on
-                                            the environment.</p>
-
-                                        <div class="d-flex flex-wrap align-items-center">
-                                            <div class="reviews-icons">
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                            </div>
-
-                                            <a href="services-detail.html"
-                                                class="custom-btn btn button button--atlas mt-2 ms-auto">
-                                                <span>Learn More</span>
-
-                                                <div class="marquee" aria-hidden="true">
-                                                    <div class="marquee__inner">
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="time-badge">
+                                    <i class="material-icons-round">schedule</i>
+                                    <span>2 hrs</span>
                                 </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <h4 class="card-title">Car Washing</h4>
+                           
+                            
+                            <div class="card-footer">
+                                <div class="rating-stars">
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <span class="rating-text">5.0</span>
+                                </div>
+                                <a href="services-detail.html" class="btn btn-card-action">
+                                    <span>Book</span>
+                                    <i class="material-icons-round">arrow_forward</i>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-12">
-                        <div class="services-thumb mb-lg-0">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-5 col-12">
-                                    <div class="services-image-wrap">
-                                        <a href="services-detail.html">
-                                            <img src="{{ asset('images/services/professional-industrial-cleaner-protective-uniform-cleaning-floor-food-processing-plant.jpg') }}"
-                                                class="services-image img-fluid" alt="">
-                                            <img src="{{ asset('images/services/close-up-mop-cleaning-industrial-plant-floor.jpg') }}"
-                                                class="services-image services-image-hover img-fluid" alt="">
-
-                                            <div class="services-icon-wrap">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-cash me-2"></i>
-                                                        $6,800
-                                                    </p>
-
-                                                    <p class="text-white mb-0">
-                                                        <i class="bi-clock-fill me-2"></i>
-                                                        30 hrs
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                    <!-- Factory Cleaning Service -->
+                    <div class="service-card modern-card enterprise">
+                        <div class="enterprise-badge">
+                            <i class="material-icons-round">business</i>
+                            <span>Enterprise</span>
+                        </div>
+                        
+                        <div class="card-image-container">
+                            <img src="{{ asset('images/services/professional-industrial-cleaner-protective-uniform-cleaning-floor-food-processing-plant.jpg') }}" 
+                                 alt="Factory Cleaning" class="card-image primary">
+                            <img src="{{ asset('images/services/close-up-mop-cleaning-industrial-plant-floor.jpg') }}" 
+                                 alt="Factory Cleaning" class="card-image secondary">
+                            
+                            <div class="service-badges">
+                                <div class="price-badge">
+                                    <i class="material-icons-round">attach_money</i>
+                                    <span>$6,800</span>
                                 </div>
-
-                                <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                                    <div class="services-info mt-4 mt-lg-0 mt-md-0">
-                                        <h4 class="services-title mb-1 mb-lg-2">
-                                            <a class="services-title-link" href="services-detail.html">Factory
-                                                Cleaning</a>
-                                        </h4>
-
-                                        <p><strong>WasteGuardian ensures your factory is clean, safe, and
-                                                sustainable</strong> Reliable, eco-friendly cleaning designed for your
-                                            factory’s needs.</p>
-
-                                        <div class="d-flex flex-wrap align-items-center">
-                                            <div class="reviews-icons">
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star-fill"></i>
-                                                <i class="bi-star"></i>
-                                            </div>
-
-                                            <a href="services-detail.html"
-                                                class="custom-btn btn button button--atlas mt-2 ms-auto">
-                                                <span>Learn More</span>
-
-                                                <div class="marquee" aria-hidden="true">
-                                                    <div class="marquee__inner">
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                        <span>Learn More</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="time-badge">
+                                    <i class="material-icons-round">schedule</i>
+                                    <span>30 hrs</span>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="card-content">
+                            <h4 class="card-title">Factory Cleaning</h4>
+                          
+                            
+                            <div class="card-footer">
+                                <div class="rating-stars">
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <i class="material-icons-round filled">star</i>
+                                    <span class="rating-text">4.0</span>
+                                </div>
+                                <a href="services-detail.html" class="btn btn-card-action">
+                                    <span>Book</span>
+                                    <i class="material-icons-round">arrow_forward</i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
         @php
             $isLoggedin = true //true if login else false will work as expected
-         @endphp
+        @endphp
 
-        <section id="pickup-request" class="testimonial-section section-padding section-bg">
-
-            <div class="section-overlay"></div>
-
+        <!-- Modern Pickup Request Section -->
+        <section class="pickup-modern" id="pickup-request">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-12">
-                        <h2 class="text-white mb-4">Quick Pickup Request</h2>
+                <!-- Section Header -->
+                <div class="section-header text-center">
+                    <div class="section-badge">
+                        <i class="material-icons-round">local_shipping</i>
+                        <span>Quick Service</span>
                     </div>
-
-                    <div class="{{ $isLoggedin ? "col-lg-4 col-12 " : "col-12" }} sideCard">
-                        <div class="featured-block">
-                            <div class="d-flex align-items-center ">
-                                <div class="">
-                                    <h4 class="mb-0">Marie</h4>
+                    <h2 class="section-title">Quick <span class="text-gradient">Pickup Request</span></h2>
+                    <p class="section-subtitle">Your Waste, Our Responsibility - Fast & Reliable</p>
+                </div>
+                
+                <div class="pickup-container {{ $isLoggedin ? 'has-form' : 'testimonials-only' }}">
+                    <!-- Testimonials Sidebar -->
+                    <div class="testimonials-modern">
+                        <div class="testimonials-header">
+                            <h4 class="testimonials-title">
+                                <i class="material-icons-round">reviews</i>
+                                What Our Customers Say
+                            </h4>
+                        </div>
+                        
+                        <div class="testimonials-container">
+                            <!-- Testimonial 1 -->
+                            <div class="testimonial-card modern-testimonial">
+                                <div class="testimonial-content">
+                                    <div class="quote-icon">
+                                        <i class="material-icons-round">format_quote</i>
+                                    </div>
+                                    <p class="testimonial-text">Best Cleaning Service Provider. Excellent service and professional staff.</p>
+                                </div>
+                                <div class="testimonial-footer">
+                                    <div class="customer-info">
+                                        <div class="customer-avatar">
+                                            <i class="material-icons-round">person</i>
+                                        </div>
+                                        <div class="customer-details">
+                                            <h5 class="customer-name">Marie</h5>
+                                            <span class="customer-title">Business Owner</span>
+                                        </div>
+                                    </div>
+                                    <div class="rating-display">
+                                        <div class="stars">
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                        </div>
+                                        <span class="rating-number">5.0</span>
+                                    </div>
                                 </div>
                             </div>
-
-                            <p class="mb-0">Best Cleaning Service Provider Ipsum dolor sit consectetur kengan</p>
-                        </div>
-                        <div class="featured-block">
-                            <div class="d-flex align-items-center ">
-                                <div class="">
-                                    <h4 class="mb-0">Marie</h4>
+                            
+                            <!-- Testimonial 2 -->
+                            <div class="testimonial-card modern-testimonial">
+                                <div class="testimonial-content">
+                                    <div class="quote-icon">
+                                        <i class="material-icons-round">format_quote</i>
+                                    </div>
+                                    <p class="testimonial-text">Reliable and eco-friendly waste management. Highly recommended service.</p>
+                                </div>
+                                <div class="testimonial-footer">
+                                    <div class="customer-info">
+                                        <div class="customer-avatar">
+                                            <i class="material-icons-round">person</i>
+                                        </div>
+                                        <div class="customer-details">
+                                            <h5 class="customer-name">John</h5>
+                                            <span class="customer-title">Homeowner</span>
+                                        </div>
+                                    </div>
+                                    <div class="rating-display">
+                                        <div class="stars">
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                        </div>
+                                        <span class="rating-number">5.0</span>
+                                    </div>
                                 </div>
                             </div>
-
-                            <p class="mb-0">Best Cleaning Service Provider Ipsum dolor sit consectetur kengan</p>
-                        </div>
-                        <div class="featured-block">
-                            <div class="d-flex align-items-center ">
-                                <div class="">
-                                    <h4 class="mb-0">Marie</h4>
+                            
+                            <!-- Testimonial 3 -->
+                            <div class="testimonial-card modern-testimonial">
+                                <div class="testimonial-content">
+                                    <div class="quote-icon">
+                                        <i class="material-icons-round">format_quote</i>
+                                    </div>
+                                    <p class="testimonial-text">Quick response and professional cleaning. Very satisfied with the service.</p>
+                                </div>
+                                <div class="testimonial-footer">
+                                    <div class="customer-info">
+                                        <div class="customer-avatar">
+                                            <i class="material-icons-round">person</i>
+                                        </div>
+                                        <div class="customer-details">
+                                            <h5 class="customer-name">Sarah</h5>
+                                            <span class="customer-title">Office Manager</span>
+                                        </div>
+                                    </div>
+                                    <div class="rating-display">
+                                        <div class="stars">
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star</i>
+                                            <i class="material-icons-round">star_border</i>
+                                        </div>
+                                        <span class="rating-number">4.0</span>
+                                    </div>
                                 </div>
                             </div>
-
-                            <p class="mb-0">Best Cleaning Service Provider Ipsum dolor sit consectetur kengan</p>
                         </div>
-                        <div class="featured-block">
-                            <div class="d-flex align-items-center">
-                                <div class="">
-                                    <h4 class="mb-0">Marie</h4>
-                                </div>
-                            </div>
-
-                            <p class="mb-0">Best Cleaning Service Provider Ipsum dolor sit consectetur kengan</p>
-                        </div>
-
-
                     </div>
-
-
 
                     @if($isLoggedin)
-                        <div class="col-lg-8">
-                            <div class="featured-block">
-                                <h6 class="text-white mb-4"> Your Waste, Our Responsibility – Request Now 👇🏻</h6>
-                                <form action="{{ route('pickup.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <!-- <div class="col-lg-6"> -->
-                                        <div class="form-group">
-                                            <label for="name" class="form-label text-white"> Name</label>
-                                            <input type="text" id="name" name="name" class="form-control custom-input"
-                                                placeholder="Enter your full name" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="address" class="form-label text-white">Address</label>
-                                            <input type="text" id="address" name="address" class="form-control custom-input"
-                                                placeholder="Enter your address" required>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="landmark" class="form-label text-white">Nearest Landmark</label>
-                                        <input type="text" id="landmark" name="landmark" class="form-control custom-input"
-                                            placeholder="Enter nearest landmark" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="photo" class="form-label text-white">Photo</label>
-                                        <input type="file" id="photo" name="photo" class="form-control custom-input"
-                                            accept="image/*" required>
-                                    </div>
-
-                                    <!-- <div class="col-lg-6"> -->
-                                    <div class="form-group ">
-                                        <label for="message" class="form-label text-white">Note/Message(if any)</label>
-                                        <textarea id="message" name="message" class="form-control custom-input h-75"
-                                            placeholder="Write additional notes or message if any" cols="5"></textarea>
-                                    </div>
-                                    <!-- </div> -->
-
-                                    <div class="col-12 text-center mt-4 bg-color:red">
-                                        <button type="submit" class="custom-btn btn button submitBtn ">
-                                            <span>Submit</span>
-                                        </button>
-                                    </div>
+                    <!-- Modern Pickup Request Form -->
+                    <div class="pickup-form-modern">
+                        <div class="form-container modern-card">
+                            <div class="form-header">
+                                <div class="form-icon">
+                                    <i class="material-icons-round">send</i>
+                                </div>
+                                <h4 class="form-title">Request Pickup</h4>
+                                <p class="form-subtitle">Fill in the details below and we'll handle the rest</p>
                             </div>
+                            
+                            <form action="{{ route('pickup.store') }}" method="POST" enctype="multipart/form-data" class="pickup-form">
+                                @csrf
+                                <div class="form-grid">
+                                    <!-- Full Name Field -->
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">
+                                            <i class="material-icons-round">person</i>
+                                            <span>Full Name</span>
+                                        </label>
+                                        <div class="input-container">
+                                            <input type="text" id="name" name="name" class="form-control modern-input" 
+                                                   placeholder="Enter your full name" required>
+                                            <div class="input-border"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Address Field -->
+                                    <div class="form-group">
+                                        <label for="address" class="form-label">
+                                            <i class="material-icons-round">location_on</i>
+                                            <span>Address</span>
+                                        </label>
+                                        <div class="input-container">
+                                            <input type="text" id="address" name="address" class="form-control modern-input" 
+                                                   placeholder="Enter your address" required>
+                                            <div class="input-border"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Landmark Field -->
+                                    <div class="form-group">
+                                        <label for="landmark" class="form-label">
+                                            <i class="material-icons-round">place</i>
+                                            <span>Nearest Landmark</span>
+                                        </label>
+                                        <div class="input-container">
+                                            <input type="text" id="landmark" name="landmark" class="form-control modern-input" 
+                                                   placeholder="Enter nearest landmark" required>
+                                            <div class="input-border"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Photo Upload Field -->
+                                    <div class="form-group">
+                                        <label for="photo" class="form-label">
+                                            <i class="material-icons-round">photo_camera</i>
+                                            <span>Upload Photo</span>
+                                        </label>
+                                        <div class="file-upload-modern">
+                                            <input type="file" id="photo" name="photo" class="file-input" accept="image/*" required>
+                                            <div class="file-upload-area">
+                                                <div class="upload-icon">
+                                                    <i class="material-icons-round">cloud_upload</i>
+                                                </div>
+                                                <div class="upload-text">
+                                                    <span class="upload-primary">Choose file or drag here</span>
+                                                    <span class="upload-secondary">PNG, JPG up to 10MB</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message Field -->
+                                    <div class="form-group full-width">
+                                        <label for="message" class="form-label">
+                                            <i class="material-icons-round">message</i>
+                                            <span>Additional Notes</span>
+                                            <span class="optional-badge">Optional</span>
+                                        </label>
+                                        <div class="input-container">
+                                            <textarea id="message" name="message" class="form-control modern-textarea" rows="4" 
+                                                      placeholder="Any additional information or special instructions"></textarea>
+                                            <div class="input-border"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Form Actions -->
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-submit-modern">
+                                        <i class="material-icons-round">send</i>
+                                        <span>Submit Request</span>
+                                        <div class="btn-loading">
+                                            <div class="spinner"></div>
+                                        </div>
+                                    </button>
+                                </div>
                             </form>
                         </div>
-
-                    @else
+                    </div>
                     @endif
                 </div>
-
             </div>
         </section>
-
-
     </main>
 
-
-    <footer class="site-footer">
+    <!-- Modern Footer -->
+    <footer class="footer-modern">
         <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 col-12 d-flex align-items-center mb-4 pb-2">
-                    <div>
-                        <img src="{{ asset('images/logo.png') }}" class="logo img-fluid" alt="">
+            <div class="footer-content">
+                <!-- Footer Header -->
+                <div class="footer-header">
+                    <div class="footer-brand">
+                        <div class="brand-container">
+                            <img src="{{ asset('images/logo.png') }}" class="footer-logo" alt="WasteGuardian">
+                            <div class="brand-info">
+                                <span class="brand-name">WasteGuardian</span>
+                                <span class="brand-tagline">Smart Waste Solutions</span>
+                            </div>
+                        </div>
+                        <p class="brand-description">
+                            Leading the future of waste management with smart, eco-friendly solutions 
+                            that make a difference in communities worldwide.
+                        </p>
                     </div>
-
-                    <ul class="footer-menu d-flex flex-wrap ms-5">
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">About Us</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Blog</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Reviews</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Contact</a></li>
-                    </ul>
+                    
+                    <!-- Quick Navigation -->
+                    <nav class="footer-nav">
+                        <a href="#" class="footer-nav-link">
+                            <i class="material-icons-round">info</i>
+                            <span>About Us</span>
+                        </a>
+                        <a href="#" class="footer-nav-link">
+                            <i class="material-icons-round">article</i>
+                            <span>Blog</span>
+                        </a>
+                        <a href="#" class="footer-nav-link">
+                            <i class="material-icons-round">star</i>
+                            <span>Reviews</span>
+                        </a>
+                        <a href="#" class="footer-nav-link">
+                            <i class="material-icons-round">contact_mail</i>
+                            <span>Contact</span>
+                        </a>
+                    </nav>
                 </div>
 
-                <div class="col-lg-5 col-12 mb-4 mb-lg-0">
-                    <h5 class="site-footer-title mb-3">Our Services</h5>
-
-                    <ul class="footer-menu">
-                        <li class="footer-menu-item">
-                            <a href="#" class="footer-menu-link">
-                                <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
+                <!-- Footer Body -->
+                <div class="footer-body">
+                    <!-- Services Section -->
+                    <div class="footer-section">
+                        <h5 class="footer-section-title">
+                            <i class="material-icons-round">cleaning_services</i>
+                            Our Services
+                        </h5>
+                        <ul class="footer-links">
+                            <li><a href="#" class="footer-link">
+                                <i class="material-icons-round">home</i>
                                 House Cleaning
-                            </a>
-                        </li>
-
-                        <li class="footer-menu-item">
-                            <a href="#" class="footer-menu-link">
-                                <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
+                            </a></li>
+                            <li><a href="#" class="footer-link">
+                                <i class="material-icons-round">directions_car</i>
                                 Car Washing
-                            </a>
-                        </li>
-
-                        <li class="footer-menu-item">
-                            <a href="#" class="footer-menu-link">
-                                <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
+                            </a></li>
+                            <li><a href="#" class="footer-link">
+                                <i class="material-icons-round">local_laundry_service</i>
                                 Laundry
-                            </a>
-                        </li>
-
-                        <li class="footer-menu-item">
-                            <a href="#" class="footer-menu-link">
-                                <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
+                            </a></li>
+                            <li><a href="#" class="footer-link">
+                                <i class="material-icons-round">business</i>
                                 Office Cleaning
-                            </a>
-                        </li>
-
-                        <li class="footer-menu-item">
-                            <a href="#" class="footer-menu-link">
-                                <i class="bi-chevron-double-right footer-menu-link-icon me-2"></i>
+                            </a></li>
+                            <li><a href="#" class="footer-link">
+                                <i class="material-icons-round">wc</i>
                                 Toilet Cleaning
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
-                    <h5 class="site-footer-title mb-3">Office</h5>
-
-                    <p class="text-white d-flex mt-3 mb-2">
-                        <i class="bi-geo-alt-fill me-2"></i>
-                        Akershusstranda 20, 0150 Oslo, Norway
-                    </p>
-
-                    <p class="text-white d-flex mb-2">
-                        <i class="bi-telephone-fill me-2"></i>
-
-                        <a href="tel: 110-220-9800" class="site-footer-link">
-                            110-220-9800
-                        </a>
-                    </p>
-
-                    <p class="text-white d-flex">
-                        <i class="bi-envelope-fill me-2"></i>
-
-                        <a href="mailto:info@company.com" class="site-footer-link">
-                            info@company.com
-                        </a>
-                    </p>
-
-                    <ul class="social-icon mt-4">
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link button button--skoll">
-                                <span></span>
-                                <span class="bi-twitter"></span>
-                            </a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link button button--skoll">
-                                <span></span>
-                                <span class="bi-facebook"></span>
-                            </a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link button button--skoll">
-                                <span></span>
-                                <span class="bi-instagram"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-6 mt-3 mt-lg-0 mt-md-0">
-                    <div class="featured-block">
-                        <h5 class="text-white mb-3">Service Hours</h5>
-
-                        <strong class="d-block text-white mb-1">Mon - Fri</strong>
-
-                        <p class="text-white mb-3">8:00 AM - 5:30 PM</p>
-
-                        <strong class="d-block text-white mb-1">Sat</strong>
-
-                        <p class="text-white mb-0">6:00 AM - 2:30 PM</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="site-footer-bottom">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-6 col-12">
-                        <p class="copyright-text mb-0">Copyright © 2025 WasteGuardian</p>
+                            </a></li>
+                        </ul>
                     </div>
 
-                    <div class="col-lg-6 col-12 text-end">
-                        <p class="copyright-text mb-0">
-                            // Designed with 💗 by' <a href="https://chhuparustam.com.np" target="_parent">Chhuparustam</a> //</p>
+                    <!-- Contact Section -->
+                    <div class="footer-section">
+                        <h5 class="footer-section-title">
+                            <i class="material-icons-round">contact_phone</i>
+                            Contact Info
+                        </h5>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="material-icons-round">location_on</i>
+                                </div>
+                                <div class="contact-text">
+                                    <span class="contact-label">Address</span>
+                                    <span class="contact-value">Akershusstranda 20, 0150 Oslo, Norway</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="material-icons-round">phone</i>
+                                </div>
+                                <div class="contact-text">
+                                    <span class="contact-label">Phone</span>
+                                    <a href="tel:110-220-9800" class="contact-value">110-220-9800</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="material-icons-round">email</i>
+                                </div>
+                                <div class="contact-text">
+                                    <span class="contact-label">Email</span>
+                                    <a href="mailto:info@company.com" class="contact-value">info@company.com</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- Business Hours Section -->
+                    <div class="footer-section">
+                        <h5 class="footer-section-title">
+                            <i class="material-icons-round">schedule</i>
+                            Service Hours
+                        </h5>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <div class="day-range">Mon - Fri</div>
+                                <div class="time-range">8:00 AM - 5:30 PM</div>
+                            </div>
+                            <div class="hours-item">
+                                <div class="day-range">Saturday</div>
+                                <div class="time-range">6:00 AM - 2:30 PM</div>
+                            </div>
+                            <div class="hours-item closed">
+                                <div class="day-range">Sunday</div>
+                                <div class="time-range">Closed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Section -->
+                    <div class="footer-section">
+                        <h5 class="footer-section-title">
+                            <i class="material-icons-round">notifications</i>
+                            Stay Updated
+                        </h5>
+                        <p class="newsletter-text">Subscribe to get updates on our latest services and offers.</p>
+                        <div class="newsletter-form">
+                            <div class="newsletter-input">
+                                <input type="email" placeholder="Enter your email" class="newsletter-field">
+                                <button type="button" class="newsletter-btn">
+                                    <i class="material-icons-round">send</i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="#" class="social-link twitter">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link linkedin">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <div class="copyright">
+                            <p>© 2025 WasteGuardian. All rights reserved.</p>
+                        </div>
+                        <div class="footer-links-bottom">
+                            <a href="#" class="footer-link-bottom">Privacy Policy</a>
+                            <a href="#" class="footer-link-bottom">Terms of Service</a>
+                            <a href="#" class="footer-link-bottom">Cookie Policy</a>
+                        </div>
+                        <div class="credits">
+                            <p>Designed with <i class="material-icons-round love">favorite</i> by 
+                               <a href="https://chhuparustam.com.np" target="_blank" class="credit-link">Chhuparustam</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="material-icons-round">keyboard_arrow_up</i>
+    </button>
 
-    <!-- JAVASCRIPT FILES -->
-    <script src="{{  asset('js/jquery.min.js') }}"></script>
+    <!-- JavaScript Files -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.backstretch.min.js') }}"></script>
-    <script src="{{ asset('js/counter.js') }}"></script>
-    <script src="{{ asset('js/countdown.js') }}"></script>
-    <script src="{{ asset('js/init.js') }}"></script>
-    <script src="{{ asset('js/modernizr.js') }}"></script>
-    <script src="{{ asset('js/animated-headline.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/modern-dashboard.js') }}"></script>
+
+    <!-- Custom JavaScript for Modern Features -->
+    <script>
+        // Modern Dashboard JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rotating text animation
+            const rotatingTexts = document.querySelectorAll('.rotating-text');
+            let currentIndex = 0;
+            
+            function rotateText() {
+                rotatingTexts.forEach((text, index) => {
+                    text.classList.remove('active');
+                    if (index === currentIndex) {
+                        text.classList.add('active');
+                    }
+                });
+                currentIndex = (currentIndex + 1) % rotatingTexts.length;
+            }
+            
+            setInterval(rotateText, 3000);
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('mainNavbar');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Back to top button
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // File upload handling
+            const fileInput = document.getElementById('photo');
+            const fileUploadArea = document.querySelector('.file-upload-area');
+            
+            if (fileInput && fileUploadArea) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        fileUploadArea.classList.add('file-selected');
+                        const fileName = this.files[0].name;
+                        fileUploadArea.querySelector('.upload-primary').textContent = fileName;
+                        fileUploadArea.querySelector('.upload-secondary').textContent = 'File selected successfully';
+                    }
+                });
+
+                // Drag and drop functionality
+                fileUploadArea.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+
+                fileUploadArea.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                });
+
+                fileUploadArea.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        fileInput.files = files;
+                        this.classList.add('file-selected');
+                        this.querySelector('.upload-primary').textContent = files[0].name;
+                        this.querySelector('.upload-secondary').textContent = 'File selected successfully';
+                    }
+                });
+            }
+
+            // Form submission animation
+            const submitBtn = document.querySelector('.btn-submit-modern');
+            
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function(e) {
+                    this.classList.add('loading');
+                    // Remove loading class after 3 seconds (adjust as needed)
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                    }, 3000);
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
     @if(session('scroll_to'))
         <script>
-            window.onload = function () {
-                window.location.hash = "{{ session('scroll_to') }}";
-            };
+            window.addEventListener('load', function () {
+                const target = document.getElementById("{{ session('scroll_to') }}");
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         </script>
     @endif
-
-
 </body>
-
 </html>

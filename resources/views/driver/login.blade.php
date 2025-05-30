@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,47 +6,115 @@
     <title>Driver Login - WasteGuardian</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="{{ asset('css/driver-login.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="selection-panel">
-            <h2>WasteGuardian</h2>
-            <p>Driver Portal Access</p>
+        <div class="login-card">
+            <!-- Login Header -->
+            <div class="login-header">
+                <div class="brand">
+                    <i class="fas fa-truck-moving logo-icon"></i>
+                    <h1>WasteGuardian</h1>
+                </div>
+                <p class="subtitle">Driver Portal Access</p>
+            </div>
 
+            <!-- Alert Messages -->
             @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>{{ session('success') }}</span>
+                    <button type="button" class="close-alert">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             @endif
 
             @if(session('failed'))
-                <div class="alert alert-danger">{{ session('failed') }}</div>
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>{{ session('failed') }}</span>
+                    <button type="button" class="close-alert">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             @endif
 
-            <form action="{{ route('driver.login') }}" method="POST">
+            <!-- Login Form -->
+            <form action="{{ route('driver.login') }}" method="POST" class="login-form">
                 @csrf
                 <div class="form-group">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <label for="driver_email">Email Address</label>
+                    <div class="input-group">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" 
+                               name="email" 
+                               id="driver_email" 
+                               placeholder="Enter your email"
+                               value="{{ old('email') }}"
+                               required>
+                    </div>
+                    @error('email')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <label for="driver_password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" 
+                               name="password" 
+                               id="driver_password" 
+                               placeholder="Enter your password"
+                               required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye-slash"></i>
+                        </button>
+                    </div>
+                    @error('password')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror
                 </div>
 
-                <button type="submit" class="login-btn">
+                <button type="submit" class="btn-login">
                     <i class="fas fa-sign-in-alt"></i>
-                    Sign In
+                    <span>Sign In</span>
                 </button>
             </form>
 
+            <!-- Back Link -->
             <div class="back-link">
                 <a href="{{ route('select-login') }}">
                     <i class="fas fa-arrow-left"></i>
-                    Back to Selection
+                    <span>Back to Selection</span>
                 </a>
             </div>
         </div>
     </div>
+
+    <script>
+        // Password Toggle
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            const passwordInput = document.querySelector('#driver_password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            }
+        });
+
+        // Alert Close
+        document.querySelectorAll('.close-alert').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.alert').remove();
+            });
+        });
+    </script>
 </body>
 </html>

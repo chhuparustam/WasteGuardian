@@ -730,7 +730,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <span class="contact-label">Address</span>
-                                    <span class="contact-value">Akershusstranda 20, 0150 Oslo, Norway</span>
+                                    <span class="contact-value">Birgunj - 15, Parsa</span>
                                 </div>
                             </div>
                             
@@ -740,7 +740,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <span class="contact-label">Phone</span>
-                                    <a href="tel:110-220-9800" class="contact-value">110-220-9800</a>
+                                    <a href="tel:110-220-9800" class="contact-value">+9779824*****8/a>
                                 </div>
                             </div>
                             
@@ -750,7 +750,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <span class="contact-label">Email</span>
-                                    <a href="mailto:info@company.com" class="contact-value">info@company.com</a>
+                                    <a href="mailto:info@company.com" class="contact-value">info@wasteguardian.com</a>
                                 </div>
                             </div>
                         </div>
@@ -764,15 +764,11 @@
                         </h5>
                         <div class="hours-list">
                             <div class="hours-item">
-                                <div class="day-range">Mon - Fri</div>
-                                <div class="time-range">8:00 AM - 5:30 PM</div>
-                            </div>
-                            <div class="hours-item">
-                                <div class="day-range">Saturday</div>
-                                <div class="time-range">6:00 AM - 2:30 PM</div>
+                                <div class="day-range">Sunday - Fri</div>
+                                <div class="time-range">6:00 AM - 6:30 PM</div>
                             </div>
                             <div class="hours-item closed">
-                                <div class="day-range">Sunday</div>
+                                <div class="day-range">Saturday</div>
                                 <div class="time-range">Closed</div>
                             </div>
                         </div>

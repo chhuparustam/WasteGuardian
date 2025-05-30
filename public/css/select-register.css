@@ -1,3 +1,36 @@
+/* Custom Properties (CSS Variables) */
+:root {
+    /* Custom Gradients */
+    --gradient-primary: linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%);
+    --gradient-hover: linear-gradient(135deg, #0d9488 0%, #2563eb 100%);
+    --gradient-worker: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%);
+    --gradient-worker-hover: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+    
+    /* Main Colors */
+    --primary: #14b8a6;
+    --secondary: #3b82f6;
+    --primary-dark: #0d9488;
+    --secondary-dark: #2563eb;
+    
+    /* Background Colors */
+    --bg-white: #ffffff;
+    --bg-light: #f8fafc;
+    --bg-lighter: #f1f5f9;
+    
+    /* Text Colors */
+    --text-dark: #0f172a;
+    --text-medium: #475569;
+    --text-light: #94a3b8;
+    --text-white: #ffffff;
+    
+    /* Border & Shadow */
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 15px rgba(20, 184, 166, 0.3);
+}
+
 /* Reset & base styles */
 * {
     margin: 0;
@@ -6,49 +39,46 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body, html {
-    height: 100%;
-    width: 100%;
-}
-
-/* Gradient Background */
 body {
-    background: linear-gradient(135deg, #1CB5E0, #000851);
+    background: var(--bg-light);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    padding: 2rem;
 }
 
 /* Container */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    max-width: 650px;
-    padding: 20px;
+    width: 100%;
+    max-width: 750px;
+    background: var(--bg-white);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
 }
 
 /* Selection Panel */
 .selection-panel {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 12px;
-    width: 100%;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    padding: 3rem;
     text-align: center;
 }
 
 .selection-panel h2 {
-    color: #003366;
-    font-size: 2rem;
+    color: var(--text-dark);
+    font-size: 1.875rem;
     margin-bottom: 1rem;
     font-weight: 600;
 }
 
 .selection-panel p {
-    color: #666;
+    color: var(--text-medium);
     margin-bottom: 2rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -58,88 +88,115 @@ body {
 .button-group {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1.25rem;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-/* Buttons */
+/* Common Button Styles */
 .select-btn {
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    font-size: 16px;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
     font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
+.select-btn i {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+/* User Button */
 .user-btn {
-    background-color: #1CB5E0;
-    color: white;
+    background: var(--gradient-primary);
+    color: var(--text-white);
 }
 
 .user-btn:hover {
-    background-color: #1595c3;
+    background: var(--gradient-hover);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(45, 140, 103, 0.3);
+    box-shadow: var(--shadow-md);
 }
 
+/* Worker Button - Fixed Version */
 .worker-btn {
-    background-color: #4CAF50;
-    color: white;
+    background: var(--gradient-worker);
+    color: var(--text-white);
+    position: relative;
 }
 
 .worker-btn:hover {
-    background-color: #388E3C;
+    background: var(--gradient-worker-hover);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    box-shadow: var(--shadow-md);
 }
 
 /* Login Link */
 .login-link {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.login-link p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #666;
+    margin-top: 2rem;
+    color: var(--text-medium);
+    font-size: 0.875rem;
 }
 
 .login-link a {
-    color: #1CB5E0;
+    color: var(--primary);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 .login-link a:hover {
-    color: #003366;
+    color: var(--primary-dark);
 }
 
-
 /* Responsive Design */
-@media (max-width: 480px) {
-    .selection-panel {
-        padding: 30px;
+@media (max-width: 750px) {
+    body {
+        padding: 1rem;
     }
-
+    
+    .container {
+        margin: 1rem;
+    }
+    
+    .selection-panel {
+        padding: 2rem;
+    }
+    
     .selection-panel h2 {
         font-size: 1.5rem;
     }
-
-    .selection-panel p {
-        font-size: 0.9rem;
-    }
-
+    
     .select-btn {
-        padding: 12px;
-        font-size: 14px;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .selection-panel {
+        padding: 1.5rem;
+    }
+    
+    .button-group {
+        gap: 1rem;
+    }
+    
+    .select-btn {
+        padding: 0.875rem;
+        font-size: 0.875rem;
+    }
+    
+    .select-btn i {
+        font-size: 1rem;
     }
 }

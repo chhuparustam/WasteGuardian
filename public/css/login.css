@@ -5,8 +5,15 @@
     font-family: 'Poppins', sans-serif;
 }
 
+:root {
+    --bg-light: #f8fafc;
+    --bg-white: #ffffff;
+    --shadow-glow: 0 0 15px rgba(59, 130, 246, 0.5);
+    --gradient-primary: linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%);
+}
+
 body {
-    background: linear-gradient(135deg, #1CB5E0, #000851);
+    background: var(--bg-light);  /* Changed from dark gradient to off-white */
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -16,17 +23,23 @@ body {
 
 .container {
     display: flex;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--bg-white);
     border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-glow);  /* Added glowing effect */
     overflow: hidden;
     width: 100%;
     max-width: 1000px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Added smooth transition */
+}
+
+.container:hover {
+    transform: translateY(-5px);  /* Slight lift effect on hover */
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);  /* Enhanced glow on hover */
 }
 
 /* Left Panel Styles */
 .left-panel {
-    background: linear-gradient(135deg, #003366, #1CB5E0);
+    background: var(--gradient-primary);  /* Changed to match new gradient */
     padding: 40px;
     color: white;
     width: 40%;

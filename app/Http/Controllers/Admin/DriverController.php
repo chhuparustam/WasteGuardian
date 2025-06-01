@@ -13,6 +13,19 @@ class DriverController extends Controller
     public function index()
     {
         $drivers = DriverModel::all();
+        $query = DriverModel::query();
+
+    if (request('search')) {
+        $search = request('search');
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%")
+              ->orWhere('phone', 'like', "%{$search}%")
+              ->orWhere('address', 'like', "%{$search}%");
+        });
+    }
+
+    $drivers = $query->paginate(10)->appends(request()->all());
         return view('admin.drivers.index', compact('drivers'));
     }
 

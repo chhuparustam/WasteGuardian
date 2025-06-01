@@ -95,6 +95,11 @@
                     <i class="fas fa-clipboard-list w-5"></i>
                     <span class="font-medium">Manage Requests</span>
                 </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-all duration-200">
+                    <i class="fas fa-broom w-5"></i>
+                    <span class="font-medium">Cleaning Requests</span> 
+                </a>
+
                  <a href="" class="flex items-center space-x-3 px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-all duration-200">
                      <i class="fas fa-money-check-dollar w-5"></i>
                         <span class="font-medium">Payments</span>

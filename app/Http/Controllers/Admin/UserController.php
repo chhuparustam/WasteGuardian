@@ -9,9 +9,23 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all(); // Fetch all users from the database
+        $query = User::query();
+
+        // Optional: Add search functionality
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('fullName', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $users = $query->paginate(10); // Use pagination
+
         return view('admin.users.index', compact('users'));
+        
     }
+    
 
      public function edit($id)
     {
@@ -34,7 +48,7 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully!');
     }
-
-
+    
+    
 
 }

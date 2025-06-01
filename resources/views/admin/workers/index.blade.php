@@ -18,6 +18,7 @@
                 <th>ID</th>
                 <th>Photo</th>
                 <th>Name</th>
+                <th>Role</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
@@ -37,15 +38,22 @@
                     @endif
                 </td>
                 <td>{{ $worker->name }}</td>
+                <td>
+                    @if(isset($worker->role))
+                        <span class="role-badge">{{ ucfirst($worker->role) }}</span>
+                    @else
+                        <span class="text-muted">feild staff</span>
+                    @endif
+                </td>
                 <td>{{ $worker->email }}</td>
                 <td>{{ $worker->phone }}</td>
                 <td>{{ $worker->address }}</td>
                 <td>{{ $worker->specialization }}</td>
-               <td>
                 <td>
                     <div class="action-buttons">
                         <a href="" class="btn-update">Update</a>
-                        <form action="" method="POST">
+                       
+                        <form action="" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Are you sure?')" class="btn-delete">Delete</button>
@@ -55,7 +63,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="8" class="text-center">No workers found.</td>
+                <td colspan="9" class="text-center">No workers found.</td>
             </tr>
         @endforelse
         </tbody>

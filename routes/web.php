@@ -43,7 +43,7 @@ Route::get('/adminlogin', function () {
 });
 
 //  redirect to admin dashboard
-
+// Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('auth.admin-login');
 Route::get('/admin.dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
@@ -99,6 +99,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 // pickup request
+Route::delete('admin/requests/{request}', [AdminRequestController::class, 'destroy'])->name('admin.requests.destroy');
 Route::post('/pickup-request', [PickupRequestController::class, 'store'])->name('pickup.store');
 
 Route::prefix('admin')->group(function () {

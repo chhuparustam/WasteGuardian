@@ -1,0 +1,329 @@
+:root {
+    --gradient-primary: linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%);
+    --gradient-hover: linear-gradient(135deg, #0d9488 0%, #2563eb 100%);
+    --primary: #14b8a6;
+    --secondary: #3b82f6;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --warning: #eab308;
+    --bg-white: #ffffff;
+    --bg-light: #f8fafc;
+    --bg-lighter: #f1f5f9;
+    --text-dark: #0f172a;
+    --text-medium: #475569;
+    --text-light: #94a3b8;
+    --text-white: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.manage-requests-wrapper {
+    padding: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.page-header h1 i {
+    color: var(--primary);
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-medium);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+    background: var(--bg-light);
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+/* Card Styles */
+.card {
+    background: var(--bg-white);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 1.25rem;
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Status Badge */
+.request-status {
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.request-status.pending {
+    background: rgba(234, 179, 8, 0.2);
+    color: #92400e;
+}
+
+.request-status.assigned {
+    background: rgba(34, 197, 94, 0.2);
+    color: #15803d;
+}
+
+/* Details Grid */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-item.full-width {
+    grid-column: span 2;
+}
+
+.detail-item label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.detail-item span {
+    font-size: 0.975rem;
+    color: var(--text-dark);
+}
+
+/* Photo Styles */
+.photo-wrapper {
+    margin-top: 0.5rem;
+}
+
+.request-photo {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.request-photo:hover {
+    box-shadow: 0 0 0 3px #14b8a6;
+}
+
+/* Assignment Section */
+.assignment-section {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.assignment-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.assignment-form {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-medium);
+    margin-bottom: 0.5rem;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--bg-lighter);
+    color: var(--text-dark);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--gradient-hover);
+    transform: translateY(-1px);
+}
+
+/* Alert Styles */
+.alert {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.close-alert {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: currentColor;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .manage-requests-wrapper {
+        padding: 1rem;
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-item.full-width {
+        grid-column: auto;
+    }
+
+    .assignment-form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* Photo Modal Styles */
+.photo-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-modal .modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #000;
+    display: block;
+    margin: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+@media (max-width: 600px) {
+    .photo-modal .modal-content {
+        max-width: 98vw;
+        max-height: 60vh;
+    }
+
+    .close-modal {
+        top: 10px;
+        right: 20px;
+        font-size: 2rem;
+    }
+}

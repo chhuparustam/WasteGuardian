@@ -65,7 +65,7 @@
                         <th>User Name</th>
                         <th>Address</th>
                         <th>Nearest Landmark</th>
-                        <th>Photo</th>
+                        <th>Photo of Waste</th>
                         <th>Message</th>
                         <th>Requested At</th>
                         <th class="text-right">Actions</th>
@@ -80,9 +80,7 @@
                             <td>{{ $request->landmark }}</td>
                             <td class="photo-cell">
                                 @if($request->photo)
-                                    <img src="{{ asset('storage/' . $request->photo) }}" 
-                                         alt="Request Photo"
-                                         class="request-photo">
+                                    <img src="{{ asset('storage/' . ltrim($request->photo, '/')) }}" alt="Request Photo" class="request-photo">
                                 @else
                                     <span class="no-photo">No Photo</span>
                                 @endif
@@ -91,16 +89,12 @@
                             <td>{{ $request->created_at->format('Y-m-d H:i') }}</td>
                             <td>
                                 <div class="action-buttons">
-                                    <a href="#" 
+                                    <a href="{{ route('admin.requests.show', $request->id) }}" 
                                        class="btn-view" 
                                        title="View Details">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="#" 
-                                       class="btn-update" 
-                                       title="Edit Request">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                                    
                                     <form action="{{ route('admin.requests.destroy', $request->id) }}" 
                                           method="POST" 
                                           class="delete-form"

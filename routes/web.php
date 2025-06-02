@@ -14,6 +14,7 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\ServiceController;
 
 
 // for user signup and login
@@ -98,10 +99,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 
-// pickup request
+// Route for waste pickup request
 Route::delete('admin/requests/{request}', [AdminRequestController::class, 'destroy'])->name('admin.requests.destroy');
 Route::post('/pickup-request', [PickupRequestController::class, 'store'])->name('pickup.store');
-
+Route::get('admin/requests/{request}', [AdminRequestController::class, 'show'])->name('admin.requests.show');
+Route::post('admin/requests/{request}/assign', [AdminRequestController::class, 'assignDriver'])->name('admin.requests.assignDriver');
 Route::prefix('admin')->group(function () {
     Route::get('/requests', [AdminRequestController::class, 'index'])->name('admin.requests.index');
 });
@@ -158,3 +160,7 @@ Route::post('/user/complaints', [ComplaintController::class, 'store'])->name('us
 // My Complaints Page
 Route::get('/user/complaints', [ComplaintController::class, 'index'])->name('user.complaints.index');
 
+
+
+// Route for claening services
+Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');

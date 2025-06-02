@@ -268,7 +268,7 @@
                                     <i class="material-icons-round filled">star</i>
                                     <span class="rating-text">3.0</span>
                                 </div>
-                                <a href="services-detail.html" class="btn btn-card-action">
+                                <a href="{{ route('services.show', ['service' => 'office-cleaning']) }}" class="btn btn-card-action">
                                     <span>Book</span>
                                     <i class="material-icons-round">arrow_forward</i>
                                 </a>
@@ -740,7 +740,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <span class="contact-label">Phone</span>
-                                    <a href="tel:110-220-9800" class="contact-value">+9779824*****8/a>
+                                    <a href="tel:110-220-9800" class="contact-value">+9779824*****8</a>
                                 </div>
                             </div>
                             

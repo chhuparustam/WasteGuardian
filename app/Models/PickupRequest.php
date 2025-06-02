@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class PickupRequest extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'address', 'landmark', 'photo', 'message'];
+
+    protected $fillable = [
+        'name',
+        'address',
+        'landmark',
+        'photo',
+        'message',
+        'driver_id', 
+        'status',    
+    ];
     
     protected $table = 'requests'; 
 }

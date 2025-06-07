@@ -14,7 +14,9 @@ use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ComplaintController;
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\User\ServiceController;
+use App\Http\Controllers\Admin\CleaningServiceController;
+
 
 
 // for user signup and login
@@ -163,4 +165,10 @@ Route::get('/user/complaints', [ComplaintController::class, 'index'])->name('use
 
 
 // Route for claening services
-Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+});
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('admin/cleaning-services', CleaningServiceController::class);
+    Route::resource('cleaning-services', CleaningServiceController::class);
+});

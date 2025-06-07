@@ -1,5 +1,17 @@
 /* admin-dashboard.css */
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f2f6fc;
@@ -20,11 +32,13 @@ body {
 
 .container {
     display: flex;
-    min-height: 100vh;
+    flex: 1;
+    overflow: hidden;
 }
 
 .sidebar {
     width: 240px;
+    height: 100%;
     background-color: #112240;
     color: white;
     padding: 20px;
@@ -32,6 +46,9 @@ body {
     flex-direction: column;
     gap: 20px;
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
 }
 
 .sidebar h2 {
@@ -59,6 +76,8 @@ body {
     flex: 1;
     padding: 30px;
     background-color: #f2f6fc;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .content h1 {

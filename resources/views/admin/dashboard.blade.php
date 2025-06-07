@@ -20,9 +20,7 @@
                 <div>
                     <p class="text-sm font-medium text-gray-600">Total Users</p>
                     <p class="text-3xl font-bold text-gray-900 mt-2">{{ $userCount ?? '120' }}</p>
-                    <p class="text-sm text-emerald-600 mt-1">
-                        <i class="fas fa-arrow-up text-xs"></i> +12% from last month
-                    </p>
+                   
                 </div>
                 <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
                     <i class="fas fa-users text-white text-xl"></i>
@@ -36,9 +34,7 @@
                 <div>
                     <p class="text-sm font-medium text-gray-600">Total Drivers</p>
                     <p class="text-3xl font-bold text-gray-900 mt-2">{{ $driverCount ?? '25' }}</p>
-                    <p class="text-sm text-emerald-600 mt-1">
-                        <i class="fas fa-arrow-up text-xs"></i> +3 new drivers
-                    </p>
+                   
                 </div>
                 <div class="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center">
                     <i class="fas fa-truck text-white text-xl"></i>
@@ -52,9 +48,7 @@
                 <div>
                     <p class="text-sm font-medium text-gray-600">Total Workers</p>
                     <p class="text-3xl font-bold text-gray-900 mt-2">{{ $complaintCount ?? '10' }}</p>
-                    <p class="text-sm text-orange-600 mt-1">
-                        <i class="fas fa-minus text-xs"></i> -2% this week
-                    </p>
+                    
                 </div>
                 <div class="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center">
                     <i class="fas fa-hard-hat text-white text-xl"></i>
@@ -68,9 +62,7 @@
                 <div>
                     <p class="text-sm font-medium text-gray-600">Total Requests</p>
                     <p class="text-3xl font-bold text-gray-900 mt-2">{{ $requestCount ?? '75' }}</p>
-                    <p class="text-sm text-emerald-600 mt-1">
-                        <i class="fas fa-arrow-up text-xs"></i> +8% increase
-                    </p>
+                  
                 </div>
                 <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
                     <i class="fas fa-clipboard-list text-white text-xl"></i>

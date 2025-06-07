@@ -20,10 +20,11 @@
             }
         }
     </script>
+    @yield('styles')
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 font-sans h-screen flex flex-col overflow-hidden">
 
-<!-- Header -->
+<!-- Header (Fixed) -->
 <div class="bg-gradient-to-r from-teal-500 to-blue-600 shadow-lg">
     <div class="px-6 py-4 flex items-center justify-between">
         <div class="flex items-center space-x-4">
@@ -53,9 +54,10 @@
     </div>
 </div>
 
-<div class="flex min-h-screen">
-    <!-- Sidebar -->
-    <div class="w-64 bg-gradient-to-b from-slate-800 to-slate-900 shadow-xl">
+<!-- Main Container -->
+<div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar (Fixed) -->
+    <div class="w-64 bg-gradient-to-b from-slate-800 to-slate-900 shadow-xl overflow-y-auto">
         <div class="p-6">
             <a href="{{ url('/') }}" target="_blank" class="flex items-center space-x-3 text-white hover:text-teal-300 transition-colors">
                 <div class="w-8 h-8 bg-gradient-to-r from-teal-500 to-blue-500 rounded-lg flex items-center justify-center">
@@ -90,16 +92,22 @@
                     <i class="fas fa-hard-hat w-5"></i>
                     <span class="font-medium">Manage Workers</span>
                 </a>
-                
+                <a href="{{ route('admin.cleaning-services.index') }}" class="flex items-center space-x-3 px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-all duration-200">
+                    <i class="fas fa-brush w-5"></i>
+                    <span class="font-medium">Cleaning Services</span>
+                </a>
+
+                <p class="text-slate-400 text-xs font-semibold uppercase tracking-wider px-3 mb-3">REQUEST MANAGEMENT</p>
                 <a href="{{ route('admin.requests.index') }}" class="flex items-center space-x-3 px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-all duration-200">
                     <i class="fas fa-clipboard-list w-5"></i>
                     <span class="font-medium">Manage Requests</span>
                 </a>
+                
                 <a href="#" class="flex items-center space-x-3 px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-all duration-200">
                     <i class="fas fa-broom w-5"></i>
                     <span class="font-medium">Cleaning Requests</span> 
                 </a>
-
+                <p class="text-slate-400 text-xs font-semibold uppercase tracking-wider px-3 mb-3">FINANCE FLOW</p>
                  <a href="" class="flex items-center space-x-3 px-3 py-3 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-all duration-200">
                      <i class="fas fa-money-check-dollar w-5"></i>
                         <span class="font-medium">Payments</span>
@@ -120,9 +128,9 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="flex-1 p-8 bg-gray-50">
-        @yield('content') {{-- Blade section preserved --}}
+    <!-- Main Content (Scrollable) -->
+    <div class="flex-1 overflow-y-auto p-8 bg-gray-50">
+        @yield('content')
     </div>
 </div>
 

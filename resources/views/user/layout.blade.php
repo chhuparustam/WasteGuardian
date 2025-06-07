@@ -55,6 +55,9 @@
                 <a href="{{ route('user.my-requests') }}" class="{{ request()->routeIs('user.my-requests') ? 'active' : '' }}">
                 <i class="fas fa-recycle"></i> My Requests
             </a>
+            <a href="{{ route('user.services.index') }}" class="{{ request()->routeIs('user.cleaning-services') ? 'active' : '' }}">
+                <i class="fas fa-broom"></i> Cleaning Services
+            </a>
 
                 <a href="{{ route('user.complaints.create') }}" class="{{ request()->routeIs('user.my-requests') ? 'active' : '' }}">
                 <i class="fas fa-comment-alt"></i> File Complaint

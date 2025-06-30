@@ -50,4 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(PickupRequest::class);
     }
 
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
 }

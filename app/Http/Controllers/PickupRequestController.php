@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PickupRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Activity;
 
 class PickupRequestController extends Controller
 {
@@ -32,6 +33,12 @@ class PickupRequestController extends Controller
 
     // dd($data);
     PickupRequest::insert($data);
+
+        Activity::create([
+        'user_id' => Auth::id(),
+        'type' => 'request_created',
+        'description' => 'New waste collection request submitted',
+    ]);
 
     return redirect('/#pickup-request')->with('success', 'Pickup request submitted!');
 }

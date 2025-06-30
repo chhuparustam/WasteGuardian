@@ -21,6 +21,7 @@ class UserAuthController extends Controller
 
     public function create(Request $request)
     {
+      
         // Validate request
         $request->validate([
             'fullName' => 'required|string|min:2|max:50',
@@ -48,20 +49,23 @@ class UserAuthController extends Controller
 
     public function checkLogin(Request $request)
     {
+         
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
         $user = User::where('email', $request->email)->first();
-
+        
         if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
+            
             // Store user data in session
-            session([
-                'user_logged_in' => true,
-                'user_id' => $user->id,
-                'user_name' => $user->fullName
-            ]);
+            // session([
+            //     'user_logged_in' => true,
+            //     'user_id' => $user->id,
+            //     'user_name' => $user->fullName
+            // ]);
 
             return redirect()->route('user.dashboard');
         }

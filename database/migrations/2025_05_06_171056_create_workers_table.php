@@ -20,7 +20,7 @@ class CreateWorkersTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('specialization');
-            $table->string('photo')->after('specialization');
+            $table->string('photo')->nullable();
             $table->string('password');
             $table->timestamps();
         });

@@ -20,6 +20,10 @@ class CreateRequestsTable extends Migration
             $table->string('landmark');
             $table->string('photo');
             $table->text('message')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('status')->default('pending');
+            $table->unsignedBigInteger('driver_id');
             $table->timestamps();
         });
     }   

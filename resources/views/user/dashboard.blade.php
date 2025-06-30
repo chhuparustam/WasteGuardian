@@ -1,4 +1,4 @@
-@if (!session()->has('user_logged_in') || !session('user_logged_in'))
+@if(!auth()->check())
     <script>window.location = "{{ route('login') }}";</script>
 @endif
 

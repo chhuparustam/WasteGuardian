@@ -9,9 +9,7 @@ use App\Models\Complaint;
 class UserDashboardController extends Controller
 {
     public function index()
-    {
-
-        
+    {   
         return view('user.dashboard');
     }
 }

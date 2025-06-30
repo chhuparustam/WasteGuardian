@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\CleaningServiceController;
 
 // for user signup and login
 Route::get('login', [UserAuthController::class, 'login'])->name('login');
-Route::post('login', [UserAuthController::class, 'checkLogin'])->name('auth.login');
+Route::post('/login-submit', [UserAuthController::class, 'checkLogin'])->name('auth.login');
 
 Route::get('register', [UserAuthController::class, 'register'])->name('register');
 Route::post('register', [UserAuthController::class, 'create'])->name('auth.create');

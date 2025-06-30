@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PickupRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PickupRequestController extends Controller
 {
@@ -19,14 +20,18 @@ class PickupRequestController extends Controller
     ]);
 
     $photoPath = $request->file('photo')->store('photos', 'public');
+    $data = [
+            'name' => $request->name,
+            'address' => $request->address,
+            'landmark' => $request->landmark,
+            'photo' => $photoPath,
+            'message' => $request->message,
+            'user_id' => Auth::id(), 
+            'status' => 'pending', 
+    ];
 
-    PickupRequest::create([
-        'name' => $request->name,
-        'address' => $request->address,
-        'landmark' => $request->landmark,
-        'photo' => $photoPath,
-        'message' => $request->message,
-    ]);
+    // dd($data);
+    PickupRequest::insert($data);
 
     return redirect('/#pickup-request')->with('success', 'Pickup request submitted!');
 }

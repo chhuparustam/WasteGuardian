@@ -20,13 +20,13 @@
             <div class="form-group">
                 <label for="name" class="form-label">Full Name</label>
                 <input type="text" id="name" name="name" class="form-control" 
-                    value="{{ session('user_name') }}" readonly>
+                    value='{{ auth()->user()->fullName ?? "" }}'  readonly>
             </div>
 
             <div class="form-group">
                 <label for="address" class="form-label">Pickup Address</label>
                 <input type="text" id="address" name="address" class="form-control" 
-                    placeholder="Enter complete address" required>
+                    placeholder="Enter complete address" value="{{ auth()->user()->address ?? ''}}" required>
             </div>
 
             <div class="form-group">

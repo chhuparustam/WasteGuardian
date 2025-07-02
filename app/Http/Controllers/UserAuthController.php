@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Complaint;
+use App\Models\PickupRequest;
+use App\Models\Activity;
+
 
 class UserAuthController extends Controller
 {
@@ -76,19 +80,20 @@ class UserAuthController extends Controller
     // Display edit profile form
 public function editProfile()
 {
-    $user = User::find(session('user_id'));
+    $user = User::find(Auth::id());
     return view('user.edit-profile', compact('user'));
 }
 
 public function updateProfile(Request $request)
 {
+   
     $request->validate([
         'fullName' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email,' . session('user_id'),
+        'email' => 'required|email|unique:users,email,' . Auth::id(),
         'address' => 'required|string',
     ]);
 
-    $user = User::find(session('user_id'));
+    $user = User::find(Auth::id());
 
     if ($user) {
         $user->fullName = $request->fullName;
@@ -105,9 +110,19 @@ public function updateProfile(Request $request)
 
 public function profile()
 {
-    $userId = session('user_id');
-    $user = \App\Models\User::find($userId);
+    $userId = AUth::id();
+    $data['user'] = \App\Models\User::find($userId);
+    $data['totalRequests'] = PickupRequest::where('user_id', Auth::id())->count(); 
+       $data['pendingRequests'] = PickupRequest::where('user_id', Auth::id())->where('status','pending')->count(); 
+       $data['completedRequests'] = PickupRequest::where('user_id', Auth::id())->where('status','complete')->count(); 
 
-    return view('user.profile', compact('user'));
+    return view('user.profile', $data);
+}
+
+public function logout()
+{
+    Auth::logout();
+    session()->flush(); // Clear all session data
+    return redirect()->route('login')->with('success', 'Logged out successfully');
 }
 }

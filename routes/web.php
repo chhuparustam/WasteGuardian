@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\CleaningServiceController;
 // for user signup and login
 Route::get('login', [UserAuthController::class, 'login'])->name('login');
 Route::post('/login-submit', [UserAuthController::class, 'checkLogin'])->name('auth.login');
+Route::get('/user-logout', [UserAuthController::class, 'logout'])->name('user.logout');
 
 Route::get('register', [UserAuthController::class, 'register'])->name('register');
 Route::post('register', [UserAuthController::class, 'create'])->name('auth.create');
@@ -161,6 +162,7 @@ Route::get('/driver/dashboard', function () {
 
 Route::get('/user/complaints/create', [ComplaintController::class, 'create'])->name('user.complaints.create');
 Route::post('/user/complaints', [ComplaintController::class, 'store'])->name('user.complaints.store');
+Route::get('/user/complaints/{id}', [ComplaintController::class, 'delete'])->name('user.complaints.delete');
 
 // My Complaints Page
 Route::get('/user/complaints', [ComplaintController::class, 'index'])->name('user.complaints.index');

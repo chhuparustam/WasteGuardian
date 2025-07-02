@@ -18,12 +18,12 @@
         <span>Welcome Back, {{ auth()->user()->fullName ?? 'Guest' }}!</span>
     </div>
     <div class="header-right">
-        <form action="" method="POST" style="display: inline;">
-            @csrf
-            <button type="submit" class="logout-btn">
+       
+            <a href="{{ route('user.logout') }}" class="profile-link">
                 <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-        </form>
+            </a>    
+            
+        
     </div>
 </div>
 
@@ -59,7 +59,7 @@
                 <i class="fas fa-broom"></i> Cleaning Services
             </a>
 
-                <a href="{{ route('user.complaints.create') }}" class="{{ request()->routeIs('user.my-requests') ? 'active' : '' }}">
+                <a href="{{ route('user.complaints.create') }}" class="{{ request()->routeIs('user.complaints.create') ? 'active' : '' }}">
                 <i class="fas fa-comment-alt"></i> File Complaint
             </a>
             
@@ -72,7 +72,7 @@
             </a>
 
             <div class="sidebar-footer">
-        <div class="quick-stats">
+        <!-- <div class="quick-stats">
             <div class="stat">
                 <span>Active Requests</span>
                 <strong>{{ session('active_requests', 2) }}</strong>
@@ -81,7 +81,7 @@
                 <span>Total Pickups</span>
                 <strong>{{ session('total_pickups', 15) }}</strong>
             </div>
-        </div>
+        </div> -->
     </div>
         </div>
 

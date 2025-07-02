@@ -18,6 +18,13 @@
         </div>
     @endif
 
+    @if(session('error'))
+        <div class="alert alert-danger">
+            <i class="fas fa-check-circle"></i>
+            {{ session('error') }}
+        </div>
+    @endif
+
     @if($complaints->isEmpty())
         <div class="no-complaints">
             <i class="fas fa-inbox"></i>
@@ -34,6 +41,7 @@
                         <th>Description</th>
                         <th>Status</th>
                         <th>Submitted At</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +60,7 @@
                         <td class="date-column">
                             {{ $complaint->created_at->format('d M Y, h:i A') }}
                         </td>
+                        <td><a href='{{ route("user.complaints.delete", $complaint->id)}}'>Delete </a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -68,8 +68,12 @@ public function deleteRequest($id)
         return redirect()->back()->with('error', 'You are not authorized to delete this request.');
     }
 
-    $request->delete();
-
+    if($request->status == 'pending') {
+        $request->delete();
+        return redirect()->route('user.my-requests')->with('success', 'Request deleted successfully.');
+    } else {
+        return redirect()->back()->with('error', 'Only pending requests can be deleted.');
+    }
     Activity::create([
         'user_id' => Auth::id(),
         'type' => 'request_deleted',

@@ -15,7 +15,7 @@
         </a>
     </div>
     <div class="header-center">
-        <span>Welcome Back, {{ session('user_name', 'User') }}!</span>
+        <span>Welcome Back, {{ auth()->user()->fullName ?? 'Guest' }}!</span>
     </div>
     <div class="header-right">
         <form action="" method="POST" style="display: inline;">
@@ -37,7 +37,7 @@
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="info">
-                    <h3>{{ session('user_name', 'User') }}</h3>
+                    <h3>{{ auth()->user()->fullName ?? 'Guest' }}</h3>
                     <span class="status online">
                         <i class="fas fa-circle"></i> Online
                     </span>

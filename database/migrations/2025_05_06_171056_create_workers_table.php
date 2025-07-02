@@ -12,6 +12,7 @@ class CreateWorkersTable extends Migration
      * @return void
      */
     public function up()
+<<<<<<< HEAD
 {
     Schema::create('workers', function (Blueprint $table) {
         $table->bigIncrements('id');
@@ -25,6 +26,21 @@ class CreateWorkersTable extends Migration
         $table->timestamps();
     });
 }
+=======
+    {
+        Schema::create('workers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone');
+            $table->string('address');
+            $table->string('specialization');
+            $table->string('photo')->nullable();
+            $table->string('password');
+            $table->timestamps();
+        });
+    }
+>>>>>>> 177629a868bc4dd03541ae756ddb6a331f1f9ece
 
     /**
      * Reverse the migrations.

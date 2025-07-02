@@ -1,4 +1,4 @@
-@if (!session()->has('user_logged_in') || !session('user_logged_in'))
+@if(!auth()->check())
     <script>window.location = "{{ route('login') }}";</script>
 @endif
 
@@ -114,10 +114,21 @@
             ];
             @endphp
 
-            @foreach($demoActivities as $activity)
+            @foreach($recentActivities as $activity)
                 <div class="activity-item">
-                    <div class="activity-icon" style="color: {{ $activity['color'] }}">
-                        <i class="fas {{ $activity['icon'] }}"></i>
+                    @php
+                        $iconMap = [
+                            'request_created' => ['icon' => 'fa-trash-restore', 'color' => 'blue'],
+                            'complaint_filed' => ['icon' => 'fa-comment-alt', 'color' => 'orange'],
+                            'request_completed' => ['icon' => 'fa-check-circle', 'color' => 'green'],
+                            'profile_updated' => ['icon' => 'fa-user-edit', 'color' => 'purple'],
+                        ];
+
+                        $icon = $iconMap[$activity['type']]['icon'] ?? 'fa-info-circle';
+                        $color = $iconMap[$activity['type']]['color'] ?? 'gray';
+                    @endphp
+                    <div class="activity-icon" style="color: {{ $color }}">
+                        <i class="fas {{ $icon }}"></i>
                     </div>
                     <div class="activity-details">
                         <p>{{ $activity['description'] }}</p>

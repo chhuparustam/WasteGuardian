@@ -5,7 +5,7 @@
 <div class="request-container">
     <div class="request-form-wrapper">
         <div class="form-header">
-            <h2><i class="fas fa-trash-restore"></i> New Pickup Request</h2>
+            <h2><i class="fas fa-trash-restore"></i> Edit Request</h2>
         </div>
 
         @if(session('success'))
@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="{{ route('pickup.store') }}" method="POST" enctype="multipart/form-data" class="request-form">
+        <form action="{{ route('user.my-requests-update', $request->id) }}" method="POST" enctype="multipart/form-data" class="request-form">
             @csrf
             <div class="form-group">
                 <label for="name" class="form-label">Full Name</label>
@@ -32,14 +32,20 @@
             <div class="form-group">
                 <label for="landmark" class="form-label">Nearest Landmark</label>
                 <input type="text" id="landmark" name="landmark" class="form-control" 
-                    placeholder="Enter a nearby landmark" required>
+                    placeholder="Enter a nearby landmark" required value="{{ $request->landmark ?? '' }}">
             </div>
 
             <div class="form-group">
                 <label for="photo" class="form-label">Waste Photo</label>
+                @if ($request->photo)
+                    <div class="current-photo-preview">
+                        <p>Current Photo:</p>
+                        <img src="{{ asset('storage/' . $request->photo) }}" alt="Current Waste Photo" style="max-width: 200px; height: auto; margin-bottom: 10px;">
+                    </div>
+                @endif
                 <div class="file-input-wrapper">
                     <input type="file" id="photo" name="photo" class="form-control" 
-                        accept="image/*" required>
+                        accept="image/*" >
                     <small class="form-text">Upload a clear photo of the waste (Max: 5MB)</small>
                 </div>
             </div>
@@ -47,7 +53,7 @@
             <div class="form-group">
                 <label for="message" class="form-label optional">Additional Notes</label>
                 <textarea id="message" name="message" class="form-control" 
-                    rows="3" placeholder="Any special instructions..."></textarea>
+                    rows="3" placeholder="Any special instructions...">{{ $request->message ?? '' }}</textarea>
             </div>
 
             <div class="form-actions">

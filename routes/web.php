@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\CleaningServiceController;
 
 // for user signup and login
 Route::get('login', [UserAuthController::class, 'login'])->name('login');
-Route::post('login', [UserAuthController::class, 'checkLogin'])->name('auth.login');
+Route::post('/login-submit', [UserAuthController::class, 'checkLogin'])->name('auth.login');
 
 Route::get('register', [UserAuthController::class, 'register'])->name('register');
 Route::post('register', [UserAuthController::class, 'create'])->name('auth.create');
@@ -71,7 +71,10 @@ Route::prefix('user')->group(function () {
     Route::get('/requests', function () {
         return view('user.requests');
     })->name('user.requests');
-
+    Route::get('/my-requests', [PickupRequestController::class, 'userRequests'])->name('user.my-requests');
+    Route::get('/my-requests-delete/{id}', [PickupRequestController::class, 'deleteRequest'])->name('user.my-requests-delete');
+    Route::get('/my-requests-edit/{id}', [PickupRequestController::class, 'editRequest'])->name('user.my-requests-edit');
+    Route::post('/my-requests-update/{id}', [PickupRequestController::class, 'updateRequest'])->name('user.my-requests-update');
     // Profile edit/update routes
     Route::get('/edit-profile', [UserAuthController::class, 'editProfile'])->name('user.edit-profile');
     Route::put('/update-profile', [UserAuthController::class, 'updateProfile'])->name('user.update-profile');
@@ -110,7 +113,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/requests', [AdminRequestController::class, 'index'])->name('admin.requests.index');
 });
 
-Route::get('/my-requests', [PickupRequestController::class, 'userRequests'])->name('user.my-requests');
+
 
 // for select login type
 

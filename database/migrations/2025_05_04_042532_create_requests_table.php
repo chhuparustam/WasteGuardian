@@ -23,7 +23,7 @@ class CreateRequestsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status')->default('pending');
-            $table->unsignedBigInteger('driver_id');
+            $table->unsignedBigInteger('driver_id')->nullable();
             $table->timestamps();
         });
     }   

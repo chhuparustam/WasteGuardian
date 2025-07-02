@@ -11,16 +11,8 @@ class PickupRequest extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'address',
-        'landmark',
-        'photo',
-        'message',
-        'driver_id', 
-        'status',    
-    ];
-    
+    protected $guarded = ['id'];
+    public $timestamps = true;
     protected $table = 'requests'; 
 
     public function user()

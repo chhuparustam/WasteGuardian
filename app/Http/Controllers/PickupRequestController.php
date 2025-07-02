@@ -32,7 +32,7 @@ class PickupRequestController extends Controller
     ];
 
     // dd($data);
-    PickupRequest::insert($data);
+    PickupRequest::create($data);
 
         Activity::create([
         'user_id' => Auth::id(),

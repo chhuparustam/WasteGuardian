@@ -38,15 +38,22 @@ class CleaningServiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'duration' => 'required',
+            'duration' => 'required|string|max:255',
+            'frequency' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'nullable|image|max:2048',
         ]);
-        $service = new CleaningService($request->all());
+
+        $service = new CleaningService($request->except('image'));
+
         if ($request->hasFile('image')) {
             $service->image = $request->file('image')->store('services', 'public');
         }
+
         $service->save();
+
         return redirect()->route('admin.cleaning-services.index')
             ->with('success', 'Cleaning service has been created successfully.');
     }
@@ -83,12 +90,24 @@ class CleaningServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'duration' => 'required|string|max:255',
+            'frequency' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
         $service = CleaningService::findOrFail($id);
-        $service->update($request->all());
+        $service->fill($request->except('image'));
+
         if ($request->hasFile('image')) {
             $service->image = $request->file('image')->store('services', 'public');
-            $service->save();
         }
+
+        $service->save();
+
         return redirect()->route('admin.cleaning-services.index')
             ->with('success', 'Cleaning service has been updated successfully!');
     }

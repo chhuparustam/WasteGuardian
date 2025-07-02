@@ -25,8 +25,7 @@ class UserAuthController extends Controller
 
     public function create(Request $request)
     {
-      
-        // Validate request
+        // Validate request 
         $request->validate([
             'fullName' => 'required|string|min:2|max:50',
             'email' => [

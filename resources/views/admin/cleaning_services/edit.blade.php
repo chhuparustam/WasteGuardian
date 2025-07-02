@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/Admin-cleaning-services.css') }}">
+<link rel="stylesheet" href="{{ asset('css/edit-service.css') }}">
 @endsection
 
 @section('content')

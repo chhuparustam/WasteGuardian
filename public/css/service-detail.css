@@ -1,0 +1,479 @@
+/* ========================================
+   PART 1: LAYOUT & STRUCTURE STYLES
+   ======================================== */
+
+/* Service Detail Page Styles */
+.service-detail-wrapper {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.breadcrumb-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+    color: #2563eb;
+}
+
+.breadcrumb-separator {
+    color: #9ca3af;
+}
+
+.breadcrumb-current {
+    color: #6b7280;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Service Detail Card */
+.service-detail-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Service Hero Section */
+.service-hero {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: flex-start;
+}
+
+.service-image-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 400px;
+    flex-shrink: 0;
+}
+
+.service-detail-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.service-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #10b981;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Service Info */
+.service-info {
+    flex: 1;
+    padding-left: 1rem;
+}
+
+.service-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.service-price {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6;
+}
+
+.price-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.price-amount {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+/* Service Meta */
+.service-meta {
+    display: flex;
+    gap: 1rem;
+}
+
+.meta-item {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.meta-item:hover {
+    background: #f3f4f6;
+    transform: translateY(-2px);
+}
+
+.meta-item i {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3b82f6;
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin: 0 auto 0.75rem;
+}
+
+.meta-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.meta-value {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.9rem;
+}
+
+.status-available {
+    color: #10b981 !important;
+}
+
+/* Content Sections */
+.service-description-section,
+.service-features,
+.booking-section {
+    padding: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.service-description-section h3,
+.service-features h3,
+.booking-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #111827;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.service-description-section h3 i,
+.service-features h3 i,
+.booking-section h3 i {
+    color: #3b82f6;
+    font-size: 1.1rem;
+}
+
+.service-description {
+    color: #6b7280;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+    background: #f3f4f6;
+    transform: translateY(-2px);
+}
+
+.feature-item i {
+    color: #3b82f6;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.feature-item span {
+    font-weight: 500;
+    color: #111827;
+    font-size: 0.9rem;
+}
+
+/* Booking Section */
+.booking-section {
+    background: #f8fafc;
+}
+
+.booking-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.booking-info {
+    flex: 1;
+}
+
+.price-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.price-text {
+    font-size: 1.1rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.price-final {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.booking-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: #6b7280;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    padding: 1rem;
+    background: #fef3c7;
+    border-radius: 8px;
+    border-left: 4px solid #f59e0b;
+}
+
+.booking-note i {
+    color: #f59e0b;
+    margin-top: 0.1rem;
+}
+
+/* Form Styles */
+.booking-form-container {
+    flex: 1;
+}
+
+.booking-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: #111827;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group label i {
+    color: #3b82f6;
+    width: 16px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.btn-book-now {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-book-now:hover {
+    background: #2563eb;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .service-hero {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .service-image-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .service-info {
+        padding-left: 0;
+    }
+    
+    .service-meta {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .booking-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-detail-wrapper {
+        padding: 1rem;
+    }
+    
+    .service-hero {
+        padding: 1.5rem;
+    }
+    
+    .service-title {
+        font-size: 1.5rem;
+    }
+    
+    .price-amount {
+        font-size: 1.8rem;
+    }
+    
+    .service-description-section,
+    .service-features,
+    .booking-section {
+        padding: 1.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .booking-form {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-detail-wrapper {
+        padding: 0.5rem;
+    }
+    
+    .service-detail-image {
+        height: 250px;
+    }
+    
+    .service-title {
+        font-size: 1.25rem;
+    }
+    
+    .price-amount {
+        font-size: 1.5rem;
+    }
+    
+    .service-hero {
+        padding: 1rem;
+    }
+    
+    .service-description-section,
+    .service-features,
+    .booking-section {
+        padding: 1rem;
+    }
+}

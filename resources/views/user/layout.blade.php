@@ -71,18 +71,7 @@
                 <i class="fas fa-user-circle"></i> My Profile
             </a>
 
-            <div class="sidebar-footer">
-        <div class="quick-stats">
-            <div class="stat">
-                <span>Active Requests</span>
-                <strong>{{ session('active_requests', 2) }}</strong>
-            </div>
-            <div class="stat">
-                <span>Total Pickups</span>
-                <strong>{{ session('total_pickups', 15) }}</strong>
-            </div>
-        </div>
-    </div>
+            
         </div>
 
         <div class="content">

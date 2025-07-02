@@ -167,8 +167,16 @@ Route::get('/user/complaints', [ComplaintController::class, 'index'])->name('use
 // Route for claening services
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
 });
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('admin/cleaning-services', CleaningServiceController::class);
     Route::resource('cleaning-services', CleaningServiceController::class);
+});
+
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+    Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
+    // Add booking route if needed
+    // Route::post('/services/{service}/book', [ServiceBookingController::class, 'store'])->name('services.book');
 });

@@ -268,8 +268,7 @@
                                     <i class="material-icons-round filled">star</i>
                                     <span class="rating-text">3.0</span>
                                 </div>
-                                <a href="{{ route('services.show', ['service' => 'office-cleaning']) }}" class="btn btn-card-action">
-                                    <span>Book</span>
+                                <a href="{{ route('user.services.show', ['service' => 'office-cleaning']) }}" class="btn btn-card-action">
                                     <i class="material-icons-round">arrow_forward</i>
                                 </a>
                             </div>

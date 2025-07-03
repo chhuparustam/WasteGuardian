@@ -12,21 +12,6 @@ class CreateWorkersTable extends Migration
      * @return void
      */
     public function up()
-<<<<<<< HEAD
-{
-    Schema::create('workers', function (Blueprint $table) {
-        $table->bigIncrements('id');
-        $table->string('name')->notNull();
-        $table->string('email')->notNull();
-        $table->string('phone')->notNull();
-        $table->string('address')->notNull();
-        $table->string('specialization')->notNull();
-        $table->string('photo')->notNull(); // <-- Remove ->after()
-        $table->string('password')->notNull();
-        $table->timestamps();
-    });
-}
-=======
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
@@ -40,7 +25,6 @@ class CreateWorkersTable extends Migration
             $table->timestamps();
         });
     }
->>>>>>> 177629a868bc4dd03541ae756ddb6a331f1f9ece
 
     /**
      * Reverse the migrations.
@@ -49,8 +33,6 @@ class CreateWorkersTable extends Migration
      */
     public function down()
     {
-        Schema::table('workers', function (Blueprint $table) {
-            $table->dropColumn('photo');
-        });
+        Schema::dropIfExists('workers');
     }
 }

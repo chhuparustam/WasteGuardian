@@ -13,11 +13,28 @@ class CleaningServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function indexFront()
+    {
+        $services = CleaningService::all();
+        // dd($services); // Debugging line to check if services are fetched correctly
+        return view('index', compact('services'));
+    }
+
+
+    public function serviceDetailFront($id)
+    {
+        $service = CleaningService::findOrFail($id);
+        return view('user.services.show', compact('service'));
+    }
+
     public function index()
     {
         $services = CleaningService::all();
         return view('admin.cleaning_services.index', compact('services'));
     }
+
+
+    
 
     /**
      * Show the form for creating a new resource.

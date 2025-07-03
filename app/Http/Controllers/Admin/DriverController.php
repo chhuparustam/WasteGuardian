@@ -12,20 +12,20 @@ class DriverController extends Controller
 {
     public function index()
     {
-        $drivers = DriverModel::all();
+        $drivers = DriverModel::where('type','driver')->paginate(10);
+        
         $query = DriverModel::query();
 
     if (request('search')) {
         $search = request('search');
         $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', "%{$search}%")
+            $q->where('fullName', 'like', "%{$search}%")
               ->orWhere('email', 'like', "%{$search}%")
               ->orWhere('phone', 'like', "%{$search}%")
               ->orWhere('address', 'like', "%{$search}%");
         });
+        $drivers = $query->paginate(10)->appends(request()->all());
     }
-
-    $drivers = $query->paginate(10)->appends(request()->all());
         return view('admin.drivers.index', compact('drivers'));
     }
 
@@ -37,7 +37,7 @@ class DriverController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'fullName' => 'required|string|max:255',
             'email' => 'required|email|unique:drivers,email',
             'phone' => 'required|numeric',
             'address' => 'required|string|max:255',
@@ -45,11 +45,13 @@ class DriverController extends Controller
         ]);
 
         DriverModel::create([
-            'name' => $request->name,
+            'fullName' => $request->fullName,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
            'password' => Hash::make($request->password),
+           'type' => 'driver',
+            // 'user' => $request->user, // Assuming 'user' is a field
         ]);
 
         return redirect()->route('admin.drivers.index')->with('success', 'Driver added successfully.');
@@ -63,8 +65,9 @@ class DriverController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
-            'name' => 'required|string|max:255',
+            'fullName' => 'required|string|max:255',
             'email' => 'required|email|unique:drivers,email,' . $id,
             'phone' => 'required|numeric',
             'address' => 'required|string|max:255',
@@ -72,11 +75,11 @@ class DriverController extends Controller
 
         $driver = DriverModel::findOrFail($id);
         $driver->update([
-            'name' => $request->name,
+            'fullName' => $request->fullName,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
-            'password' => $request->password,
+            // 'password' => $request->password,
         ]);
 
         return redirect()->route('admin.drivers.index')->with('success', 'Driver updated successfully.');

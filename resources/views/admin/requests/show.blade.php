@@ -34,7 +34,7 @@
         <div class="card-header">
             <h2>Request #{{ $request->id }}</h2>
             <span class="request-status {{ $request->driver_id ? 'assigned' : 'pending' }}">
-                {{ $request->driver_id ? 'Assigned' : 'Pending Assignment' }}
+                {{ ucfirst($request->status)}}
             </span>
         </div>
         
@@ -102,7 +102,7 @@
                             @foreach($drivers as $driver)
                                 <option value="{{ $driver->id }}" 
                                         {{ $request->driver_id == $driver->id ? 'selected' : '' }}>
-                                    {{ $driver->name }}
+                                    {{ $driver->fullName }} ({{ $driver->phone }})
                                 </option>
                             @endforeach
                         </select>
@@ -110,6 +110,19 @@
                     <button type="submit" class="btn-primary">
                         <i class="fas fa-user-check"></i>
                         Assign Driver
+                    </button>
+                </form>
+            </div>
+            <div class="assignment-section">
+                <h3>Request Approval </h3>
+                <form action="{{ route('admin.requests.approveRequest', $request->id) }}" 
+                      method="POST" 
+                      class="assignment-form">
+                      <input type="hidden" name="user_id" value="{{ $request->user_id }}">
+                    @csrf
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-check"></i>
+                        Approve Request
                     </button>
                 </form>
             </div>

@@ -37,7 +37,7 @@
                         <span class="text-muted">N/A</span>
                     @endif
                 </td>
-                <td>{{ $worker->name }}</td>
+                <td>{{ $worker->fullName }}</td>
                 <td>
                     @if(isset($worker->role))
                         <span class="role-badge">{{ ucfirst($worker->role) }}</span>

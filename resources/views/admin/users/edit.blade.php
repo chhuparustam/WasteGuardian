@@ -73,6 +73,20 @@
                         <span class="error-message">{{ $message }}</span>
                     @enderror  
                 </div>
+                <div class="form-group">
+                    <label for="type">
+                        <i class="fas fa-map-marker-alt"></i>
+                        User Type
+                    </label>
+                    <select class="form-group" name='type'>
+                        <option {{ $user->type =='driver' ? 'selected' :'' }} value='driver'>Driver</option>
+                        <option {{ $user->type =='worker' ? 'selected' :'' }} value='worker'>Worker</option>
+                    </select>    
+                    <!-- <input type="text" name="type" id="type" value="{{ $user->type }}" required> -->
+                    @error('type')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror  
+                </div>
 
                 <div class="form-actions">
                     <button type="submit" class="btn-submit">

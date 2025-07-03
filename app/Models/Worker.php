@@ -6,13 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Worker extends Model
 {
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'address',
-        'specialization',
-        'photo',
-        'password'
-    ];
+    protected $table = 'users'; 
+    protected $guarded = ['id']; 
 }

@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\DriverModel;
 use App\Models\PickupRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\TextMail;
+use Illuminate\Support\Facades\Mail;
 
 class AdminRequestController extends Controller
 {
@@ -40,7 +43,7 @@ class AdminRequestController extends Controller
     public function show($id)
 {
     $request = PickupRequest::findOrFail($id);
-    $drivers =DriverModel::all(); // Adjust model name if needed
+    $drivers =DriverModel::where('type','driver')->get(); // Adjust model name if needed
     return view('admin.requests.show', compact('request', 'drivers'));
 }
 
@@ -49,7 +52,7 @@ public function assignDriver(Request $request, $id)
     $pickupRequest = PickupRequest::findOrFail($id);
 
     $request->validate([
-        'driver_id' => 'required|exists:drivers,id',
+        'driver_id' => 'required|exists:users,id',
     ]);
 
     $pickupRequest->driver_id = $request->driver_id;
@@ -59,5 +62,22 @@ public function assignDriver(Request $request, $id)
     return redirect()
         ->route('admin.requests.show', $pickupRequest->id)
         ->with('success', 'Driver assigned successfully.');
+}
+public function approveRequest(Request $request, $id)
+{
+    $pickupRequest = PickupRequest::findOrFail($id);
+
+    $pickupRequest->status = 'Approved';
+    $pickupRequest->save();
+
+   $user =  User::where('id', $request->user_id)->first();
+   Mail::raw("Your pickup request has been approved. Please contact us for further details.", function ($message) use ($user) {
+    $message->to($user->email)
+            ->subject('Request Approval Notification');
+    });
+
+    return redirect()
+        ->route('admin.requests.show', $pickupRequest->id)
+        ->with('success', 'Request Approved successfully.');
 }
 }

@@ -32,11 +32,14 @@ class UserController extends Controller
          $user = User::findOrFail($id);
         return view('admin.users.edit', compact('user'));
     }
+
     public function update(Request $request, $id)
     {
+       
         $user = User::findOrFail($id);
         $user->fullName = $request->fullName;
         $user->email = $request->email;
+        $user->type = $request->type;
         $user->save();
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully!');

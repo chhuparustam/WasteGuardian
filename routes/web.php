@@ -26,9 +26,7 @@ Route::get('/user-logout', [UserAuthController::class, 'logout'])->name('user.lo
 
 Route::get('register', [UserAuthController::class, 'register'])->name('register');
 Route::post('register', [UserAuthController::class, 'create'])->name('auth.create');
-Route::get('/', function () {
-    return view('index'); 
-});
+Route::get('/', [CleaningServiceController::class, 'indexFront'])->name('home');
 Route::get('/user/edit-profile', [UserAuthController::class, 'editProfile'])->name('user.edit-profile');
 Route::put('/user/update-profile', [UserAuthController::class, 'updateProfile'])->name('user.update-profile');
 Route::get('/user/profile', [UserAuthController::class, 'profile'])->name('user.profile');
@@ -47,17 +45,18 @@ Route::get('/adminlogin', function () {
 });
 
 //  redirect to admin dashboard
-// Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('auth.admin-login');
-Route::get('/admin.dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+// Route::get('/admin/dashboard', [AdminLoginController::class, 'dashboard'])->name('admin.dashboard');
+// Route::get('/admin.dashboard', function () {
+//     return view('admin.dashboard');
+// })->name('admin.dashboard');
 
 
 // for manage user
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('admin.dashboard');
+    // })->name('dashboard');
+    Route::get('/dashboard', [AdminLoginController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
@@ -110,6 +109,7 @@ Route::delete('admin/requests/{request}', [AdminRequestController::class, 'destr
 Route::post('/pickup-request', [PickupRequestController::class, 'store'])->name('pickup.store');
 Route::get('admin/requests/{request}', [AdminRequestController::class, 'show'])->name('admin.requests.show');
 Route::post('admin/requests/{request}/assign', [AdminRequestController::class, 'assignDriver'])->name('admin.requests.assignDriver');
+Route::post('admin/requests/{request}/approve', [AdminRequestController::class, 'approveRequest'])->name('admin.requests.approveRequest');
 Route::prefix('admin')->group(function () {
     Route::get('/requests', [AdminRequestController::class, 'index'])->name('admin.requests.index');
 });
@@ -183,5 +183,5 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
     // Add booking route if needed
-    // Route::post('/services/{service}/book', [ServiceBookingController::class, 'store'])->name('services.book');
+    Route::post('/services/{service}/book', [ServiceController::class, 'store'])->name('services.book');
 });

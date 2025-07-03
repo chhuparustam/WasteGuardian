@@ -76,13 +76,13 @@
                 <tbody>
                     @forelse ($drivers as $driver)
                         <tr>
-                            <td>{{ $driver->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="user-info">
                                     <div class="user-avatar">
                                         <i class="fas fa-truck"></i>
                                     </div>
-                                    <span>{{ $driver->name }}</span>
+                                    <span>{{ $driver->fullName }}</span>
                                 </div>
                             </td>
                             <td>{{ $driver->email }}</td>

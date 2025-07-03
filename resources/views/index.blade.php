@@ -235,179 +235,51 @@
                 <!-- Services Grid -->
                 <div class="services-grid">
                     <!-- Office Cleaning Service -->
-                    <div class="service-card modern-card">
+                     @forelse($services as $service)
+                <div class="service-card modern-card">
                         <div class="card-image-container">
-                            <img src="{{ asset('images/services/people-taking-care-office-cleaning.jpg') }}" 
+                            <img src="{{ asset('storage/' . ltrim($service->image, '/')) }} " 
                                  alt="Office Cleaning" class="card-image primary">
-                            <img src="{{ asset('images/services/person-taking-care-office.jpg') }}" 
-                                 alt="Office Cleaning" class="card-image secondary">
+                            <!-- <img src="{{ asset('images/services/person-taking-care-office.jpg') }}" 
+                                 alt="Office Cleaning" class="card-image secondary"> -->
                             
                             <!-- Service Badge -->
                             <div class="service-badges">
                                 <div class="price-badge">
                                     <i class="material-icons-round">attach_money</i>
-                                    <span>$820</span>
+                                    <span>{{ $service->price ?? 0}}</span>
                                 </div>
                                 <div class="time-badge">
                                     <i class="material-icons-round">schedule</i>
-                                    <span>5 hrs</span>
+                                    <span>{{$service->duration ?? 0}} hrs</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="card-content">
-                            <h4 class="card-title">Office Cleaning</h4>
+                            <h4 class="card-title">{{ $service -> title}}</h4>
                           
                             
                             <div class="card-footer">
-                                <div class="rating-stars">
+                                <!-- <div class="rating-stars">
                                     <i class="material-icons-round filled">star</i>
                                     <i class="material-icons-round filled">star</i>
                                     <i class="material-icons-round filled">star</i>
                                     <i class="material-icons-round">star</i>
                                     <i class="material-icons-round filled">star</i>
                                     <span class="rating-text">3.0</span>
-                                </div>
-                                <a href="{{ route('user.services.show', ['service' => 'office-cleaning']) }}" class="btn btn-card-action">
+                                </div> -->
+                                <a href="{{ route('user.services.show', $service->id) }}" class="btn btn-card-action">
                                     <i class="material-icons-round">arrow_forward</i>
                                 </a>
                             </div>
                         </div>
                     </div>
+                     @empty
 
-                    <!-- Kitchen Cleaning Service -->
-                    <div class="service-card modern-card featured">
-                        <div class="featured-badge">
-                            <i class="material-icons-round">star</i>
-                            <span>Popular</span>
-                        </div>
-                        
-                        <div class="card-image-container">
-                            <img src="{{ asset('images/services/young-smiling-woman-wearing-rubber-gloves-cleaning-stove.jpg') }}" 
-                                 alt="Kitchen Cleaning" class="card-image primary">
-                            <img src="{{ asset('images/services/woman-holding-rag-detergent-cleaning-cooker.jpg') }}" 
-                                 alt="Kitchen Cleaning" class="card-image secondary">
-                            
-                            <div class="service-badges">
-                                <div class="price-badge">
-                                    <i class="material-icons-round">attach_money</i>
-                                    <span>$640</span>
-                                </div>
-                                <div class="time-badge">
-                                    <i class="material-icons-round">schedule</i>
-                                    <span>4 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-content">
-                            <h4 class="card-title">Kitchen Cleaning</h4>
-                            <p class="card-description">
+                     @endforelse
+                    
 
-                            
-                            <div class="card-footer">
-                                <div class="rating-stars">
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <span class="rating-text">5.0</span>
-                                </div>
-                                <a href="services-detail.html" class="btn btn-card-action">
-                                    <span>Book</span>
-                                    <i class="material-icons-round">arrow_forward</i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Car Washing Service -->
-                    <div class="service-card modern-card">
-                        <div class="card-image-container">
-                            <img src="{{ asset('images/services/man-polishing-car-inside-car-service.jpg') }}" 
-                                 alt="Car Washing" class="card-image primary">
-                            <img src="{{ asset('images/services/man-polishing-car-inside.jpg') }}" 
-                                 alt="Car Washing" class="card-image secondary">
-                            
-                            <div class="service-badges">
-                                <div class="price-badge">
-                                    <i class="material-icons-round">attach_money</i>
-                                    <span>$240</span>
-                                </div>
-                                <div class="time-badge">
-                                    <i class="material-icons-round">schedule</i>
-                                    <span>2 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-content">
-                            <h4 class="card-title">Car Washing</h4>
-                           
-                            
-                            <div class="card-footer">
-                                <div class="rating-stars">
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <span class="rating-text">5.0</span>
-                                </div>
-                                <a href="services-detail.html" class="btn btn-card-action">
-                                    <span>Book</span>
-                                    <i class="material-icons-round">arrow_forward</i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Factory Cleaning Service -->
-                    <div class="service-card modern-card enterprise">
-                        <div class="enterprise-badge">
-                            <i class="material-icons-round">business</i>
-                            <span>Enterprise</span>
-                        </div>
-                        
-                        <div class="card-image-container">
-                            <img src="{{ asset('images/services/professional-industrial-cleaner-protective-uniform-cleaning-floor-food-processing-plant.jpg') }}" 
-                                 alt="Factory Cleaning" class="card-image primary">
-                            <img src="{{ asset('images/services/close-up-mop-cleaning-industrial-plant-floor.jpg') }}" 
-                                 alt="Factory Cleaning" class="card-image secondary">
-                            
-                            <div class="service-badges">
-                                <div class="price-badge">
-                                    <i class="material-icons-round">attach_money</i>
-                                    <span>$6,800</span>
-                                </div>
-                                <div class="time-badge">
-                                    <i class="material-icons-round">schedule</i>
-                                    <span>30 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-content">
-                            <h4 class="card-title">Factory Cleaning</h4>
-                          
-                            
-                            <div class="card-footer">
-                                <div class="rating-stars">
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <i class="material-icons-round filled">star</i>
-                                    <span class="rating-text">4.0</span>
-                                </div>
-                                <a href="services-detail.html" class="btn btn-card-action">
-                                    <span>Book</span>
-                                    <i class="material-icons-round">arrow_forward</i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

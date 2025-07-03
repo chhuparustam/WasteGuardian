@@ -11,7 +11,7 @@ class WorkerController extends Controller
 
     public function index()
     {
-        $workers = Worker::all();
+        $workers = Worker::where('type','worker')->paginate(10);
         return view('admin.workers.index', compact('workers'));
     }
 

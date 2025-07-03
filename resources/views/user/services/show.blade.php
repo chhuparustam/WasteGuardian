@@ -96,7 +96,7 @@
                     </p>
                 </div>
                 <div class="booking-form-container">
-                    <form action="#" method="POST" class="booking-form">
+                    <form action="{{ route('user.services.book', $service->id)}}" method="POST" class="booking-form">
                         @csrf
                         <div class="form-group">
                             <label for="booking_date">

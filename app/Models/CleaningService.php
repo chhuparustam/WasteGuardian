@@ -9,12 +9,5 @@ class CleaningService extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'description',
-        'price',
-        'duration',
-        'frequency',
-        'image',
-    ];
+    protected $guarded = ['id'];
 }

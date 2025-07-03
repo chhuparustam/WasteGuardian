@@ -42,14 +42,14 @@
                 
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="name">
+                        <label for="fullName">
                             <i class="fas fa-user"></i>
                             Driver's Name
                         </label>
                         <input type="text" 
-                               id="name"
-                               name="name" 
-                               value="{{ old('name') }}" 
+                               id="fullName"
+                               name="fullName" 
+                               value="{{ old('fullName') }}" 
                                placeholder="Enter driver's full name"
                                required>
                         @error('name')

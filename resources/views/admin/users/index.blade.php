@@ -65,6 +65,7 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Address</th>
+                        <th>Type</th>
                         <th>Actions</th> 
                     </tr>
                 </thead>
@@ -75,6 +76,7 @@
                         <td>{{ $user->fullName }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->address }}</td>
+                        <td>{{ $user->type ?? 'User' }}</td>
                         <td>
                             <div class="action-buttons">
                                 <a href="{{ route('admin.users.edit', $user->id) }}" class="btn-update">

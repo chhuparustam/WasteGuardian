@@ -50,10 +50,34 @@ class ServiceController extends Controller
         
         Activity::create([
             'user_id' => $user->id,
-            'description' => 'Booked service: ' . $service->title,
+            'description' => 'Booked service: ' . $service->cleaningService->title,
             'type' => 'service_booking',
         ]);
 
         return redirect()->route('user.services.index')->with('success', 'Service booked successfully!');
+    }
+
+    public function bookedServices(){
+        
+        if(!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to book a service.');
+        }
+
+       $data['bookings'] = ServiceBooking::with('cleaningService')->where('user_id', Auth::id())->get();
+        // dd($data);
+       return view('user.services.booked-services',$data);
+
+    }
+
+    public function bookedServicesCancel($id){
+        if(!Auth::check()  && !$id) {
+            return redirect()->route('login')->with('error', 'You must be logged in to book a service.');
+        }
+       $booking = ServiceBooking::find($id);
+
+       if($booking){
+        $booking->where('id',$id)->update(['status' =>'cancel']);
+        return redirect()->route('user.services.booked')->with('success', 'Service Cancel successfully!');
+       }
     }
 }

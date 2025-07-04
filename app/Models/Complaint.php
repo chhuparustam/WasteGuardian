@@ -10,4 +10,5 @@ class Complaint extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    public $timestamps = true;
 }

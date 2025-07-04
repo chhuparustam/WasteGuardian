@@ -24,6 +24,7 @@ class ComplaintController extends Controller
             'user_id' => Auth::id(),
             'subject' => $request->subject,
             'description' => $request->description,
+            // 'created_at' => 
         ];
       
         Complaint::insert($data);

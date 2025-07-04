@@ -16,6 +16,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\User\ServiceController;
 use App\Http\Controllers\Admin\CleaningServiceController;
+use App\Http\Controllers\StripeController;
 
 
 
@@ -181,7 +182,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+    
     Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
     // Add booking route if needed
     Route::post('/services/{service}/book', [ServiceController::class, 'store'])->name('services.book');
+    Route::get('/booked-services', [ServiceController::class, 'bookedServices'])->name('services.booked');
+    Route::get('/booked-services-cancel/{id}', [ServiceController::class, 'bookedServicesCancel'])->name('services.booked.cancel');
 });
+
+
+Route::get('/checkout/{id}', [StripeController::class, 'checkout'])->name('stripe.checkout');
+Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');

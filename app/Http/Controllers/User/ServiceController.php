@@ -50,7 +50,7 @@ class ServiceController extends Controller
         
         Activity::create([
             'user_id' => $user->id,
-            'description' => 'Booked service: ' . $service->cleaningService->title,
+            'description' => 'Booked service: ' .( $service->cleaningService->title ?? ''),
             'type' => 'service_booking',
         ]);
 

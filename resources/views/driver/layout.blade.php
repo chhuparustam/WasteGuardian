@@ -30,12 +30,11 @@
                     <i class="fas fa-bell"></i>
                     <span class="badge">0</span>
                 </a>
-                <form action="" method="POST" class="logout-form">
-                    @csrf
-                    <button type="submit" class="nav-logout-btn">
+                
+                    <a href='{{ route("user.logout")}}' class="nav-logout-btn">
                         <i class="fas fa-sign-out-alt"></i>logout
-                    </button>
-                </form>
+                </a>
+                
             </div>
         </div>
     </header>

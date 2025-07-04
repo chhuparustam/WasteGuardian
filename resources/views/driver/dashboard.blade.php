@@ -14,7 +14,7 @@
                 </div>
                 <div class="stat-details">
                     <h3>Assigned Routes</h3>
-                    <p>{{ $assignedRoutes ?? '5' }}</p>
+                    <p>{{ $assignedRoutes ?? '0' }}</p>
                 </div>
             </div>
 
@@ -24,7 +24,7 @@
                 </div>
                 <div class="stat-details">
                     <h3>Pending Pickups</h3>
-                    <p>{{ $pendingPickups ?? '4' }}</p>
+                    <p>{{ $pendingPickups ?? '0' }}</p>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                 </div>
                 <div class="stat-details">
                     <h3>Completed Today</h3>
-                    <p>{{ $completedPickups ?? '5' }}</p>
+                    <p>{{ $completedPickups ?? '0' }}</p>
                 </div>
             </div>
 

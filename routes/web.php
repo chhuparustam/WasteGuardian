@@ -154,9 +154,7 @@ Route::get('/driver/login', [LoginController::class, 'showLoginForm'])->name('dr
 Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.login.submit');
 
 // route for driver dashboard
-Route::get('/driver/dashboard', function () {
-    return view('driver.dashboard');
-})->name('driver.dashboard');
+Route::get('/driver/dashboard', [LoginController::class, 'dashboard'])->name('driver.dashboard');
 
 
 

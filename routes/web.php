@@ -17,6 +17,7 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\User\ServiceController;
 use App\Http\Controllers\Admin\CleaningServiceController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\KhaltiController;
 
 
 
@@ -191,3 +192,7 @@ Route::prefix('user')->name('user.')->group(function () {
 
 Route::get('/checkout/{id}', [StripeController::class, 'checkout'])->name('stripe.checkout');
 Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
+
+
+Route::post('/khalti-init', [KhaltiController::class, 'init'])->name('khalti.init');
+Route::get('/khalti-check', [KhaltiController::class, 'check'])->name('khalti.check');

@@ -9,7 +9,9 @@
 <head>
     <title>Payment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style type="text/css">
         #card-element{
             height: 50px;
@@ -51,6 +53,9 @@
                             onclick="createToken()">PAY $10
                         </button>
                     <form>
+<br>
+<br>
+                    <button type='button' style="margin-top: 20px; width: 100%;padding: 7px;" class='btn btn-warning mt-3' value="Pay With Khalti" name='khalti' id='khalti'> Pay khalti </button>
                 </div>
             </div>
         </div>
@@ -88,6 +93,39 @@
             }
         });
     }
+
+
+    $(document).ready(function () {
+        $('#khalti').click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '{{ route("khalti.init") }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    // Add any additional data needed by your backend
+                },
+                success: function (response) {
+                    const data = typeof response === 'string' ? JSON.parse(response) : response;
+
+        console.log('Khalti Init Response:', data);
+
+        if (data.payment_url) {
+            window.location.href = data.payment_url;
+        } else {
+            alert('Payment URL not received from server.');
+        }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Khalti Init Error:', xhr.responseText);
+                }
+            });
+        });
+    });
+
+
+    
 </script>
  
 </html>

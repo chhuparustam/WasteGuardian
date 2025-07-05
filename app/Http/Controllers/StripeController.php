@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Mail\TextMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+
 
 class StripeController extends Controller
 {
@@ -19,6 +21,7 @@ class StripeController extends Controller
         }
 
         $service = ServiceBooking::with('cleaningService')->find($id);
+        Session::put('payment_service_id', $id);
         return view('stripe.checkout', compact('service'));
     }
 

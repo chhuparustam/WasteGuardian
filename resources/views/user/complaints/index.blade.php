@@ -58,7 +58,11 @@
                             </span>
                         </td>
                         <td class="date-column">
-                            {{ $complaint->created_at->format('d M Y, h:i A') }}
+                            @if($complaint->created_at)
+                                {{ $complaint->created_at->format('d M Y, h:i A') }}
+                            @else
+                                <span class="text-muted">N/A</span>
+                            @endif
                         </td>
                         <td><a href='{{ route("user.complaints.delete", $complaint->id)}}'>Delete </a></td>
                     </tr>

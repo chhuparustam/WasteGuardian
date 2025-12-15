@@ -40,7 +40,7 @@ class LoginController extends Controller
     public function dashboard()
     {
         if (!Auth::id()) {
-            return redirect()->back()->with('error', 'You are not authorized to delete this complaint.');
+            return redirect()->back()->with('error', 'You must be logged in to access the dashboard.');
         }
         
         $data['assignedRoutes'] = PickupRequest::where('user_id', Auth::id())->count();

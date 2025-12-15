@@ -76,19 +76,14 @@ class UserAuthController extends Controller
             'address' => 'required|string',
         ]);
 
-        $user = User::find(Auth::id());
+        $user = User::findOrFail(Auth::id());
+        $user->fullName = $request->fullName;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->save();
 
-        if ($user) {
-            $user->fullName = $request->fullName;
-            $user->email = $request->email;
-            $user->address = $request->address;
-            $user->save();
-
-            session(['user_name' => $user->fullName]);
-            return redirect()->route('user.dashboard')->with('success', 'Profile updated successfully.');
-        }
-
-        return redirect()->back()->with('error', 'User not found.');
+        session(['user_name' => $user->fullName]);
+        return redirect()->route('user.dashboard')->with('success', 'Profile updated successfully.');
     }
 
     public function profile()

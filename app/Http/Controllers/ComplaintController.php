@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Complaint;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Activity;
+use App\Http\Traits\LogsActivity;
+use App\Http\Traits\AuthorizesOwnership;
 
 class ComplaintController extends Controller
 {
+    use LogsActivity, AuthorizesOwnership;
     public function create()
     {
         return view('user.complaints.create');
@@ -20,59 +22,39 @@ class ComplaintController extends Controller
             'description' => 'required|string',
         ]);
 
-        $data = [
+        Complaint::insert([
             'user_id' => Auth::id(),
             'subject' => $request->subject,
             'description' => $request->description,
-            // 'created_at' => 
-        ];
-      
-        Complaint::insert($data);
-
-        Activity::create([
-            'user_id' => Auth::id(),
-            'type' => 'complaint',
-            'description' => 'Complaint Created: ' . $request->subject,
-
         ]);
+
+        $this->logComplaintCreated($request->subject);
 
         return redirect()->route('user.complaints.index')
             ->with('success', 'Your complaint has been submitted successfully.');
     }
     public function index()
-{
-    
-
-    // fetch data of currents complaints
-    $complaints = Complaint::where('user_id', Auth::id())->latest()->get();
-
-    return view('user.complaints.index', compact('complaints'));
-}
-
-
-public function delete($id)
-{
-    $complaint = Complaint::findOrFail($id);
-    
-    // Check if the authenticated user is the owner of the complaint
-    if ($complaint->user_id !== Auth::id()) {
-        return redirect()->back()->with('error', 'You are not authorized to delete this complaint.');
+    {
+        $complaints = Complaint::where('user_id', Auth::id())->latest()->get();
+        return view('user.complaints.index', compact('complaints'));
     }
 
-    if($complaint->status === 'pending') {
-        $complaint->delete();
-    }else {
+
+    public function delete($id)
+    {
+        $complaint = Complaint::findOrFail($id);
+        
+        if ($redirect = $this->ensureOwnership($complaint, 'user_id', 'You are not authorized to delete this complaint.')) {
+            return $redirect;
+        }
+
+        if ($complaint->status === 'pending') {
+            $complaint->delete();
+            $this->logComplaintDeleted($complaint->subject);
+            return redirect()->route('user.complaints.index')
+                ->with('success', 'Complaint deleted successfully.');
+        }
+
         return redirect()->back()->with('error', 'Only pending complaints can be deleted.');
     }
-
-    Activity::create([
-        'user_id' => Auth::id(),
-        'type' => 'complaint_deleted',
-        'description' => 'Complaint Deleted: ' . $complaint->subject,
-    ]);
-
-    return redirect()->route('user.complaints.index')
-        ->with('success', 'Complaint deleted successfully.');
-
-}
 }

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Worker;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Traits\AuthenticatesUsers;
+use App\Http\Traits\HandlesFileUploads;
 
 class WorkerAuthController extends Controller
 {
+    use AuthenticatesUsers, HandlesFileUploads;
     public function showRegistrationForm()
     {
         return view('worker.register');
@@ -15,7 +18,6 @@ class WorkerAuthController extends Controller
 
     public function register(Request $request)
     {
-        // Validate the incoming request
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:workers',
@@ -27,24 +29,20 @@ class WorkerAuthController extends Controller
         ]);
 
         try {
-            // Store the profile picture
-            $imagePath = $request->file('profile_picture')->store('profile-pictures', 'public');
+            $imagePath = $this->storeFile($request->file('profile_picture'), 'profile-pictures');
 
-            // Create the worker
             Worker::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'specialization' => $request->specialization,
-                'photo' => $imagePath, // Ensure the 'photo' column exists in the workers table
+                'photo' => $imagePath,
                 'password' => Hash::make($request->password),
             ]);
 
-            // Redirect to the login page with a success message
             return redirect()->route('worker.login')->with('success', 'Registration successful! Please login.');
         } catch (\Exception $e) {
-            // Log the error and redirect back with a failure message
             \Log::error('Worker Registration Error: ' . $e->getMessage());
             return back()->with('failed', 'Registration failed! Please try again.');
         }
@@ -57,14 +55,9 @@ class WorkerAuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+        $worker = $this->attemptLogin($request, Worker::class);
 
-        $worker = Worker::where('email', $request->email)->first();
-
-        if ($worker && Hash::check($request->password, $worker->password)) {
+        if ($worker) {
             session([
                 'worker_logged_in' => true,
                 'worker_id' => $worker->id,
@@ -73,7 +66,7 @@ class WorkerAuthController extends Controller
             return redirect()->route('worker.dashboard');
         }
 
-        return back()->with('failed', 'Invalid credentials');
+        return $this->failedLoginResponse('Invalid credentials');
     }
 
     public function showResetForm()
@@ -82,11 +75,9 @@ class WorkerAuthController extends Controller
     }
 
 
-    
-    // update the worker profile
     public function editProfile()
     {
-       $worker = Worker::find(session('worker_id'));
+        $worker = Worker::find(session('worker_id'));
         return view('worker.edit-profile', compact('worker'));
     }
 

@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CleaningService;
 use Illuminate\Http\Request;
+use App\Http\Traits\HandlesFileUploads;
 
 class CleaningServiceController extends Controller
 {
+    use HandlesFileUploads;
     /**
      * Display a listing of the resource.
      *
@@ -65,8 +67,8 @@ class CleaningServiceController extends Controller
 
         $service = new CleaningService($request->except('image'));
 
-        if ($request->hasFile('image')) {
-            $service->image = $request->file('image')->store('services', 'public');
+        if ($imagePath = $this->handleImageUpload($request, 'image', 'services')) {
+            $service->image = $imagePath;
         }
 
         $service->save();
@@ -119,8 +121,8 @@ class CleaningServiceController extends Controller
         $service = CleaningService::findOrFail($id);
         $service->fill($request->except('image'));
 
-        if ($request->hasFile('image')) {
-            $service->image = $request->file('image')->store('services', 'public');
+        if ($imagePath = $this->handleImageUpload($request, 'image', 'services')) {
+            $service->image = $imagePath;
         }
 
         $service->save();

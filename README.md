@@ -63,7 +63,7 @@ WasteGuardian is a smart waste management web application built with Laravel. It
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/wasteguardian.git
+    git clone https://github.com/chhuparustam/WasteGuardian.git
     cd wasteguardian
     ```
 

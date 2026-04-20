@@ -50,13 +50,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">
+                            <a class="nav-link" href="#intro-section">
                                 <i class="material-icons-round">info</i>
                                 <span>About</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact-details">
+                            <a class="nav-link" href="#footer-section">
                                 <i class="material-icons-round">contact_mail</i>
                                 <span>Contact</span>
                             </a>

@@ -17,7 +17,7 @@
             <div class="service-card">
                 <div class="card-image">
                     <img src="{{ $service->image ? asset('storage/' . $service->image) : asset('images/services/default-service.jpg') }}" 
-                         alt="{{ $service->title }}" class="card-image primary">
+                     alt="{{ $service->title }}" class="service-detail-image">
                     <div class="price-badge">
                         <i class="fas fa-tag"></i>
                         <span>Rs. {{ $service->price }}</span>

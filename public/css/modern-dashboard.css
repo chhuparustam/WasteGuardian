@@ -1829,3 +1829,507 @@ h6 {
         display: none !important;
     }
 }
+
+/* ========================================
+   Hero Section Styles  
+======================================== */
+
+/* Modern Pickup Form Styles - Horizontal & Vertical Layout */
+.pickup-form-modern {
+    flex: 1;
+    max-width: 550px;
+    min-width: 500px;
+    height: 100%;
+}
+
+.form-container {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+/* Form Header - Compact */
+.form-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+}
+
+.form-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.form-icon i {
+    color: white;
+    font-size: 1.25rem;
+}
+
+.form-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.25rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-subtitle {
+    color: #64748b;
+    font-size: 0.75rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Form Content - Scrollable */
+.pickup-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.pickup-form::-webkit-scrollbar {
+    width: 4px;
+}
+
+.pickup-form::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+}
+
+.pickup-form::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Form Grid - Mixed Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Specific Layout for Form Groups */
+.form-group:nth-child(1),
+.form-group:nth-child(2) {
+    /* Name and Address - Horizontal */
+    grid-column: span 1;
+}
+
+.form-group:nth-child(3) {
+    /* Landmark - Full Width */
+    grid-column: 1 / -1;
+}
+
+.form-group:nth-child(4) {
+    /* Photo Upload - Full Width */
+    grid-column: 1 / -1;
+}
+
+.form-group:nth-child(5) {
+    /* Message - Full Width */
+    grid-column: 1 / -1;
+}
+
+/* Form Labels - Compact */
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-bottom: 0.375rem;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.7rem;
+}
+
+.form-label i {
+    color: #667eea;
+    font-size: 0.85rem;
+}
+
+.optional-badge {
+    background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+    color: #64748b;
+    padding: 0.1rem 0.3rem;
+    border-radius: 6px;
+    font-size: 0.55rem;
+    font-weight: 500;
+    margin-left: auto;
+}
+
+/* Input Container */
+.input-container {
+    position: relative;
+}
+
+.modern-input,
+.modern-textarea {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #2d3748;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.modern-input:focus,
+.modern-textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+.modern-input::placeholder,
+.modern-textarea::placeholder {
+    color: #a0aec0;
+    font-weight: 400;
+    font-size: 0.7rem;
+}
+
+.modern-textarea {
+    resize: vertical;
+    min-height: 60px;
+    max-height: 80px;
+    font-family: inherit;
+}
+
+/* Input Border Animation */
+.input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    border-radius: 0 0 8px 8px;
+}
+
+.modern-input:focus + .input-border,
+.modern-textarea:focus + .input-border {
+    transform: scaleX(1);
+}
+
+/* File Upload - Compact */
+.file-upload-modern {
+    position: relative;
+}
+
+.file-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.file-upload-area {
+    border: 2px dashed #cbd5e0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    text-align: center;
+    background: rgba(247, 250, 252, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.file-upload-area:hover {
+    border-color: #667eea;
+    background: rgba(240, 244, 255, 0.7);
+    transform: translateY(-1px);
+}
+
+.file-upload-area.drag-over {
+    border-color: #667eea;
+    background: rgba(230, 243, 255, 0.8);
+    transform: scale(1.02);
+}
+
+.file-upload-area.file-selected {
+    border-color: #48bb78;
+    background: rgba(240, 255, 244, 0.7);
+}
+
+.upload-icon {
+    margin-bottom: 0.25rem;
+}
+
+.upload-icon i {
+    font-size: 1.25rem;
+    color: #667eea;
+}
+
+.upload-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.upload-primary {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.7rem;
+}
+
+.upload-secondary {
+    font-size: 0.6rem;
+    color: #718096;
+}
+
+/* Form Actions - Fixed at Bottom */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.75rem;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.btn-submit-modern {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1.25rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 120px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-submit-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-submit-modern:active {
+    transform: translateY(0);
+}
+
+/* Loading State */
+.btn-submit-modern.loading {
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.btn-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-submit-modern.loading .btn-loading {
+    opacity: 1;
+}
+
+.btn-submit-modern.loading span,
+.btn-submit-modern.loading > i {
+    opacity: 0;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Height Matching with Testimonials */
+.pickup-container.has-form {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+    min-height: 600px;
+}
+
+.testimonials-modern,
+.pickup-form-modern {
+    flex: 1;
+    height: 100%;
+}
+
+/* Responsive Design for Form */
+@media (max-width: 1200px) {
+    .pickup-form-modern {
+        max-width: 500px;
+        min-width: 400px;
+    }
+    
+    .form-container {
+        padding: 1.25rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0.625rem;
+    }
+    
+    .form-group:nth-child(1),
+    .form-group:nth-child(2),
+    .form-group:nth-child(3),
+    .form-group:nth-child(4),
+    .form-group:nth-child(5) {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .pickup-container.has-form {
+        flex-direction: column;
+        gap: 1.5rem;
+        min-height: auto;
+    }
+    
+    .pickup-form-modern {
+        order: 2;
+        max-width: 600px;
+        margin: 0 auto;
+        min-width: auto;
+    }
+    
+    .testimonials-modern {
+        order: 1;
+    }
+    
+    .form-container {
+        height: auto;
+    }
+    
+    .pickup-form {
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .pickup-form-modern {
+        max-width: 100%;
+        min-width: auto;
+    }
+    
+    .form-container {
+        padding: 1rem;
+        margin: 0 0.5rem;
+        border-radius: 15px;
+    }
+    
+    .form-title {
+        font-size: 1.1rem;
+    }
+    
+    .form-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .form-icon i {
+        font-size: 1.1rem;
+    }
+    
+    .btn-submit-modern {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 0.875rem;
+        border-radius: 12px;
+    }
+    
+    .form-header {
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    .form-grid {
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .modern-input,
+    .modern-textarea {
+        padding: 0.5rem 0.625rem;
+        font-size: 0.7rem;
+    }
+    
+    .file-upload-area {
+        padding: 0.5rem;
+    }
+    
+    .upload-icon i {
+        font-size: 1rem;
+    }
+    
+    .form-actions {
+        padding-top: 0.5rem;
+    }
+}

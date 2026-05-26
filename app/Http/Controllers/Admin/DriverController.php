@@ -6,26 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\DriverModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-// use App\Http\Controllers\Admin\DriverController;
+use App\Http\Traits\SearchableRecords;
 
 class DriverController extends Controller
 {
+    use SearchableRecords;
+
     public function index()
     {
-        $drivers = DriverModel::where('type','driver')->paginate(10);
-        
-        $query = DriverModel::query();
+        $query = DriverModel::where('type', 'driver');
+        $searchTerm = request('search');
+        $searchableFields = ['fullName', 'email', 'phone', 'address'];
 
-    if (request('search')) {
-        $search = request('search');
-        $query->where(function ($q) use ($search) {
-            $q->where('fullName', 'like', "%{$search}%")
-              ->orWhere('email', 'like', "%{$search}%")
-              ->orWhere('phone', 'like', "%{$search}%")
-              ->orWhere('address', 'like', "%{$search}%");
-        });
-        $drivers = $query->paginate(10)->appends(request()->all());
-    }
+        $drivers = $this->searchAndPaginate($query, $searchTerm, $searchableFields, 10);
+
         return view('admin.drivers.index', compact('drivers'));
     }
 

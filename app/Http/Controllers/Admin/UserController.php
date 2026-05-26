@@ -4,26 +4,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Traits\SearchableRecords;
 
 class UserController extends Controller
 {
+    use SearchableRecords;
+
     public function index()
     {
         $query = User::query();
+        $searchTerm = request('search');
+        $searchableFields = ['fullName', 'email'];
 
-        // Optional: Add search functionality
-        if (request('search')) {
-            $search = request('search');
-            $query->where(function ($q) use ($search) {
-                $q->where('fullName', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
-            });
-        }
-
-        $users = $query->paginate(10); // Use pagination
+        $users = $this->searchAndPaginate($query, $searchTerm, $searchableFields, 10);
 
         return view('admin.users.index', compact('users'));
-        
     }
     
 

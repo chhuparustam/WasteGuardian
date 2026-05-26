@@ -6,22 +6,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PickupRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Activity;
+use App\Http\Traits\HandlesFileUploads;
+use App\Http\Traits\LogsActivity;
+use App\Http\Traits\AuthorizesOwnership;
 
 class PickupRequestController extends Controller
 {
+    use HandlesFileUploads, LogsActivity, AuthorizesOwnership;
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string',
-        'address' => 'required|string',
-        'landmark' => 'required|string',
-        'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-        'message' => 'nullable|string',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'landmark' => 'required|string',
+            'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'message' => 'nullable|string',
+        ]);
 
-    $photoPath = $request->file('photo')->store('photos', 'public');
-    $data = [
+        $photoPath = $this->storeFile($request->file('photo'), 'photos');
+        
+        PickupRequest::create([
             'name' => $request->name,
             'address' => $request->address,
             'landmark' => $request->landmark,
@@ -29,115 +33,89 @@ class PickupRequestController extends Controller
             'message' => $request->message,
             'user_id' => Auth::id(), 
             'status' => 'pending', 
-    ];
+        ]);
 
-    // dd($data);
-    PickupRequest::create($data);
+        $this->logRequestCreated();
 
-        Activity::create([
-        'user_id' => Auth::id(),
-        'type' => 'request_created',
-        'description' => 'New waste collection request submitted',
-    ]);
-
-    return redirect()->route('user.dashboard')->with('success', 'Pickup request submitted!');
-}
-
-public function userRequests()
-{
-    // Use session or Auth depending on your setup
-    $userId = Auth::id(); // or Auth::id() if using Laravel Auth
-
-    $requests = \App\Models\PickupRequest::where('user_id', $userId)
-        ->orderBy('created_at', 'desc')
-        ->get();
-    return view('user.my-requests', compact('requests'));
-}
-
-
-public function deleteRequest($id)
-{
-    if(!Auth::check() || !$id) {
-        return redirect()->back()->with('error', 'You must be logged in to delete a request.');
+        return redirect()->route('user.dashboard')->with('success', 'Pickup request submitted!');
     }
 
-    $request = PickupRequest::findOrFail($id);
-    
-    // Check if the request belongs to the authenticated user
-    if ($request->user_id !== Auth::id()) {
-        return redirect()->back()->with('error', 'You are not authorized to delete this request.');
+    public function userRequests()
+    {
+        $requests = PickupRequest::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+            
+        return view('user.my-requests', compact('requests'));
     }
 
-    if($request->status == 'pending') {
-        $request->delete();
-        return redirect()->route('user.my-requests')->with('success', 'Request deleted successfully.');
-    } else {
+
+    public function deleteRequest($id)
+    {
+        if ($redirect = $this->ensureAuthenticated('You must be logged in to delete a request.')) {
+            return $redirect;
+        }
+
+        $request = PickupRequest::findOrFail($id);
+        
+        if ($redirect = $this->ensureOwnership($request, 'user_id', 'You are not authorized to delete this request.')) {
+            return $redirect;
+        }
+
+        if ($request->status == 'pending') {
+            $request->delete();
+            $this->logRequestDeleted();
+            return redirect()->route('user.my-requests')->with('success', 'Request deleted successfully.');
+        }
+
         return redirect()->back()->with('error', 'Only pending requests can be deleted.');
     }
-    Activity::create([
-        'user_id' => Auth::id(),
-        'type' => 'request_deleted',
-        'description' => 'Waste collection request deleted',
-    ]);
 
-    return redirect()->route('user.my-requests')->with('success', 'Request deleted successfully.');
-}
+    public function editRequest($id)
+    {
+        if ($redirect = $this->ensureAuthenticated('You must be logged in to edit a request.')) {
+            return $redirect;
+        }
 
-public function editRequest($id)
-{
-    if(!Auth::check() || !$id) {
-        return redirect()->back()->with('error', 'You must be logged in to edit a request.');
+        $request = PickupRequest::findOrFail($id);
+        
+        if ($redirect = $this->ensureOwnership($request, 'user_id', 'You are not authorized to edit this request.')) {
+            return $redirect;
+        }
+
+        return view('user.edit-request', compact('request'));
     }
 
-    $request = PickupRequest::findOrFail($id);
-    
-    // Check if the request belongs to the authenticated user
-    if ($request->user_id !== Auth::id()) {
-        return redirect()->back()->with('error', 'You are not authorized to edit this request.');
+
+    public function updateRequest(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'landmark' => 'required|string',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'message' => 'nullable|string',
+        ]);
+
+        $pickupRequest = PickupRequest::findOrFail($id);
+
+        if ($redirect = $this->ensureOwnership($pickupRequest, 'user_id', 'You are not authorized to update this request.')) {
+            return $redirect;
+        }
+
+        if ($photoPath = $this->handleImageUpload($request, 'photo', 'photos')) {
+            $pickupRequest->photo = $photoPath;
+        }
+
+        $pickupRequest->name = $request->name;
+        $pickupRequest->address = $request->address;
+        $pickupRequest->landmark = $request->landmark;
+        $pickupRequest->message = $request->message;
+        $pickupRequest->save();
+
+        $this->logRequestUpdated();
+
+        return redirect()->route('user.my-requests')->with('success', 'Request updated successfully.');
     }
-
-    return view('user.edit-request', compact('request'));
-
-}
-
-
-public function updateRequest(Request $request, $id)
-{
-    $request->validate([
-        'name' => 'required|string',
-        'address' => 'required|string',
-        'landmark' => 'required|string',
-        'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'message' => 'nullable|string',
-    ]);
-
-    $pickupRequest = PickupRequest::findOrFail($id);
-
-    // Check if the request belongs to the authenticated user
-    if ($pickupRequest->user_id !== Auth::id()) {
-        return redirect()->back()->with('error', 'You are not authorized to update this request.');
-    }
-
-    if ($request->hasFile('photo')) {
-        $photoPath = $request->file('photo')->store('photos', 'public');
-        $pickupRequest->photo = $photoPath;
-    }
-
-    $pickupRequest->name = $request->name;
-    $pickupRequest->address = $request->address;
-    $pickupRequest->landmark = $request->landmark;
-    $pickupRequest->message = $request->message;
-
-    $pickupRequest->save();
-
-    Activity::create([
-        'user_id' => Auth::id(),
-        'type' => 'request_updated',
-        'description' => 'Waste collection request updated',
-    ]);
-
-    return redirect()->route('user.my-requests')->with('success', 'Request updated successfully.');
-
-}
 
 }

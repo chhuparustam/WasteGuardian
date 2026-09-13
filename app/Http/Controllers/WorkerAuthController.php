@@ -15,11 +15,10 @@ class WorkerAuthController extends Controller
 
     public function register(Request $request)
     {
-        // Validate the incoming request
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:workers',
-            'phone' => 'required|string|max:20',
+            'phone' => 'required|string|max:50',
             'address' => 'required|string|max:255',
             'specialization' => 'required|string|max:100',
             'profile_picture' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -37,8 +36,8 @@ class WorkerAuthController extends Controller
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'specialization' => $request->specialization,
-                'photo' => $imagePath, // Ensure the 'photo' column exists in the workers table
-                'password' => Hash::make($request->password),
+                'photo' => $imagePath, // Make sure your DB column is 'photo'
+                'password' => \Hash::make($request->password),
             ]);
 
             // Redirect to the login page with a success message
@@ -92,19 +91,18 @@ class WorkerAuthController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $worker = auth()->user();
+        $worker = Worker::find(session('worker_id'));
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone' => 'nullable|string|max:20',
-            'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'phone' => 'nullable|string|max:50',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         // Handle profile picture upload
-        if ($request->hasFile('profile_picture')) {
-            $filename = time() . '.' . $request->profile_picture->extension();
-            $request->profile_picture->move(public_path('uploads/profile_pictures'), $filename);
-            $worker->profile_picture = 'uploads/profile_pictures/' . $filename;
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('profile-pictures', 'public');
+            $worker->photo = $imagePath;
         }
 
         $worker->name = $request->name;

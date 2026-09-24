@@ -7,7 +7,6 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{ asset('js/dashboard-charts.js') }}"></script>
 
 <div class="dashboard-container">
     <!-- Welcome Section -->
@@ -54,7 +53,13 @@
 
     <!-- Chart Section -->
     <div class="chart-section">
-        <h2>Activity Overview</h2>
+        <div class="chart-head">
+            <h2>Activity Overview</h2>
+            <div class="chart-filters">
+                <button class="chart-filter active" data-period="week">Week</button>
+                <button class="chart-filter" data-period="month">Month</button>
+            </div>
+        </div>
         <div class="chart-container">
             <canvas id="statsAreaChart"></canvas>
         </div>
@@ -144,35 +149,30 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Get last 7 days
-    const days = [...Array(7)].map((_, i) => {
-        const d = new Date();
-        d.setDate(d.getDate() - i);
-        return d.toLocaleDateString('en-US', { weekday: 'short' });
-    }).reverse();
+    const seed = @json($chartData ?? null);
 
     var ctx = document.getElementById('statsAreaChart').getContext('2d');
-    
+
+    function buildData(data) {
+        return {
+            labels: data.labels,
+            datasets: (data.datasets || []).map(function(ds) {
+                var completed = ds.label === 'Completed';
+                return {
+                    label: ds.label,
+                    data: ds.data,
+                    backgroundColor: completed ? 'rgba(33, 150, 243, 0.1)' : 'rgba(76, 175, 80, 0.1)',
+                    borderColor: completed ? '#2196F3' : '#4CAF50',
+                    tension: 0.4,
+                    fill: true
+                };
+            })
+        };
+    }
+
     var statsAreaChart = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels: days,
-            datasets: [{
-                label: 'Total Requests',
-                data: [4, 6, 3, 5, 2, 4, 3],
-                backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                borderColor: '#4CAF50',
-                tension: 0.4,
-                fill: true
-            }, {
-                label: 'Completed',
-                data: [2, 4, 2, 3, 1, 3, 2],
-                backgroundColor: 'rgba(33, 150, 243, 0.1)',
-                borderColor: '#2196F3',
-                tension: 0.4,
-                fill: true
-            }]
-        },
+        data: buildData(seed || { labels: [], datasets: [] }),
         options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -233,6 +233,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
+    });
+
+    document.querySelectorAll('.chart-filter').forEach(function(button) {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.chart-filter').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            this.classList.add('active');
+
+            fetch("{{ route('user.dashboard.chart-data') }}?period=" + this.dataset.period)
+                .then(function(response) { return response.json(); })
+                .then(function(data) {
+                    statsAreaChart.data = buildData(data);
+                    statsAreaChart.update();
+                });
+        });
     });
 });
 </script>

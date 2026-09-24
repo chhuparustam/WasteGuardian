@@ -134,28 +134,21 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const seed = @json($chartData ?? null);
     const ctx = document.getElementById('workerStatsChart').getContext('2d');
-    
-    // Gradient fills for datasets
-    const taskGradient = ctx.createLinearGradient(0, 0, 0, 400);
-    taskGradient.addColorStop(0, 'rgba(76, 175, 80, 0.2)');
-    taskGradient.addColorStop(1, 'rgba(76, 175, 80, 0.0)');
 
-    const hoursGradient = ctx.createLinearGradient(0, 0, 0, 400);
-    hoursGradient.addColorStop(0, 'rgba(33, 150, 243, 0.2)');
-    hoursGradient.addColorStop(1, 'rgba(33, 150, 243, 0.0)');
+    function buildData(data) {
+        const tasks = (data.datasets && data.datasets[0]) || { label: 'Tasks Completed', data: [] };
 
-    const chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [...Array(7)].map((_, i) => {
-                const d = new Date();
-                d.setDate(d.getDate() - (6 - i));
-                return d.toLocaleDateString('en-US', { weekday: 'short' });
-            }),
+        const taskGradient = ctx.createLinearGradient(0, 0, 0, 400);
+        taskGradient.addColorStop(0, 'rgba(76, 175, 80, 0.2)');
+        taskGradient.addColorStop(1, 'rgba(76, 175, 80, 0.0)');
+
+        return {
+            labels: data.labels || [],
             datasets: [{
-                label: 'Tasks Completed',
-                data: [5, 7, 4, 6, 3, 5, 4],
+                label: tasks.label || 'Tasks Completed',
+                data: tasks.data || [],
                 backgroundColor: taskGradient,
                 borderColor: '#4CAF50',
                 borderWidth: 2,
@@ -166,21 +159,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 pointBorderWidth: 2,
                 pointRadius: 4,
                 pointHoverRadius: 6
-            }, {
-                label: 'Hours Worked',
-                data: [8, 7, 8, 6, 8, 7, 8],
-                backgroundColor: hoursGradient,
-                borderColor: '#2196F3',
-                borderWidth: 2,
-                tension: 0.4,
-                fill: true,
-                pointBackgroundColor: '#ffffff',
-                pointBorderColor: '#2196F3',
-                pointBorderWidth: 2,
-                pointRadius: 4,
-                pointHoverRadius: 6
             }]
-        },
+        };
+    }
+
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: buildData(seed || { labels: [], datasets: [] }),
         options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -218,14 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         size: 13,
                         family: "'Poppins', sans-serif"
                     },
-                    displayColors: false,
-                    callbacks: {
-                        label: function(context) {
-                            const label = context.dataset.label || '';
-                            const value = context.parsed.y || 0;
-                            return `${label}: ${value}${context.datasetIndex === 1 ? ' hrs' : ''}`;
-                        }
-                    }
+                    displayColors: false
                 }
             },
             scales: {
@@ -266,9 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            
-            // Update chart data based on selected period
-            // You can add your logic here
+
+            fetch("{{ route('worker.dashboard.chart-data') }}?period=" + this.dataset.period)
+                .then(response => response.json())
+                .then(data => {
+                    chart.data = buildData(data);
+                    chart.update();
+                });
         });
     });
 });

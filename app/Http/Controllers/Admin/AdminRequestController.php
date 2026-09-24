@@ -26,9 +26,18 @@ class AdminRequestController extends Controller
             });
         }
 
-        $requests = $query->orderByDesc('created_at')->paginate(10)->appends($request->all());
+        $sortable = ['id', 'name', 'address', 'landmark', 'message', 'created_at'];
+        $sort = $request->input('sort', 'created_at');
+        if (!in_array($sort, $sortable)) {
+            $sort = 'created_at';
+        }
+        $direction = strtolower($request->input('direction', 'desc')) === 'asc' ? 'asc' : 'desc';
 
-        return view('admin.requests.index', compact('requests'));
+        $requests = $query->orderBy($sort, $direction)
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('admin.requests.index', compact('requests', 'sort', 'direction'));
     }
 
     public function destroy($id)

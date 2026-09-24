@@ -234,6 +234,38 @@ body {
     margin-bottom: 2rem;
 }
 
+.chart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.chart-filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chart-filter {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    background: white;
+    border-radius: 8px;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chart-filter:hover {
+    background: #f8fafc;
+}
+
+.chart-filter.active {
+    background: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
 .chart-container {
     height: 300px;
 }

@@ -57,17 +57,31 @@
             </div>
         </div>
 
+        @php
+    $sortLink = function ($column, $label) use ($sort, $direction) {
+        $dir = ($sort === $column && $direction === 'asc') ? 'desc' : 'asc';
+        $params = array_merge(request()->query(), ['sort' => $column, 'direction' => $dir]);
+        $icon = ($sort === $column)
+            ? ($direction === 'asc' ? 'fa-sort-up' : 'fa-sort-down')
+            : 'fa-sort';
+        $active = $sort === $column ? ' active' : '';
+        $html = '<a href="' . e(route('admin.requests.index', $params)) . '" class="sort-link' . $active . '" title="Sort by ' . e($label) . '">'
+              . e($label) . ' <i class="fas ' . $icon . '"></i></a>';
+        return $html;
+    };
+@endphp
+
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>User Name</th>
-                        <th>Address</th>
-                        <th>Nearest Landmark</th>
+                        <th>{!! $sortLink('id', 'ID') !!}</th>
+                        <th>{!! $sortLink('name', 'User Name') !!}</th>
+                        <th>{!! $sortLink('address', 'Address') !!}</th>
+                        <th>{!! $sortLink('landmark', 'Nearest Landmark') !!}</th>
                         <th>Photo of Waste</th>
-                        <th>Message</th>
-                        <th>Requested At</th>
+                        <th>{!! $sortLink('message', 'Message') !!}</th>
+                        <th>{!! $sortLink('created_at', 'Requested At') !!}</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>

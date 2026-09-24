@@ -147,25 +147,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const seed = @json($chartData ?? null);
         const ctx = document.getElementById('performanceChart').getContext('2d');
-        
-        // Create gradient for the chart
-        const pickupsGradient = ctx.createLinearGradient(0, 0, 0, 400);
-        pickupsGradient.addColorStop(0, 'rgba(76, 175, 80, 0.1)');
-        pickupsGradient.addColorStop(1, 'rgba(76, 175, 80, 0.02)');
-        
-        const hoursGradient = ctx.createLinearGradient(0, 0, 0, 400);
-        hoursGradient.addColorStop(0, 'rgba(33, 150, 243, 0.1)');
-        hoursGradient.addColorStop(1, 'rgba(33, 150, 243, 0.02)');
 
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        function buildData(data) {
+            const pickups = (data.datasets && data.datasets[0]) || { label: 'Pickups Completed', data: [] };
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(76, 175, 80, 0.1)');
+            gradient.addColorStop(1, 'rgba(76, 175, 80, 0.02)');
+
+            return {
+                labels: data.labels || [],
                 datasets: [{
-                    label: 'Pickups Completed',
-                    data: [12, 15, 13, 14, 16, 11, 13],
-                    backgroundColor: pickupsGradient,
+                    label: pickups.label || 'Pickups Completed',
+                    data: pickups.data || [],
+                    backgroundColor: gradient,
                     borderColor: '#4CAF50',
                     borderWidth: 2,
                     tension: 0.4,
@@ -175,21 +172,13 @@
                     pointBorderWidth: 2,
                     pointRadius: 4,
                     pointHoverRadius: 6
-                }, {
-                    label: 'Hours Worked',
-                    data: [8, 7, 8, 6, 8, 7, 8],
-                    backgroundColor: hoursGradient,
-                    borderColor: '#2196F3',
-                    borderWidth: 2,
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#ffffff',
-                    pointBorderColor: '#2196F3',
-                    pointBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHoverRadius: 6
                 }]
-            },
+            };
+        }
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: buildData(seed || { labels: [], datasets: [] }),
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -230,9 +219,15 @@
         // Handle chart filter buttons
         document.querySelectorAll('.chart-filter').forEach(button => {
             button.addEventListener('click', function() {
-                document.querySelector('.chart-filter.active').classList.remove('active');
+                document.querySelectorAll('.chart-filter').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                // Add your filter logic here
+
+                fetch("{{ route('driver.dashboard.chart-data') }}?period=" + this.dataset.period)
+                    .then(response => response.json())
+                    .then(data => {
+                        chart.data = buildData(data);
+                        chart.update();
+                    });
             });
         });
     });

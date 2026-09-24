@@ -189,6 +189,33 @@ tr:hover td {
     background: var(--bg-light);
 }
 
+/* Sortable column headers */
+.sort-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-medium);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.sort-link i {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.sort-link:hover,
+.sort-link.active {
+    color: var(--primary-color, #2563eb);
+}
+
+.sort-link:hover i,
+.sort-link.active i {
+    color: var(--primary-color, #2563eb);
+}
+
 /* Photo Cell */
 .photo-cell {
     width: 100px;

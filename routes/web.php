@@ -10,6 +10,7 @@ use App\Http\Controllers\Driver\LoginController;
 use App\Http\Controllers\PickupRequestController;
 use App\Http\Controllers\Admin\AdminRequestController;
 use App\Http\Controllers\WorkerAuthController;
+use App\Http\Controllers\Worker\WorkerDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\UserProfileController;
@@ -140,9 +141,8 @@ Route::get('/worker/login', [WorkerAuthController::class, 'showLoginForm'])->nam
 Route::post('/worker/login', [WorkerAuthController::class, 'login'])->name('worker.login.submit');
 
 // Worker dashboard 
-Route::get('/worker/dashboard', function () {
-    return view('worker.dashboard');
-})->name('worker.dashboard');
+Route::get('/worker/dashboard', [WorkerDashboardController::class, 'index'])->name('worker.dashboard');
+Route::get('/worker/dashboard/chart-data', [WorkerDashboardController::class, 'chartData'])->name('worker.dashboard.chart-data');
 Route::get('/worker/edit/profile', [WorkerAuthController::class, 'editProfile'])->name('worker.edit-profile');
 Route::post('/worker/edit/profile', [WorkerAuthController::class, 'updateProfile'])->name('worker.edit-profile.update');
 
@@ -156,6 +156,11 @@ Route::post('/driver/login', [LoginController::class, 'login'])->name('driver.lo
 
 // route for driver dashboard
 Route::get('/driver/dashboard', [LoginController::class, 'dashboard'])->name('driver.dashboard');
+Route::get('/driver/dashboard/chart-data', [LoginController::class, 'chartData'])->name('driver.dashboard.chart-data');
+
+// chart data endpoints
+Route::get('/user/dashboard/chart-data', [UserDashboardController::class, 'chartData'])->name('user.dashboard.chart-data');
+Route::get('/admin/dashboard/chart-data', [AdminLoginController::class, 'chartData'])->name('admin.dashboard.chart-data');
 
 
 
